@@ -13,10 +13,24 @@ const Card = styled('div', {
   position: 'relative',
   overflow: 'hidden',
 
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '1px',
+    background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%)',
+  },
+
   '&:hover': {
     transform: 'translateY(-4px)',
-    borderColor: 'rgba(139, 92, 246, 0.4)',
-    boxShadow: '0 12px 30px -5px rgba(0, 0, 0, 0.6), 0 0 25px -5px rgba(139, 92, 246, 0.2)',
+    borderColor: 'rgba(139, 92, 246, 0.45)',
+    boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 30px -5px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+  },
+
+  '@mobile': {
+    p: '$4',
   },
 });
 
@@ -36,9 +50,9 @@ const CategoryTitle = styled('h3', {
 });
 
 const CategoryDesc = styled('p', {
-  fontSize: '$sm',
+  fontSize: '$xs',
   color: '$textSecondary',
-  lineHeight: 1.5,
+  lineHeight: 1.6,
   margin: 0,
 });
 
@@ -46,7 +60,7 @@ const TagsContainer = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   gap: '$2',
-  pt: '$2',
+  pt: '$1',
 });
 
 export default function SkillCard({ title, description, skills }) {

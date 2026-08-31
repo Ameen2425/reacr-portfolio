@@ -12,7 +12,7 @@ const iconMap = {
 };
 
 const CertificationsSection = styled('section', {
-  py: '$16',
+  py: '$20',
   px: '$4',
   backgroundColor: '$bgSecondary',
   position: 'relative',
@@ -20,7 +20,7 @@ const CertificationsSection = styled('section', {
   borderBottom: '1px solid $border',
 
   '@mobile': {
-    py: '$12',
+    py: '$14',
     px: '$3',
   },
 });
@@ -35,7 +35,7 @@ const CertContainer = styled('div', {
 const CertGrid = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '$4',
+  gap: '$5',
 
   '@mobile': {
     gridTemplateColumns: '1fr',
@@ -46,28 +46,39 @@ const CertGrid = styled('div', {
 const CertCard = styled('div', {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
-  borderRadius: '$xl',
-  p: '$5',
+  borderRadius: '$2xl',
+  p: '$6',
   display: 'flex',
   flexDirection: 'column',
-  gap: '$3',
+  gap: '$4',
   position: 'relative',
   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   width: '100%',
+  overflow: 'hidden',
+
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '1px',
+    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.35) 50%, transparent 100%)',
+  },
 
   '&:hover': {
-    transform: 'translateY(-3px)',
-    borderColor: 'rgba(139, 92, 246, 0.4)',
-    boxShadow: '0 12px 28px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.15)',
+    transform: 'translateY(-4px)',
+    borderColor: 'rgba(139, 92, 246, 0.45)',
+    boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
 
   '@mobile': {
-    p: '$4',
+    p: '$5',
     borderRadius: '$lg',
   },
 
   '@smallMobile': {
-    p: '$3',
+    p: '$4',
   },
 });
 
@@ -83,22 +94,23 @@ const IconWrapper = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  size: '38px',
+  size: '44px',
   borderRadius: '$md',
-  backgroundColor: 'rgba(139, 92, 246, 0.1)',
-  border: '1px solid rgba(139, 92, 246, 0.25)',
+  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+  border: '1px solid rgba(139, 92, 246, 0.3)',
   color: '$primaryLight',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.25s ease',
 
   [`${CertCard}:hover &`]: {
-    backgroundColor: '$primary',
+    background: 'linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)',
     color: '$white',
-    boxShadow: '0 0 12px rgba(139, 92, 246, 0.5)',
+    boxShadow: '0 0 16px rgba(139, 92, 246, 0.6)',
+    borderColor: '$primaryLight',
   },
 });
 
 const CertTitle = styled('h3', {
-  fontSize: '$base',
+  fontSize: '$lg',
   fontWeight: '$bold',
   color: '$textPrimary',
   letterSpacing: '-0.02em',
@@ -110,26 +122,26 @@ const IssuerText = styled('p', {
   fontSize: '$xs',
   fontWeight: '$medium',
   color: '$primaryLight',
-  margin: '2px 0 0 0',
+  margin: '4px 0 0 0',
   wordBreak: 'break-word',
 });
 
 const CertDesc = styled('p', {
-  fontSize: '0.75rem',
+  fontSize: '$xs',
   color: '$textSecondary',
-  lineHeight: 1.5,
+  lineHeight: 1.6,
   margin: 0,
 });
 
 const VerifiedRow = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '5px',
+  gap: '6px',
   fontFamily: '$mono',
-  fontSize: '0.7rem',
+  fontSize: '0.72rem',
   color: '$textMuted',
   mt: 'auto',
-  pt: '$2',
+  pt: '$3',
   borderTop: '1px solid $border',
   flexWrap: 'wrap',
 });
@@ -152,7 +164,7 @@ export default function Certifications() {
               <CertCard key={cert.id}>
                 <CardHeader>
                   <IconWrapper>
-                    <Icon size={20} />
+                    <Icon size={22} />
                   </IconWrapper>
                   <Badge variant="pill">{cert.tag}</Badge>
                 </CardHeader>
@@ -165,7 +177,7 @@ export default function Certifications() {
                 <CertDesc>{cert.description}</CertDesc>
 
                 <VerifiedRow>
-                  <CheckCircle size={12} color="#22C55E" />
+                  <CheckCircle size={14} color="#10B981" />
                   <span>{cert.category}</span>
                 </VerifiedRow>
               </CertCard>

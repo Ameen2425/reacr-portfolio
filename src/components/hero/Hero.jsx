@@ -6,7 +6,7 @@ import { ArrowRight, Mail, FileText, Sparkles, Terminal } from 'lucide-react';
 
 const floatAnim = keyframes({
   '0%, 100%': { transform: 'translateY(0px)' },
-  '50%': { transform: 'translateY(-5px)' },
+  '50%': { transform: 'translateY(-6px)' },
 });
 
 const HeroSection = styled('section', {
@@ -14,41 +14,41 @@ const HeroSection = styled('section', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  pt: '90px',
-  pb: '$12',
+  pt: '100px',
+  pb: '$16',
   px: '$4',
   position: 'relative',
   overflow: 'hidden',
   backgroundColor: '$bg',
 
   '@mobile': {
-    pt: '75px',
-    pb: '$10',
+    pt: '80px',
+    pb: '$12',
     px: '$3',
   },
 
   '&::before': {
     content: '""',
     position: 'absolute',
-    top: '-10%',
-    left: '-5%',
-    width: '350px',
-    height: '350px',
+    top: '-15%',
+    left: '-10%',
+    width: '550px',
+    height: '550px',
     borderRadius: '$full',
-    background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, rgba(7, 7, 7, 0) 70%)',
-    filter: 'blur(60px)',
+    background: 'radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(5, 5, 8, 0) 70%)',
+    filter: 'blur(80px)',
     pointerEvents: 'none',
   },
   '&::after': {
     content: '""',
     position: 'absolute',
-    top: '15%',
-    right: '-5%',
-    width: '400px',
-    height: '400px',
+    top: '10%',
+    right: '-10%',
+    width: '650px',
+    height: '650px',
     borderRadius: '$full',
-    background: 'radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(7, 7, 7, 0) 70%)',
-    filter: 'blur(70px)',
+    background: 'radial-gradient(circle, rgba(139, 92, 246, 0.16) 0%, rgba(5, 5, 8, 0) 70%)',
+    filter: 'blur(90px)',
     pointerEvents: 'none',
   },
 });
@@ -86,10 +86,10 @@ const StatusWrapper = styled('div', {
 });
 
 const Heading = styled('h1', {
-  fontSize: 'clamp(1.75rem, 6.5vw, 4.25rem)',
+  fontSize: 'clamp(2rem, 6.5vw, 4.25rem)',
   fontWeight: '$extrabold',
-  letterSpacing: '-0.03em',
-  lineHeight: 1.1,
+  letterSpacing: '-0.04em',
+  lineHeight: 1.08,
   color: '$textPrimary',
   margin: 0,
   wordBreak: 'break-word',
@@ -97,16 +97,17 @@ const Heading = styled('h1', {
 
 const HighlightSpan = styled('span', {
   display: 'block',
-  background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 50%, #06B6D4 100%)',
+  background: 'linear-gradient(135deg, #DDD6FE 0%, #A78BFA 30%, #8B5CF6 60%, #06B6D4 100%)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
-  mt: '4px',
+  mt: '6px',
+  textShadow: '0 0 30px rgba(139, 92, 246, 0.25)',
 });
 
 const Description = styled('p', {
-  fontSize: 'clamp(0.9rem, 1.6vw, 1.15rem)',
+  fontSize: 'clamp(0.95rem, 1.6vw, 1.15rem)',
   color: '$textSecondary',
-  lineHeight: 1.6,
+  lineHeight: 1.65,
   maxWidth: '560px',
   margin: 0,
 });
@@ -135,15 +136,17 @@ const SecondaryAction = styled('a', {
   fontSize: '$xs',
   color: '$textMuted',
   textDecoration: 'none',
-  padding: '8px 14px',
+  padding: '8px 16px',
   borderRadius: '$full',
-  border: '1px dashed $border',
-  transition: 'all 0.2s ease',
+  border: '1px dashed rgba(255, 255, 255, 0.15)',
+  backgroundColor: 'rgba(255, 255, 255, 0.02)',
+  transition: 'all 0.25s ease',
 
   '&:hover': {
     color: '$primaryLight',
     borderColor: '$primary',
-    backgroundColor: 'rgba(139, 92, 246, 0.06)',
+    backgroundColor: 'rgba(139, 92, 246, 0.08)',
+    transform: 'translateY(-1px)',
   },
 
   '@mobile': {
@@ -154,8 +157,8 @@ const SecondaryAction = styled('a', {
 const TechIdentityBar = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '$2',
-  pt: '$3',
+  gap: '$3',
+  pt: '$4',
   borderTop: '1px solid $border',
   flexWrap: 'wrap',
 });
@@ -164,11 +167,11 @@ const TechIdentityLabel = styled('span', {
   fontFamily: '$mono',
   fontSize: '0.72rem',
   textTransform: 'uppercase',
-  letterSpacing: '0.05em',
+  letterSpacing: '0.06em',
   color: '$textMuted',
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '4px',
+  gap: '5px',
 });
 
 const TechPillsGroup = styled('div', {
@@ -180,20 +183,20 @@ const TechPillsGroup = styled('div', {
 
 const TechPill = styled('span', {
   fontFamily: '$mono',
-  fontSize: '0.72rem',
+  fontSize: '0.74rem',
   fontWeight: '$semibold',
   color: '$textPrimary',
-  backgroundColor: 'rgba(255, 255, 255, 0.04)',
+  backgroundColor: 'rgba(255, 255, 255, 0.03)',
   border: '1px solid $border',
   borderRadius: '$xs',
-  px: '7px',
-  py: '3px',
+  px: '8px',
+  py: '4px',
   transition: 'all 0.2s ease',
 
   '&:hover': {
     borderColor: '$primary',
     color: '$primaryLight',
-    backgroundColor: 'rgba(139, 92, 246, 0.08)',
+    backgroundColor: 'rgba(139, 92, 246, 0.1)',
   },
 });
 
@@ -212,23 +215,23 @@ const ImageCol = styled('div', {
 const ImageCardContainer = styled('div', {
   position: 'relative',
   width: '100%',
-  maxWidth: '420px',
+  maxWidth: '430px',
   borderRadius: '$2xl',
-  padding: '8px',
-  backgroundColor: 'rgba(17, 17, 17, 0.7)',
-  border: '1px solid rgba(139, 92, 246, 0.3)',
-  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.8), 0 0 40px -10px rgba(139, 92, 246, 0.3)',
-  backdropFilter: 'blur(12px)',
+  padding: '10px',
+  backgroundColor: 'rgba(14, 14, 21, 0.8)',
+  border: '1px solid rgba(139, 92, 246, 0.35)',
+  boxShadow: '0 24px 60px rgba(0, 0, 0, 0.85), 0 0 50px -10px rgba(139, 92, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+  backdropFilter: 'blur(16px)',
   animation: `${floatAnim} 6s ease-in-out infinite`,
   transition: 'all 0.3s ease',
 
   '&:hover': {
-    borderColor: 'rgba(139, 92, 246, 0.6)',
-    boxShadow: '0 25px 60px rgba(0, 0, 0, 0.9), 0 0 50px -5px rgba(139, 92, 246, 0.45)',
+    borderColor: 'rgba(139, 92, 246, 0.7)',
+    boxShadow: '0 30px 70px rgba(0, 0, 0, 0.95), 0 0 60px -5px rgba(139, 92, 246, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25)',
   },
 
   '@mobile': {
-    maxWidth: '280px',
+    maxWidth: '290px',
   },
 
   '@smallMobile': {
@@ -239,7 +242,7 @@ const ImageCardContainer = styled('div', {
 const ProfileImgWrapper = styled('div', {
   width: '100%',
   aspectRatio: '1 / 1',
-  borderRadius: '16px',
+  borderRadius: '20px',
   overflow: 'hidden',
   backgroundColor: '#0a0a0c',
   position: 'relative',
@@ -259,30 +262,30 @@ const ProfileImgWrapper = styled('div', {
 
 const FloatingCardBadge = styled('div', {
   position: 'absolute',
-  bottom: '-10px',
-  right: '10px',
-  backgroundColor: 'rgba(13, 13, 13, 0.95)',
-  backdropFilter: 'blur(12px)',
-  border: '1px solid rgba(139, 92, 246, 0.4)',
+  bottom: '-12px',
+  right: '16px',
+  backgroundColor: 'rgba(10, 10, 16, 0.95)',
+  backdropFilter: 'blur(16px)',
+  border: '1px solid rgba(139, 92, 246, 0.5)',
   borderRadius: '$full',
-  px: '$3',
-  py: '6px',
+  px: '$4',
+  py: '8px',
   display: 'flex',
   alignItems: 'center',
-  gap: '6px',
-  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6)',
+  gap: '8px',
+  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px -5px rgba(139, 92, 246, 0.4)',
   zIndex: 2,
 
   '@smallMobile': {
-    right: '5px',
-    px: '8px',
-    py: '4px',
+    right: '6px',
+    px: '10px',
+    py: '5px',
   },
 });
 
 const BadgeText = styled('span', {
   fontFamily: '$mono',
-  fontSize: '0.68rem',
+  fontSize: '0.72rem',
   fontWeight: '$semibold',
   color: '$textPrimary',
 });
@@ -346,7 +349,7 @@ export default function Hero() {
           <TechIdentityBar>
             <TechIdentityLabel>
               <Terminal size={12} />
-              Stack:
+              Core Stack:
             </TechIdentityLabel>
             <TechPillsGroup>
               {coreTech.map((tech) => (
@@ -367,7 +370,7 @@ export default function Hero() {
             </ProfileImgWrapper>
 
             <FloatingCardBadge>
-              <Sparkles size={12} color="#8B5CF6" />
+              <Sparkles size={13} color="#A78BFA" />
               <BadgeText>Full-Stack + AI Specialist</BadgeText>
             </FloatingCardBadge>
           </ImageCardContainer>

@@ -26,7 +26,7 @@ const EducationContainer = styled('div', {
 const EducationGrid = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  gap: '$4',
+  gap: '$5',
 
   '@tablet': {
     gridTemplateColumns: '1fr',
@@ -36,28 +36,39 @@ const EducationGrid = styled('div', {
 const EduCard = styled('div', {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
-  borderRadius: '$xl',
-  p: '$5',
+  borderRadius: '$2xl',
+  p: '$6',
   display: 'flex',
   flexDirection: 'column',
-  gap: '$3',
+  gap: '$4',
   position: 'relative',
-  transition: 'all 0.3s ease',
+  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   width: '100%',
+  overflow: 'hidden',
+
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '1px',
+    background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%)',
+  },
 
   '&:hover': {
-    transform: 'translateY(-3px)',
-    borderColor: 'rgba(139, 92, 246, 0.4)',
-    boxShadow: '0 12px 28px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.15)',
+    transform: 'translateY(-4px)',
+    borderColor: 'rgba(139, 92, 246, 0.45)',
+    boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
 
   '@mobile': {
-    p: '$4',
+    p: '$5',
     borderRadius: '$lg',
   },
 
   '@smallMobile': {
-    p: '$3',
+    p: '$4',
   },
 });
 
@@ -73,15 +84,15 @@ const IconBadge = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  size: '38px',
+  size: '42px',
   borderRadius: '$md',
-  backgroundColor: 'rgba(139, 92, 246, 0.1)',
-  border: '1px solid rgba(139, 92, 246, 0.25)',
+  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
+  border: '1px solid rgba(139, 92, 246, 0.3)',
   color: '$primaryLight',
 });
 
 const DegreeTitle = styled('h3', {
-  fontSize: '$base',
+  fontSize: '$lg',
   fontWeight: '$bold',
   color: '$textPrimary',
   letterSpacing: '-0.02em',
@@ -91,45 +102,46 @@ const DegreeTitle = styled('h3', {
 });
 
 const Institution = styled('p', {
-  fontSize: '$xs',
+  fontSize: '$sm',
   fontWeight: '$medium',
   color: '$primaryLight',
-  margin: '2px 0 0 0',
+  margin: '4px 0 0 0',
   wordBreak: 'break-word',
 });
 
 const ScoreBadge = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '5px',
+  gap: '6px',
   fontFamily: '$mono',
-  fontSize: '0.72rem',
+  fontSize: '0.74rem',
   fontWeight: '$bold',
-  color: '$success',
-  backgroundColor: 'rgba(34, 197, 94, 0.08)',
-  border: '1px solid rgba(34, 197, 94, 0.25)',
+  color: '#34D399',
+  backgroundColor: 'rgba(16, 185, 129, 0.08)',
+  border: '1px solid rgba(16, 185, 129, 0.25)',
   borderRadius: '$full',
   px: '$3',
-  py: '3px',
+  py: '4px',
   width: 'fit-content',
+  boxShadow: '0 0 12px -2px rgba(16, 185, 129, 0.2)',
 });
 
 const Description = styled('p', {
-  fontSize: '0.75rem',
+  fontSize: '$xs',
   color: '$textSecondary',
-  lineHeight: 1.5,
+  lineHeight: 1.6,
   margin: 0,
 });
 
 const PeriodRow = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '5px',
+  gap: '6px',
   fontFamily: '$mono',
-  fontSize: '0.7rem',
+  fontSize: '0.72rem',
   color: '$textMuted',
   mt: 'auto',
-  pt: '$2',
+  pt: '$3',
   borderTop: '1px solid $border',
 });
 
@@ -149,7 +161,7 @@ export default function Education() {
             <EduCard key={item.id}>
               <EduHeader>
                 <IconBadge>
-                  <GraduationCap size={20} />
+                  <GraduationCap size={22} />
                 </IconBadge>
                 <Badge variant="pill">{item.badge}</Badge>
               </EduHeader>
@@ -160,14 +172,14 @@ export default function Education() {
               </div>
 
               <ScoreBadge>
-                <Award size={12} />
+                <Award size={13} />
                 {item.score}
               </ScoreBadge>
 
               <Description>{item.description}</Description>
 
               <PeriodRow>
-                <Calendar size={12} />
+                <Calendar size={13} />
                 <span>{item.period}</span>
               </PeriodRow>
             </EduCard>

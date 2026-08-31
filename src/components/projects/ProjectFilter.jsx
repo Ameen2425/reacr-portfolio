@@ -5,9 +5,9 @@ const FilterWrapper = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '$2',
+  gap: '10px',
   flexWrap: 'wrap',
-  mb: '$8',
+  mb: '$10',
   width: '100%',
 
   '@mobile': {
@@ -24,40 +24,43 @@ const FilterWrapper = styled('div', {
 const FilterButton = styled('button', {
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '4px',
+  gap: '6px',
   fontFamily: '$mono',
-  fontSize: '0.72rem',
+  fontSize: '0.76rem',
   fontWeight: '$medium',
-  padding: '6px 14px',
+  padding: '8px 18px',
   borderRadius: '$full',
   border: '1px solid $border',
   backgroundColor: '$bgCard',
   color: '$textSecondary',
   cursor: 'pointer',
   whiteSpace: 'nowrap',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+  userSelect: 'none',
 
   '&:hover': {
     color: '$textPrimary',
-    borderColor: '$borderHover',
+    borderColor: 'rgba(139, 92, 246, 0.4)',
     backgroundColor: '$bgCardHover',
+    transform: 'translateY(-1px)',
   },
 
   variants: {
     active: {
       true: {
-        backgroundColor: '$primary',
-        borderColor: '$primary',
+        background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)',
+        borderColor: 'rgba(196, 181, 253, 0.6)',
         color: '$white',
         fontWeight: '$semibold',
-        boxShadow: '0 0 14px rgba(139, 92, 246, 0.4)',
+        boxShadow: '0 4px 20px rgba(139, 92, 246, 0.45)',
+        transform: 'translateY(-1px)',
       },
     },
   },
 
   '@smallMobile': {
-    padding: '5px 10px',
-    fontSize: '0.68rem',
+    padding: '6px 12px',
+    fontSize: '0.7rem',
   },
 });
 

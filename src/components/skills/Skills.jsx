@@ -50,14 +50,13 @@ const SkillsContainer = styled('div', {
   gap: '$14',
 });
 
-// Sleek centered pill wrapper matching reference design
 const PillsContainer = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
   alignItems: 'center',
   gap: '12px',
-  maxWidth: '920px',
+  maxWidth: '960px',
   margin: '0 auto',
   width: '100%',
 
@@ -70,27 +69,29 @@ const TechPillCard = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
   gap: '10px',
-  backgroundColor: '$bgCard',
-  border: '1px solid $border',
+  backgroundColor: 'rgba(14, 14, 21, 0.7)',
+  border: '1px solid rgba(255, 255, 255, 0.08)',
   borderRadius: '$full',
   py: '10px',
-  px: '18px',
+  px: '20px',
   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
   cursor: 'default',
   userSelect: 'none',
+  backdropFilter: 'blur(10px)',
+  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
 
   '&:hover': {
     borderColor: '$primary',
-    backgroundColor: '$bgCardHover',
+    backgroundColor: 'rgba(20, 20, 31, 0.95)',
     transform: 'translateY(-3px)',
-    boxShadow: '0 8px 24px -4px rgba(139, 92, 246, 0.25), inset 0 1px 0 0 rgba(139, 92, 246, 0.2)',
+    boxShadow: '0 10px 28px -4px rgba(139, 92, 246, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.15)',
   },
 
   variants: {
     highlight: {
       true: {
         borderColor: 'rgba(139, 92, 246, 0.35)',
-        backgroundColor: 'rgba(139, 92, 246, 0.05)',
+        backgroundColor: 'rgba(139, 92, 246, 0.06)',
       },
     },
   },
@@ -112,13 +113,13 @@ const IconWrapper = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  size: '24px',
+  size: '22px',
   color: '$primaryLight',
   transition: 'all 0.2s ease',
 
   [`${TechPillCard}:hover &`]: {
     color: '$white',
-    transform: 'scale(1.1)',
+    transform: 'scale(1.15)',
   },
 });
 
@@ -134,7 +135,7 @@ const PillText = styled('span', {
   },
 
   '@smallMobile': {
-    fontSize: '0.75rem',
+    fontSize: '0.74rem',
   },
 });
 
@@ -172,7 +173,7 @@ export default function Skills() {
               return (
                 <TechPillCard key={tool.name} highlight={tool.highlight}>
                   <IconWrapper>
-                    <IconComp size={18} />
+                    <IconComp size={17} />
                   </IconWrapper>
                   <PillText>{tool.name}</PillText>
                 </TechPillCard>

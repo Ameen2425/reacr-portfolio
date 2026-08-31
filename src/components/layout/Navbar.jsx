@@ -10,7 +10,7 @@ const NavHeader = styled('header', {
   left: 0,
   right: 0,
   zIndex: '$nav',
-  transition: 'all 0.3s ease',
+  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   px: '$4',
   py: '$3',
   display: 'flex',
@@ -37,22 +37,23 @@ const NavContainer = styled('nav', {
   alignItems: 'center',
   justifyContent: 'space-between',
   px: '$5',
-  py: '10px',
+  py: '9px',
   borderRadius: '$full',
-  transition: 'all 0.3s ease',
+  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+  boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.45)',
 
   variants: {
     scrolled: {
       true: {
-        backgroundColor: 'rgba(10, 10, 12, 0.92)',
-        backdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.6)',
+        backgroundColor: 'rgba(9, 9, 14, 0.88)',
+        backdropFilter: 'blur(20px)',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        boxShadow: '0 12px 36px 0 rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(139, 92, 246, 0.15)',
       },
       false: {
-        backgroundColor: 'rgba(13, 13, 13, 0.6)',
-        backdropFilter: 'blur(8px)',
-        border: '1px solid rgba(255, 255, 255, 0.04)',
+        backgroundColor: 'rgba(14, 14, 21, 0.65)',
+        backdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255, 255, 255, 0.06)',
       },
     },
   },
@@ -89,20 +90,20 @@ const LogoBadge = styled('span', {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  size: '26px',
+  size: '28px',
   borderRadius: '$xs',
-  backgroundColor: '$primary',
+  background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)',
   color: '$white',
   fontFamily: '$mono',
-  fontSize: '0.7rem',
+  fontSize: '0.72rem',
   fontWeight: '$bold',
-  boxShadow: '0 0 12px rgba(139, 92, 246, 0.5)',
+  boxShadow: '0 0 16px rgba(139, 92, 246, 0.6)',
 });
 
 const DesktopNavList = styled('ul', {
   display: 'flex',
   alignItems: 'center',
-  gap: '$1',
+  gap: '2px',
   listStyle: 'none',
   margin: 0,
   padding: 0,
@@ -119,8 +120,8 @@ const NavItem = styled('li', {
 const NavLink = styled('a', {
   display: 'inline-block',
   px: '$3',
-  py: '$2',
-  fontSize: '$sm',
+  py: '7px',
+  fontSize: '0.84rem',
   fontWeight: '$medium',
   color: '$textSecondary',
   borderRadius: '$full',
@@ -134,9 +135,10 @@ const NavLink = styled('a', {
   variants: {
     active: {
       true: {
-        color: '$primaryLight',
-        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+        color: '$white',
+        backgroundColor: 'rgba(139, 92, 246, 0.16)',
         fontWeight: '$semibold',
+        border: '1px solid rgba(139, 92, 246, 0.3)',
       },
     },
   },
@@ -157,19 +159,19 @@ const ResumeBtn = styled('a', {
   fontWeight: '$semibold',
   color: '$textPrimary',
   backgroundColor: 'rgba(255, 255, 255, 0.06)',
-  border: '1px solid $border',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
   borderRadius: '$full',
   px: '$4',
   py: '8px',
   textDecoration: 'none',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.25s ease',
 
   '&:hover': {
-    backgroundColor: '$primary',
-    borderColor: '$primary',
+    background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)',
+    borderColor: 'rgba(196, 181, 253, 0.6)',
     color: '$white',
     transform: 'translateY(-1px)',
-    boxShadow: '0 4px 14px rgba(139, 92, 246, 0.4)',
+    boxShadow: '0 4px 18px rgba(139, 92, 246, 0.5)',
   },
 
   '@mobile': {
@@ -205,12 +207,12 @@ const MobileDrawer = styled('div', {
   top: '64px',
   left: '$2',
   right: '$2',
-  backgroundColor: 'rgba(13, 13, 13, 0.98)',
-  backdropFilter: 'blur(20px)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
+  backgroundColor: 'rgba(10, 10, 15, 0.98)',
+  backdropFilter: 'blur(24px)',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
   borderRadius: '$xl',
   p: '$4',
-  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.9)',
+  boxShadow: '0 20px 50px rgba(0, 0, 0, 0.95), 0 0 30px -10px rgba(139, 92, 246, 0.3)',
   zIndex: '$modal',
   flexDirection: 'column',
   gap: '$2',
@@ -255,8 +257,8 @@ const MobileNavLink = styled('a', {
   minHeight: '44px',
 
   '&:hover, &:focus': {
-    backgroundColor: 'rgba(139, 92, 246, 0.12)',
-    borderColor: 'rgba(139, 92, 246, 0.3)',
+    backgroundColor: 'rgba(139, 92, 246, 0.14)',
+    borderColor: 'rgba(139, 92, 246, 0.35)',
     color: '$primaryLight',
   },
 });
@@ -343,7 +345,7 @@ export default function Navbar() {
             onClick={handleLinkClick}
           >
             <span>{link.label}</span>
-            <ArrowUpRight size={15} color="#71717A" />
+            <ArrowUpRight size={15} color="#94A3B8" />
           </MobileNavLink>
         ))}
         <Button

@@ -6,10 +6,21 @@ import { ArrowUp } from 'lucide-react';
 const FooterWrapper = styled('footer', {
   backgroundColor: '$bgSecondary',
   borderTop: '1px solid $border',
-  pt: '$12',
-  pb: '$8',
+  pt: '$14',
+  pb: '$10',
   px: '$4',
   mt: 'auto',
+  position: 'relative',
+
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: '10%',
+    right: '10%',
+    height: '1px',
+    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.4) 50%, transparent 100%)',
+  },
 
   '@mobile': {
     pt: '$10',
@@ -23,7 +34,7 @@ const FooterContainer = styled('div', {
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
-  gap: '$8',
+  gap: '$10',
 });
 
 const TopSection = styled('div', {
@@ -31,25 +42,25 @@ const TopSection = styled('div', {
   justifyContent: 'space-between',
   alignItems: 'flex-start',
   flexWrap: 'wrap',
-  gap: '$6',
+  gap: '$8',
 
   '@mobile': {
     flexDirection: 'column',
-    gap: '$5',
+    gap: '$6',
   },
 });
 
 const BrandBlock = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '6px',
+  gap: '8px',
   maxWidth: '380px',
   width: '100%',
 });
 
 const Logo = styled('a', {
-  fontSize: '$xl',
-  fontWeight: '$extrabold',
+  fontSize: '$2xl',
+  fontWeight: '$black',
   color: '$textPrimary',
   letterSpacing: '-0.03em',
   display: 'inline-flex',
@@ -63,32 +74,32 @@ const Logo = styled('a', {
 
 const Subtitle = styled('p', {
   color: '$textSecondary',
-  fontSize: '$xs',
-  lineHeight: 1.6,
+  fontSize: '$sm',
+  lineHeight: 1.65,
   margin: 0,
 });
 
 const TechPill = styled('span', {
   fontFamily: '$mono',
-  fontSize: '0.7rem',
+  fontSize: '0.74rem',
   color: '$primaryLight',
   backgroundColor: 'rgba(139, 92, 246, 0.1)',
-  border: '1px solid rgba(139, 92, 246, 0.2)',
+  border: '1px solid rgba(139, 92, 246, 0.25)',
   borderRadius: '$full',
   px: '$3',
-  py: '2px',
+  py: '3px',
   display: 'inline-block',
   width: 'fit-content',
-  mt: '4px',
+  mt: '6px',
 });
 
 const QuickLinks = styled('div', {
   display: 'flex',
-  gap: '$8',
+  gap: '$10',
   flexWrap: 'wrap',
 
   '@mobile': {
-    gap: '$5',
+    gap: '$6',
     width: '100%',
   },
 });
@@ -96,28 +107,28 @@ const QuickLinks = styled('div', {
 const LinkGroup = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '6px',
+  gap: '8px',
   minWidth: '100px',
 });
 
 const GroupTitle = styled('h4', {
   fontFamily: '$mono',
-  fontSize: '0.68rem',
+  fontSize: '0.7rem',
   textTransform: 'uppercase',
-  letterSpacing: '0.05em',
+  letterSpacing: '0.06em',
   color: '$textMuted',
-  mb: '2px',
+  mb: '4px',
 });
 
 const FooterLink = styled('a', {
   color: '$textSecondary',
-  fontSize: '$xs',
+  fontSize: '$sm',
   textDecoration: 'none',
   transition: 'all 0.2s ease',
 
   '&:hover': {
     color: '$primaryLight',
-    transform: 'translateX(2px)',
+    transform: 'translateX(3px)',
   },
 });
 
@@ -128,7 +139,7 @@ const BottomSection = styled('div', {
   pt: '$6',
   borderTop: '1px solid rgba(255, 255, 255, 0.05)',
   color: '$textMuted',
-  fontSize: '0.7rem',
+  fontSize: '$xs',
   flexWrap: 'wrap',
   gap: '$3',
 
@@ -141,20 +152,21 @@ const BottomSection = styled('div', {
 const BackToTopBtn = styled('a', {
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '5px',
+  gap: '6px',
   color: '$textSecondary',
-  fontSize: '0.7rem',
+  fontSize: '$xs',
   fontFamily: '$mono',
-  padding: '5px 10px',
+  padding: '6px 14px',
   borderRadius: '$full',
-  border: '1px solid $border',
+  border: '1px solid rgba(255, 255, 255, 0.1)',
   backgroundColor: '$bgCard',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.25s ease',
 
   '&:hover': {
     color: '$white',
     borderColor: '$primary',
-    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+    backgroundColor: 'rgba(139, 92, 246, 0.15)',
+    transform: 'translateY(-2px)',
   },
 });
 
@@ -204,7 +216,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {BRAND.name}. All rights reserved. • Built with React & Stitches
           </div>
           <BackToTopBtn href="#home" aria-label="Back to top of page">
-            <ArrowUp size={12} />
+            <ArrowUp size={13} />
             Back to Top
           </BackToTopBtn>
         </BottomSection>

@@ -7,7 +7,7 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 const Card = styled('div', {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
-  borderRadius: '$xl',
+  borderRadius: '$2xl',
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
@@ -15,10 +15,21 @@ const Card = styled('div', {
   position: 'relative',
   width: '100%',
 
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '1px',
+    background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%)',
+    zIndex: 3,
+  },
+
   '&:hover': {
-    transform: 'translateY(-4px)',
-    borderColor: 'rgba(139, 92, 246, 0.45)',
-    boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px -5px rgba(139, 92, 246, 0.25)',
+    transform: 'translateY(-6px)',
+    borderColor: 'rgba(139, 92, 246, 0.5)',
+    boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 35px -5px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
 
   variants: {
@@ -26,9 +37,13 @@ const Card = styled('div', {
       true: {
         gridColumn: '1 / -1',
         display: 'grid',
-        gridTemplateColumns: '1.2fr 1fr',
-        backgroundColor: 'rgba(17, 17, 17, 0.95)',
-        borderColor: 'rgba(139, 92, 246, 0.3)',
+        gridTemplateColumns: '1.25fr 1fr',
+        backgroundColor: 'rgba(14, 14, 21, 0.95)',
+        borderColor: 'rgba(139, 92, 246, 0.35)',
+
+        '&::before': {
+          background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.5) 50%, transparent 100%)',
+        },
 
         '@tablet': {
           gridTemplateColumns: '1fr',
@@ -45,7 +60,7 @@ const Card = styled('div', {
 const ImageContainer = styled('div', {
   position: 'relative',
   width: '100%',
-  height: '220px',
+  height: '240px',
   overflow: 'hidden',
   backgroundColor: '#0a0a0c',
 
@@ -61,10 +76,10 @@ const ImageContainer = styled('div', {
     featured: {
       true: {
         height: '100%',
-        minHeight: '320px',
+        minHeight: '360px',
         '@tablet': {
-          minHeight: '220px',
-          height: '220px',
+          minHeight: '240px',
+          height: '240px',
         },
         '@mobile': {
           height: '180px',
@@ -80,10 +95,10 @@ const ProjectImg = styled('img', {
   height: '100%',
   objectFit: 'cover',
   objectPosition: 'center top',
-  transition: 'transform 0.5s ease',
+  transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
 
   [`${Card}:hover &`]: {
-    transform: 'scale(1.05)',
+    transform: 'scale(1.06)',
   },
 });
 
@@ -93,21 +108,21 @@ const ImageOverlay = styled('div', {
   left: 0,
   right: 0,
   bottom: 0,
-  background: 'linear-gradient(to top, rgba(17, 17, 17, 0.85) 0%, rgba(17, 17, 17, 0.1) 60%)',
+  background: 'linear-gradient(to top, rgba(14, 14, 21, 0.9) 0%, rgba(14, 14, 21, 0.1) 60%)',
 });
 
 const TopBadgeWrapper = styled('div', {
   position: 'absolute',
-  top: '$2',
-  left: '$2',
+  top: '$3',
+  left: '$3',
   zIndex: 2,
 });
 
 const ContentWrapper = styled('div', {
-  p: '$5',
+  p: '$6',
   display: 'flex',
   flexDirection: 'column',
-  gap: '$3',
+  gap: '$4',
   flex: 1,
 
   '@mobile': {
@@ -121,10 +136,10 @@ const ContentWrapper = styled('div', {
   variants: {
     featured: {
       true: {
-        p: '$6',
+        p: '$8',
         justifyContent: 'center',
         '@mobile': {
-          p: '$4',
+          p: '$5',
         },
       },
     },
@@ -132,7 +147,7 @@ const ContentWrapper = styled('div', {
 });
 
 const ProjectTitle = styled('h3', {
-  fontSize: '$lg',
+  fontSize: '$xl',
   fontWeight: '$bold',
   color: '$textPrimary',
   letterSpacing: '-0.02em',
@@ -143,16 +158,16 @@ const ProjectTitle = styled('h3', {
   variants: {
     featured: {
       true: {
-        fontSize: 'clamp(1.25rem, 2.5vw, 1.85rem)',
+        fontSize: 'clamp(1.4rem, 2.8vw, 2.1rem)',
       },
     },
   },
 });
 
 const ProjectDesc = styled('p', {
-  fontSize: '$xs',
+  fontSize: '$sm',
   color: '$textSecondary',
-  lineHeight: 1.55,
+  lineHeight: 1.6,
   margin: 0,
 });
 
@@ -169,12 +184,12 @@ const HighlightItem = styled('li', {
   display: 'flex',
   alignItems: 'flex-start',
   gap: '$2',
-  fontSize: '0.75rem',
+  fontSize: '0.78rem',
   color: '$textSecondary',
-  lineHeight: 1.45,
+  lineHeight: 1.5,
 
   '& svg': {
-    color: '$primaryLight',
+    color: '#34D399',
     flexShrink: 0,
     marginTop: '2px',
   },
@@ -183,7 +198,7 @@ const HighlightItem = styled('li', {
 const TechTagsList = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '$1',
+  gap: '6px',
   mt: 'auto',
   pt: '$2',
 });
@@ -192,7 +207,7 @@ const CardActions = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  pt: '$3',
+  pt: '$4',
   borderTop: '1px solid $border',
   mt: '$2',
   width: '100%',
@@ -204,24 +219,24 @@ const GitHubLink = styled('a', {
   justifyContent: 'center',
   gap: '6px',
   fontFamily: '$mono',
-  fontSize: '0.72rem',
+  fontSize: '$xs',
   fontWeight: '$semibold',
   color: '$textPrimary',
   backgroundColor: 'rgba(255, 255, 255, 0.05)',
-  border: '1px solid $border',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
   borderRadius: '$full',
   px: '$4',
-  py: '8px',
+  py: '9px',
   textDecoration: 'none',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.25s ease',
   minHeight: '40px',
 
   '&:hover': {
-    backgroundColor: '$primary',
-    borderColor: '$primary',
+    background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)',
+    borderColor: 'rgba(196, 181, 253, 0.6)',
     color: '$white',
     transform: 'translateY(-1px)',
-    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.4)',
+    boxShadow: '0 4px 16px rgba(139, 92, 246, 0.45)',
   },
 
   '& svg.arrow': {
@@ -262,7 +277,7 @@ export default function ProjectCard({ project, isFeatured = false }) {
           <HighlightsList>
             {project.highlights.map((point, index) => (
               <HighlightItem key={index}>
-                <CheckCircle2 size={14} />
+                <CheckCircle2 size={15} />
                 <span>{point}</span>
               </HighlightItem>
             ))}

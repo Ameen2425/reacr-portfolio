@@ -5,29 +5,40 @@ import { Calendar, MapPin, CheckCircle2 } from 'lucide-react';
 const Card = styled('div', {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
-  borderRadius: '$xl',
-  p: '$6',
+  borderRadius: '$2xl',
+  p: '$8',
   display: 'flex',
   flexDirection: 'column',
   gap: '$4',
   position: 'relative',
   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   width: '100%',
+  overflow: 'hidden',
+
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '1px',
+    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.35) 50%, transparent 100%)',
+  },
 
   '&:hover': {
-    transform: 'translateY(-3px)',
-    borderColor: 'rgba(139, 92, 246, 0.4)',
-    boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(139, 92, 246, 0.2)',
+    transform: 'translateY(-4px)',
+    borderColor: 'rgba(139, 92, 246, 0.45)',
+    boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px -5px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
 
   '@mobile': {
-    p: '$4',
+    p: '$5',
     borderRadius: '$lg',
     gap: '$3',
   },
 
   '@smallMobile': {
-    p: '$3',
+    p: '$4',
   },
 });
 
@@ -36,18 +47,18 @@ const CardTop = styled('div', {
   justifyContent: 'space-between',
   alignItems: 'flex-start',
   flexWrap: 'wrap',
-  gap: '$2',
+  gap: '$3',
 });
 
 const RoleBlock = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '2px',
+  gap: '3px',
   maxWidth: '100%',
 });
 
 const RoleTitle = styled('h3', {
-  fontSize: '$lg',
+  fontSize: '$xl',
   fontWeight: '$bold',
   color: '$textPrimary',
   letterSpacing: '-0.02em',
@@ -56,7 +67,7 @@ const RoleTitle = styled('h3', {
 });
 
 const CompanyName = styled('h4', {
-  fontSize: '$sm',
+  fontSize: '$base',
   fontWeight: '$semibold',
   color: '$primaryLight',
   margin: 0,
@@ -64,7 +75,7 @@ const CompanyName = styled('h4', {
 });
 
 const Subtitle = styled('span', {
-  fontSize: '0.72rem',
+  fontSize: '0.74rem',
   color: '$textMuted',
   fontFamily: '$mono',
 });
@@ -72,7 +83,7 @@ const Subtitle = styled('span', {
 const MetaRow = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '$2',
+  gap: '8px',
   flexWrap: 'wrap',
   mt: '4px',
 });
@@ -80,15 +91,15 @@ const MetaRow = styled('div', {
 const MetaItem = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '4px',
+  gap: '5px',
   fontFamily: '$mono',
-  fontSize: '0.7rem',
+  fontSize: '0.72rem',
   color: '$textSecondary',
-  backgroundColor: 'rgba(255, 255, 255, 0.03)',
+  backgroundColor: 'rgba(255, 255, 255, 0.04)',
   border: '1px solid $border',
   borderRadius: '$full',
-  px: '$2',
-  py: '3px',
+  px: '$3',
+  py: '4px',
 });
 
 const AchievementsList = styled('ul', {
@@ -98,29 +109,29 @@ const AchievementsList = styled('ul', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$2',
-  pt: '$1',
+  pt: '$2',
 });
 
 const AchievementItem = styled('li', {
   display: 'flex',
   alignItems: 'flex-start',
-  gap: '$2',
-  fontSize: '0.78rem',
+  gap: '10px',
+  fontSize: '$sm',
   color: '$textSecondary',
-  lineHeight: 1.5,
+  lineHeight: 1.6,
 
   '& svg': {
-    color: '$primaryLight',
+    color: '#34D399',
     flexShrink: 0,
-    marginTop: '2px',
+    marginTop: '3px',
   },
 });
 
 const TechWrapper = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '$1',
-  pt: '$3',
+  gap: '6px',
+  pt: '$4',
   borderTop: '1px solid $border',
 });
 
@@ -136,11 +147,11 @@ export default function ExperienceCard({ exp }) {
 
         <MetaRow>
           <MetaItem>
-            <Calendar size={12} />
+            <Calendar size={13} />
             {exp.dateRange || exp.period}
           </MetaItem>
           <MetaItem>
-            <MapPin size={12} />
+            <MapPin size={13} />
             {exp.location}
           </MetaItem>
         </MetaRow>
@@ -149,7 +160,7 @@ export default function ExperienceCard({ exp }) {
       <AchievementsList>
         {exp.achievements.map((item, idx) => (
           <AchievementItem key={idx}>
-            <CheckCircle2 size={15} />
+            <CheckCircle2 size={16} />
             <span>{item}</span>
           </AchievementItem>
         ))}
