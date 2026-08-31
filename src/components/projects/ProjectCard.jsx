@@ -3,15 +3,16 @@ import TechTag from '../common/TechTag';
 import Badge from '../common/Badge';
 import { GithubIcon } from '../common/Icons';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const Card = styled('div', {
+const Card = styled(motion.div, {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
   borderRadius: '$2xl',
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
-  transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
   position: 'relative',
   width: '100%',
 
@@ -27,7 +28,6 @@ const Card = styled('div', {
   },
 
   '&:hover': {
-    transform: 'translateY(-6px)',
     borderColor: 'rgba(139, 92, 246, 0.5)',
     boxShadow: '0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 35px -5px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
@@ -254,7 +254,15 @@ const GitHubLink = styled('a', {
 
 export default function ProjectCard({ project, isFeatured = false }) {
   return (
-    <Card featured={isFeatured}>
+    <Card
+      featured={isFeatured}
+      layout
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -5, transition: { duration: 0.2 } }}
+    >
       <ImageContainer featured={isFeatured}>
         <ProjectImg
           src={project.image}

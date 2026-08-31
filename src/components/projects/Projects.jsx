@@ -1,19 +1,24 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { styled } from '../../styles/stitches.config';
 import { projects } from '../../data/projects';
 import { BRAND } from '../../styles/theme';
 import SectionHeading from '../common/SectionHeading';
-import ProjectFilter from './ProjectFilter';
 import ProjectCard from './ProjectCard';
+import ProjectFilter from './ProjectFilter';
 import Button from '../common/Button';
 import { GithubIcon } from '../common/Icons';
-import { ArrowUpRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ProjectsSection = styled('section', {
   py: '$20',
   px: '$4',
   backgroundColor: '$bg',
   position: 'relative',
+
+  '@mobile': {
+    py: '$14',
+    px: '$3',
+  },
 });
 
 const ProjectsContainer = styled('div', {
@@ -21,12 +26,15 @@ const ProjectsContainer = styled('div', {
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
 });
 
-const ProjectsBentoGrid = styled('div', {
+const ProjectsGrid = styled(motion.div, {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: '$6',
+  width: '100%',
+  mb: '$12',
 
   '@mobile': {
     gridTemplateColumns: '1fr',
@@ -34,50 +42,62 @@ const ProjectsBentoGrid = styled('div', {
   },
 });
 
-const BottomActionWrapper = styled('div', {
+const BottomAction = styled(motion.div, {
   display: 'flex',
   justifyContent: 'center',
-  mt: '$12',
+  pt: '$4',
+  width: '100%',
 });
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const filteredProjects = useMemo(() => {
-    if (selectedCategory === 'All') {
-      return projects;
-    }
-    return projects.filter((project) =>
-      project.categories.includes(selectedCategory)
-    );
-  }, [selectedCategory]);
+  const filteredProjects = projects.filter((project) => {
+    if (selectedCategory === 'All') return true;
+    return project.category === selectedCategory;
+  });
 
   return (
     <ProjectsSection id="projects">
       <ProjectsContainer>
-        <SectionHeading
-          label="02 / PROJECTS"
-          title="Featured Projects"
-          subtitle="Selected full-stack web applications and AI-driven platforms built with modern technologies."
-          align="center"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+          style={{ width: '100%' }}
+        >
+          <SectionHeading
+            label="02 / PROJECTS"
+            title="Featured Projects"
+            subtitle="Full-stack web applications, AI-driven tools, and database systems built with real-world architecture."
+            align="center"
+          />
+        </motion.div>
 
         <ProjectFilter
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
         />
 
-        <ProjectsBentoGrid>
-          {filteredProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              isFeatured={project.isFeatured && selectedCategory === 'All'}
-            />
-          ))}
-        </ProjectsBentoGrid>
+        <ProjectsGrid layout>
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                isFeatured={project.featured && selectedCategory === 'All'}
+              />
+            ))}
+          </AnimatePresence>
+        </ProjectsGrid>
 
-        <BottomActionWrapper>
+        <BottomAction
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <Button
             as="a"
             href={BRAND.github}
@@ -85,13 +105,12 @@ export default function Projects() {
             rel="noopener noreferrer"
             variant="secondary"
             size="lg"
-            aria-label="View All Projects on GitHub Profile"
+            aria-label="View more projects on GitHub"
           >
             <GithubIcon size={18} />
-            View All Projects on GitHub
-            <ArrowUpRight size={18} />
+            Explore More on GitHub
           </Button>
-        </BottomActionWrapper>
+        </BottomAction>
       </ProjectsContainer>
     </ProjectsSection>
   );

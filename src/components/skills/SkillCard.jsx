@@ -1,7 +1,8 @@
 import { styled } from '../../styles/stitches.config';
 import TechTag from '../common/TechTag';
+import { motion } from 'framer-motion';
 
-const Card = styled('div', {
+const Card = styled(motion.div, {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
   borderRadius: '$xl',
@@ -9,7 +10,7 @@ const Card = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$4',
-  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+  transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
   position: 'relative',
   overflow: 'hidden',
 
@@ -24,7 +25,6 @@ const Card = styled('div', {
   },
 
   '&:hover': {
-    transform: 'translateY(-4px)',
     borderColor: 'rgba(139, 92, 246, 0.45)',
     boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 30px -5px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
@@ -65,7 +65,9 @@ const TagsContainer = styled('div', {
 
 export default function SkillCard({ title, description, skills }) {
   return (
-    <Card>
+    <Card
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+    >
       <CardHeader>
         <CategoryTitle>{title}</CategoryTitle>
       </CardHeader>

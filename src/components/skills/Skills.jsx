@@ -2,6 +2,7 @@ import { styled } from '../../styles/stitches.config';
 import { technicalFoundation, skillCategories } from '../../data/skills';
 import SectionHeading from '../common/SectionHeading';
 import SkillCard from './SkillCard';
+import { motion } from 'framer-motion';
 import {
   Code,
   Server,
@@ -50,7 +51,7 @@ const SkillsContainer = styled('div', {
   gap: '$14',
 });
 
-const PillsContainer = styled('div', {
+const PillsContainer = styled(motion.div, {
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
@@ -65,7 +66,7 @@ const PillsContainer = styled('div', {
   },
 });
 
-const TechPillCard = styled('div', {
+const TechPillCard = styled(motion.div, {
   display: 'inline-flex',
   alignItems: 'center',
   gap: '10px',
@@ -74,16 +75,15 @@ const TechPillCard = styled('div', {
   borderRadius: '$full',
   py: '10px',
   px: '20px',
-  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
   cursor: 'default',
   userSelect: 'none',
   backdropFilter: 'blur(10px)',
   boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+  transition: 'border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease',
 
   '&:hover': {
     borderColor: '$primary',
     backgroundColor: 'rgba(20, 20, 31, 0.95)',
-    transform: 'translateY(-3px)',
     boxShadow: '0 10px 28px -4px rgba(139, 92, 246, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.15)',
   },
 
@@ -139,7 +139,7 @@ const PillText = styled('span', {
   },
 });
 
-const CategoryGrid = styled('div', {
+const CategoryGrid = styled(motion.div, {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   gap: '$4',
@@ -154,12 +154,37 @@ const CategoryGrid = styled('div', {
   },
 });
 
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+const pillAnimation = {
+  hidden: { opacity: 0, scale: 0.9, y: 10 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function Skills() {
   return (
     <SkillsSection id="skills">
       <SkillsContainer>
         {/* Technological Foundation - Sleek centered pills */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+        >
           <SectionHeading
             label="FOUNDATION"
             title="Technological Foundation"
@@ -167,11 +192,21 @@ export default function Skills() {
             align="center"
           />
 
-          <PillsContainer>
+          <PillsContainer
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {technicalFoundation.map((tool) => {
               const IconComp = iconMap[tool.icon] || Code;
               return (
-                <TechPillCard key={tool.name} highlight={tool.highlight}>
+                <TechPillCard
+                  key={tool.name}
+                  variants={pillAnimation}
+                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  highlight={tool.highlight}
+                >
                   <IconWrapper>
                     <IconComp size={17} />
                   </IconWrapper>
@@ -180,17 +215,27 @@ export default function Skills() {
               );
             })}
           </PillsContainer>
-        </div>
+        </motion.div>
 
         {/* Categorized Toolkit Cards */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+        >
           <SectionHeading
             title="Technical Toolkit"
             subtitle="Comprehensive domain breakdown across full-stack engineering, databases, and problem solving."
             align="center"
           />
 
-          <CategoryGrid>
+          <CategoryGrid
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {skillCategories.map((cat) => (
               <SkillCard
                 key={cat.title}
@@ -200,7 +245,7 @@ export default function Skills() {
               />
             ))}
           </CategoryGrid>
-        </div>
+        </motion.div>
       </SkillsContainer>
     </SkillsSection>
   );

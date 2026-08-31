@@ -5,6 +5,7 @@ import SectionHeading from '../common/SectionHeading';
 import Button from '../common/Button';
 import { GithubIcon, LinkedinIcon } from '../common/Icons';
 import { Mail, Phone, Send, Copy, Check, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ContactSection = styled('section', {
   py: '$20',
@@ -36,7 +37,7 @@ const TwoColGrid = styled('div', {
   },
 });
 
-const InfoCard = styled('div', {
+const InfoCard = styled(motion.div, {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
   borderRadius: '$2xl',
@@ -193,7 +194,7 @@ const AvailabilityNotice = styled('div', {
   },
 });
 
-const FormCard = styled('form', {
+const FormCard = styled(motion.form, {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
   borderRadius: '$2xl',
@@ -333,16 +334,28 @@ export default function Contact() {
   return (
     <ContactSection id="contact">
       <ContactContainer>
-        <SectionHeading
-          label="06 / CONTACT"
-          title="Let's Work Together"
-          subtitle="Have an opportunity, project, or idea? Send me a message and let's connect."
-          align="center"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+        >
+          <SectionHeading
+            label="06 / CONTACT"
+            title="Let's Work Together"
+            subtitle="Have an opportunity, project, or idea? Send me a message and let's connect."
+            align="center"
+          />
+        </motion.div>
 
         <TwoColGrid>
           {/* Left Column: Direct Contact Info */}
-          <InfoCard>
+          <InfoCard
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div>
               <InfoHeading>Get in Touch</InfoHeading>
               <InfoText>
@@ -429,7 +442,13 @@ export default function Contact() {
           </InfoCard>
 
           {/* Right Column: Contact Form */}
-          <FormCard onSubmit={handleSubmit}>
+          <FormCard
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
             <FormGroup>
               <FormLabel htmlFor="name">Your Name</FormLabel>
               <Input

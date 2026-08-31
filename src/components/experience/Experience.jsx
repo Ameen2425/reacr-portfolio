@@ -2,6 +2,7 @@ import { styled } from '../../styles/stitches.config';
 import { experiences } from '../../data/experience';
 import SectionHeading from '../common/SectionHeading';
 import ExperienceCard from './ExperienceCard';
+import { motion } from 'framer-motion';
 
 const ExperienceSection = styled('section', {
   py: '$20',
@@ -10,16 +11,21 @@ const ExperienceSection = styled('section', {
   position: 'relative',
   borderTop: '1px solid $border',
   borderBottom: '1px solid $border',
+
+  '@mobile': {
+    py: '$14',
+    px: '$3',
+  },
 });
 
-const ExperienceContainer = styled('div', {
-  maxWidth: '1000px',
+const ExpContainer = styled('div', {
+  maxWidth: '1200px',
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
 });
 
-const CardsList = styled('div', {
+const ExpList = styled(motion.div, {
   display: 'flex',
   flexDirection: 'column',
   gap: '$6',
@@ -28,20 +34,32 @@ const CardsList = styled('div', {
 export default function Experience() {
   return (
     <ExperienceSection id="experience">
-      <ExperienceContainer>
-        <SectionHeading
-          label="03 / EXPERIENCE"
-          title="Professional Experience"
-          subtitle="Real-world engineering internships focused on enterprise software reliability, cross-platform layouts, and UI performance."
-          align="center"
-        />
+      <ExpContainer>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+        >
+          <SectionHeading
+            label="03 / CAREER"
+            title="Professional Experience"
+            subtitle="Hands-on industry internships in Python development, enterprise network systems, and full-stack software engineering."
+            align="center"
+          />
+        </motion.div>
 
-        <CardsList>
+        <ExpList
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ staggerChildren: 0.15 }}
+        >
           {experiences.map((exp) => (
             <ExperienceCard key={exp.id} exp={exp} />
           ))}
-        </CardsList>
-      </ExperienceContainer>
+        </ExpList>
+      </ExpContainer>
     </ExperienceSection>
   );
 }

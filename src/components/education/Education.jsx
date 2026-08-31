@@ -3,6 +3,7 @@ import { education } from '../../data/education';
 import SectionHeading from '../common/SectionHeading';
 import Badge from '../common/Badge';
 import { GraduationCap, Calendar, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const EducationSection = styled('section', {
   py: '$16',
@@ -23,7 +24,7 @@ const EducationContainer = styled('div', {
   flexDirection: 'column',
 });
 
-const EducationGrid = styled('div', {
+const EducationGrid = styled(motion.div, {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   gap: '$5',
@@ -33,7 +34,7 @@ const EducationGrid = styled('div', {
   },
 });
 
-const EduCard = styled('div', {
+const EduCard = styled(motion.div, {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
   borderRadius: '$2xl',
@@ -42,7 +43,7 @@ const EduCard = styled('div', {
   flexDirection: 'column',
   gap: '$4',
   position: 'relative',
-  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
   width: '100%',
   overflow: 'hidden',
 
@@ -57,7 +58,6 @@ const EduCard = styled('div', {
   },
 
   '&:hover': {
-    transform: 'translateY(-4px)',
     borderColor: 'rgba(139, 92, 246, 0.45)',
     boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
@@ -145,20 +145,45 @@ const PeriodRow = styled('div', {
   borderTop: '1px solid $border',
 });
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function Education() {
   return (
     <EducationSection id="education">
       <EducationContainer>
-        <SectionHeading
-          label="04 / ACADEMICS"
-          title="Education"
-          subtitle="Academic milestones, core computer science engineering background, and scholastic achievements."
-          align="center"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+        >
+          <SectionHeading
+            label="04 / ACADEMICS"
+            title="Education"
+            subtitle="Academic milestones, core computer science engineering background, and scholastic achievements."
+            align="center"
+          />
+        </motion.div>
 
-        <EducationGrid>
+        <EducationGrid
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ staggerChildren: 0.12 }}
+        >
           {education.map((item) => (
-            <EduCard key={item.id}>
+            <EduCard
+              key={item.id}
+              variants={cardVariants}
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+            >
               <EduHeader>
                 <IconBadge>
                   <GraduationCap size={22} />

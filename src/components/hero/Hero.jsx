@@ -3,6 +3,7 @@ import { BRAND } from '../../styles/theme';
 import Button from '../common/Button';
 import Badge from '../common/Badge';
 import { ArrowRight, Mail, FileText, Sparkles, Terminal } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const floatAnim = keyframes({
   '0%, 100%': { transform: 'translateY(0px)' },
@@ -71,14 +72,14 @@ const HeroContainer = styled('div', {
   },
 });
 
-const ContentCol = styled('div', {
+const ContentCol = styled(motion.div, {
   display: 'flex',
   flexDirection: 'column',
   gap: '$5',
   width: '100%',
 });
 
-const StatusWrapper = styled('div', {
+const StatusWrapper = styled(motion.div, {
   display: 'flex',
   alignItems: 'center',
   gap: '$3',
@@ -112,7 +113,7 @@ const Description = styled('p', {
   margin: 0,
 });
 
-const ButtonGroup = styled('div', {
+const ButtonGroup = styled(motion.div, {
   display: 'flex',
   alignItems: 'center',
   gap: '$3',
@@ -154,7 +155,7 @@ const SecondaryAction = styled('a', {
   },
 });
 
-const TechIdentityBar = styled('div', {
+const TechIdentityBar = styled(motion.div, {
   display: 'flex',
   alignItems: 'center',
   gap: '$3',
@@ -200,7 +201,7 @@ const TechPill = styled('span', {
   },
 });
 
-const ImageCol = styled('div', {
+const ImageCol = styled(motion.div, {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -260,7 +261,7 @@ const ProfileImgWrapper = styled('div', {
   },
 });
 
-const FloatingCardBadge = styled('div', {
+const FloatingCardBadge = styled(motion.div, {
   position: 'absolute',
   bottom: '-12px',
   right: '16px',
@@ -290,31 +291,58 @@ const BadgeText = styled('span', {
   color: '$textPrimary',
 });
 
+// Motion variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function Hero() {
   const coreTech = ['Python', 'Django', 'React', 'AI', 'MySQL'];
 
   return (
     <HeroSection id="home">
       <HeroContainer>
-        <ContentCol>
-          <StatusWrapper>
+        <ContentCol
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <StatusWrapper variants={itemVariants}>
             <Badge variant="status" hasDot>
               Available for Opportunities
             </Badge>
           </StatusWrapper>
 
-          <div>
+          <motion.div variants={itemVariants}>
             <Heading>
               Hi, I'm Abdul Ameen.
               <HighlightSpan>Full-Stack Python Developer.</HighlightSpan>
             </Heading>
-          </div>
+          </motion.div>
 
-          <Description>
-            Computer Science graduate with a strong foundation in Python, JavaScript, HTML, CSS, React, and MySQL. Passionate about building scalable web applications and AI-powered solutions.
-          </Description>
+          <motion.div variants={itemVariants}>
+            <Description>
+              Computer Science graduate with a strong foundation in Python, JavaScript, HTML, CSS, React, and MySQL. Passionate about building scalable web applications and AI-powered solutions.
+            </Description>
+          </motion.div>
 
-          <ButtonGroup>
+          <ButtonGroup variants={itemVariants}>
             <Button
               as="a"
               href="#projects"
@@ -346,7 +374,7 @@ export default function Hero() {
             </SecondaryAction>
           </ButtonGroup>
 
-          <TechIdentityBar>
+          <TechIdentityBar variants={itemVariants}>
             <TechIdentityLabel>
               <Terminal size={12} />
               Core Stack:
@@ -359,7 +387,11 @@ export default function Hero() {
           </TechIdentityBar>
         </ContentCol>
 
-        <ImageCol>
+        <ImageCol
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        >
           <ImageCardContainer>
             <ProfileImgWrapper>
               <img
@@ -369,7 +401,11 @@ export default function Hero() {
               />
             </ProfileImgWrapper>
 
-            <FloatingCardBadge>
+            <FloatingCardBadge
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.4 }}
+            >
               <Sparkles size={13} color="#A78BFA" />
               <BadgeText>Full-Stack + AI Specialist</BadgeText>
             </FloatingCardBadge>

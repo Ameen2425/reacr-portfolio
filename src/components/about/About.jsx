@@ -2,6 +2,7 @@ import { styled } from '../../styles/stitches.config';
 import SectionHeading from '../common/SectionHeading';
 import { beyondCodingCards } from '../../data/skills';
 import { Layers, Bot, Server, Smartphone, Award, Briefcase, Code, GraduationCap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const iconMap = {
   Layers,
@@ -32,7 +33,7 @@ const AboutContainer = styled('div', {
   gap: '$12',
 });
 
-const BentoGrid = styled('div', {
+const BentoGrid = styled(motion.div, {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: '$5',
@@ -43,7 +44,7 @@ const BentoGrid = styled('div', {
   },
 });
 
-const BentoCard = styled('div', {
+const BentoCard = styled(motion.div, {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
   borderRadius: '$2xl',
@@ -53,7 +54,7 @@ const BentoCard = styled('div', {
   gap: '$4',
   position: 'relative',
   overflow: 'hidden',
-  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
 
   '&::before': {
     content: '""',
@@ -66,7 +67,6 @@ const BentoCard = styled('div', {
   },
 
   '&:hover': {
-    transform: 'translateY(-4px)',
     borderColor: 'rgba(139, 92, 246, 0.45)',
     boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px -5px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
@@ -111,7 +111,7 @@ const CardDesc = styled('p', {
   margin: 0,
 });
 
-const StatsContainer = styled('div', {
+const StatsContainer = styled(motion.div, {
   display: 'grid',
   gridTemplateColumns: 'repeat(4, 1fr)',
   gap: '$4',
@@ -126,7 +126,7 @@ const StatsContainer = styled('div', {
   },
 });
 
-const StatBox = styled('div', {
+const StatBox = styled(motion.div, {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
   borderRadius: '$xl',
@@ -134,14 +134,13 @@ const StatBox = styled('div', {
   display: 'flex',
   alignItems: 'center',
   gap: '$4',
-  transition: 'all 0.25s ease',
+  transition: 'border-color 0.25s ease, background-color 0.25s ease',
   position: 'relative',
   overflow: 'hidden',
 
   '&:hover': {
     borderColor: '$primary',
     backgroundColor: '$bgCardHover',
-    transform: 'translateY(-2px)',
     boxShadow: '0 10px 24px -4px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(139, 92, 246, 0.2)',
   },
 
@@ -179,7 +178,7 @@ const StatLabel = styled('div', {
   mt: '2px',
 });
 
-const QuoteBanner = styled('div', {
+const QuoteBanner = styled(motion.div, {
   p: '$6',
   borderRadius: '$xl',
   backgroundColor: 'rgba(139, 92, 246, 0.04)',
@@ -205,6 +204,15 @@ const QuoteText = styled('p', {
   margin: 0,
 });
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function About() {
   const stats = [
     { number: '5', label: 'Completed Projects', icon: Code },
@@ -216,18 +224,34 @@ export default function About() {
   return (
     <AboutSection id="about">
       <AboutContainer>
-        <SectionHeading
-          label="01 / ABOUT"
-          title="Beyond Just Coding"
-          subtitle="Computer Science graduate focused on Full-Stack Python development, modern frontend engineering, and AI-powered applications."
-          align="center"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+        >
+          <SectionHeading
+            label="01 / ABOUT"
+            title="Beyond Just Coding"
+            subtitle="Computer Science graduate focused on Full-Stack Python development, modern frontend engineering, and AI-powered applications."
+            align="center"
+          />
+        </motion.div>
 
-        <BentoGrid>
+        <BentoGrid
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ staggerChildren: 0.1 }}
+        >
           {beyondCodingCards.map((card) => {
             const Icon = iconMap[card.icon] || Layers;
             return (
-              <BentoCard key={card.title}>
+              <BentoCard
+                key={card.title}
+                variants={cardVariants}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              >
                 <CardIconWrapper>
                   <Icon size={22} />
                 </CardIconWrapper>
@@ -238,11 +262,20 @@ export default function About() {
           })}
         </BentoGrid>
 
-        <StatsContainer>
+        <StatsContainer
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ staggerChildren: 0.08 }}
+        >
           {stats.map((st) => {
             const Icon = st.icon;
             return (
-              <StatBox key={st.label}>
+              <StatBox
+                key={st.label}
+                variants={cardVariants}
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+              >
                 <StatIcon>
                   <Icon size={20} />
                 </StatIcon>
@@ -255,7 +288,12 @@ export default function About() {
           })}
         </StatsContainer>
 
-        <QuoteBanner>
+        <QuoteBanner
+          initial={{ opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <QuoteText>
             "I enjoy turning ideas into practical, scalable, and user-friendly applications using Python, Django, React, and AI."
           </QuoteText>

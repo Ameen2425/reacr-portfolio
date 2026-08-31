@@ -3,6 +3,7 @@ import { certifications } from '../../data/certifications';
 import SectionHeading from '../common/SectionHeading';
 import Badge from '../common/Badge';
 import { Brain, Cpu, Sparkles, MessageSquare, Award, CheckCircle } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const iconMap = {
   Brain,
@@ -32,7 +33,7 @@ const CertContainer = styled('div', {
   flexDirection: 'column',
 });
 
-const CertGrid = styled('div', {
+const CertGrid = styled(motion.div, {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: '$5',
@@ -43,7 +44,7 @@ const CertGrid = styled('div', {
   },
 });
 
-const CertCard = styled('div', {
+const CertCard = styled(motion.div, {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
   borderRadius: '$2xl',
@@ -52,7 +53,7 @@ const CertCard = styled('div', {
   flexDirection: 'column',
   gap: '$4',
   position: 'relative',
-  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
   width: '100%',
   overflow: 'hidden',
 
@@ -67,7 +68,6 @@ const CertCard = styled('div', {
   },
 
   '&:hover': {
-    transform: 'translateY(-4px)',
     borderColor: 'rgba(139, 92, 246, 0.45)',
     boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
@@ -146,22 +146,47 @@ const VerifiedRow = styled('div', {
   flexWrap: 'wrap',
 });
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function Certifications() {
   return (
     <CertificationsSection id="certifications">
       <CertContainer>
-        <SectionHeading
-          label="05 / CREDENTIALS"
-          title="My Certifications"
-          subtitle="Specialized domain training and credentials across Machine Learning, AI, and Prompt Engineering."
-          align="center"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+        >
+          <SectionHeading
+            label="05 / CREDENTIALS"
+            title="My Certifications"
+            subtitle="Specialized domain training and credentials across Machine Learning, AI, and Prompt Engineering."
+            align="center"
+          />
+        </motion.div>
 
-        <CertGrid>
+        <CertGrid
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ staggerChildren: 0.12 }}
+        >
           {certifications.map((cert) => {
             const Icon = iconMap[cert.icon] || Award;
             return (
-              <CertCard key={cert.id}>
+              <CertCard
+                key={cert.id}
+                variants={cardVariants}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              >
                 <CardHeader>
                   <IconWrapper>
                     <Icon size={22} />

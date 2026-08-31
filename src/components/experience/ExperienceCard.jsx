@@ -1,8 +1,9 @@
 import { styled } from '../../styles/stitches.config';
 import TechTag from '../common/TechTag';
 import { Calendar, MapPin, CheckCircle2 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const Card = styled('div', {
+const Card = styled(motion.div, {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
   borderRadius: '$2xl',
@@ -11,7 +12,7 @@ const Card = styled('div', {
   flexDirection: 'column',
   gap: '$4',
   position: 'relative',
-  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
   width: '100%',
   overflow: 'hidden',
 
@@ -26,7 +27,6 @@ const Card = styled('div', {
   },
 
   '&:hover': {
-    transform: 'translateY(-4px)',
     borderColor: 'rgba(139, 92, 246, 0.45)',
     boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px -5px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
   },
@@ -135,9 +135,21 @@ const TechWrapper = styled('div', {
   borderTop: '1px solid $border',
 });
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export default function ExperienceCard({ exp }) {
   return (
-    <Card>
+    <Card
+      variants={cardVariants}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+    >
       <CardTop>
         <RoleBlock>
           <RoleTitle>{exp.role}</RoleTitle>

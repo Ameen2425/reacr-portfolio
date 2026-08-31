@@ -3,14 +3,15 @@ import { styled } from '../../styles/stitches.config';
 import { BRAND, NAV_LINKS } from '../../styles/theme';
 import { Menu, X, ArrowUpRight, FileText } from 'lucide-react';
 import Button from '../common/Button';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const NavHeader = styled('header', {
+const NavHeader = styled(motion.header, {
   position: 'fixed',
   top: 0,
   left: 0,
   right: 0,
   zIndex: '$nav',
-  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+  transition: 'padding 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   px: '$4',
   py: '$3',
   display: 'flex',
@@ -201,8 +202,7 @@ const MobileMenuButton = styled('button', {
   },
 });
 
-const MobileDrawer = styled('div', {
-  display: 'none',
+const MobileDrawer = styled(motion.div, {
   position: 'fixed',
   top: '64px',
   left: '$2',
@@ -214,31 +214,11 @@ const MobileDrawer = styled('div', {
   p: '$4',
   boxShadow: '0 20px 50px rgba(0, 0, 0, 0.95), 0 0 30px -10px rgba(139, 92, 246, 0.3)',
   zIndex: '$modal',
+  display: 'flex',
   flexDirection: 'column',
   gap: '$2',
   maxHeight: 'calc(100vh - 80px)',
   overflowY: 'auto',
-
-  variants: {
-    open: {
-      true: {
-        display: 'flex',
-      },
-      false: {
-        display: 'none',
-      },
-    },
-  },
-
-  '@tablet': {
-    variants: {
-      open: {
-        true: {
-          display: 'flex',
-        },
-      },
-    },
-  },
 });
 
 const MobileNavLink = styled('a', {
@@ -293,7 +273,12 @@ export default function Navbar() {
   };
 
   return (
-    <NavHeader scrolled={scrolled}>
+    <NavHeader
+      scrolled={scrolled}
+      initial={{ y: -30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
       <NavContainer scrolled={scrolled}>
         <LogoLink href="#home" aria-label="Abdul Ameen Home">
           <LogoBadge>A</LogoBadge>
@@ -336,32 +321,41 @@ export default function Navbar() {
         </ActionsContainer>
       </NavContainer>
 
-      {/* Mobile Drawer Navigation */}
-      <MobileDrawer open={mobileMenuOpen}>
-        {NAV_LINKS.map((link) => (
-          <MobileNavLink
-            key={link.href}
-            href={link.href}
-            onClick={handleLinkClick}
+      {/* Animated Mobile Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <MobileDrawer
+            initial={{ opacity: 0, y: -15, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span>{link.label}</span>
-            <ArrowUpRight size={15} color="#94A3B8" />
-          </MobileNavLink>
-        ))}
-        <Button
-          as="a"
-          href={BRAND.resumeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          variant="purple"
-          size="md"
-          fullWidth
-          style={{ marginTop: '8px' }}
-        >
-          <FileText size={15} />
-          Download Resume ↗
-        </Button>
-      </MobileDrawer>
+            {NAV_LINKS.map((link) => (
+              <MobileNavLink
+                key={link.href}
+                href={link.href}
+                onClick={handleLinkClick}
+              >
+                <span>{link.label}</span>
+                <ArrowUpRight size={15} color="#94A3B8" />
+              </MobileNavLink>
+            ))}
+            <Button
+              as="a"
+              href={BRAND.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="purple"
+              size="md"
+              fullWidth
+              style={{ marginTop: '8px' }}
+            >
+              <FileText size={15} />
+              Download Resume ↗
+            </Button>
+          </MobileDrawer>
+        )}
+      </AnimatePresence>
     </NavHeader>
   );
 }
