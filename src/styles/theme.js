@@ -5,7 +5,7 @@ export const BRAND = {
   shortName: 'Ameen',
   logo: 'Ameen.',
   title: 'Full-Stack Python Developer',
-  tagline: 'Python • Django • React • AI • MySQL',
+  tagline: 'Python • Django • React • Redux • MySQL',
   email: 'abdulameen200@gmail.com',
   phone: '+91 7993959639',
   github: 'https://github.com/Ameen2425',

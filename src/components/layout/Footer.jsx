@@ -6,7 +6,7 @@ import { ArrowUp } from 'lucide-react';
 const FooterWrapper = styled('footer', {
   backgroundColor: '$bgSecondary',
   borderTop: '1px solid $border',
-  pt: '$14',
+  pt: '$24',
   pb: '$10',
   px: '$4',
   mt: 'auto',
@@ -23,7 +23,7 @@ const FooterWrapper = styled('footer', {
   },
 
   '@mobile': {
-    pt: '$10',
+    pt: '$16',
     pb: '$6',
     px: '$3',
   },
@@ -180,7 +180,7 @@ export default function Footer() {
               <span>{BRAND.logo}</span>
             </Logo>
             <Subtitle>
-              Full-Stack Python Developer specializing in building scalable web applications and AI-driven solutions.
+              Full-Stack Python Developer building scalable web applications with Django REST APIs and React frontends.
             </Subtitle>
             <TechPill>{BRAND.tagline}</TechPill>
           </BrandBlock>

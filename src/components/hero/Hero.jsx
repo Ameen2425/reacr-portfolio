@@ -313,7 +313,7 @@ const itemVariants = {
 };
 
 export default function Hero() {
-  const coreTech = ['Python', 'Django', 'React', 'AI', 'MySQL'];
+  const coreTech = ['Python', 'Django', 'React', 'Redux', 'MySQL'];
 
   return (
     <HeroSection id="home">
@@ -338,7 +338,7 @@ export default function Hero() {
 
           <motion.div variants={itemVariants}>
             <Description>
-              Computer Science graduate with a strong foundation in Python, JavaScript, HTML, CSS, React, and MySQL. Passionate about building scalable web applications and AI-powered solutions.
+              Computer Science graduate seeking a Full-Stack Python Developer role. Skilled in backend development, REST API development, database management, authentication, and frontend integration using Django and React.
             </Description>
           </motion.div>
 
@@ -407,7 +407,7 @@ export default function Hero() {
               transition={{ delay: 0.6, duration: 0.4 }}
             >
               <Sparkles size={13} color="#A78BFA" />
-              <BadgeText>Full-Stack + AI Specialist</BadgeText>
+              <BadgeText>Full-Stack Python Developer</BadgeText>
             </FloatingCardBadge>
           </ImageCardContainer>
         </ImageCol>

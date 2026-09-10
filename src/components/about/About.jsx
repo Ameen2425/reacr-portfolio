@@ -215,7 +215,7 @@ const cardVariants = {
 
 export default function About() {
   const stats = [
-    { number: '5', label: 'Completed Projects', icon: Code },
+    { number: '4', label: 'Completed Projects', icon: Code },
     { number: '2', label: 'Industry Internships', icon: Briefcase },
     { number: '8.0', label: 'B.Tech CGPA', icon: GraduationCap },
     { number: '4+', label: 'Verified Credentials', icon: Award },
@@ -295,7 +295,7 @@ export default function About() {
           transition={{ duration: 0.5 }}
         >
           <QuoteText>
-            "I enjoy turning ideas into practical, scalable, and user-friendly applications using Python, Django, React, and AI."
+            "I enjoy building scalable web applications using Python, Django, and React — combining robust backend APIs with clean, responsive frontend interfaces."
           </QuoteText>
         </QuoteBanner>
       </AboutContainer>

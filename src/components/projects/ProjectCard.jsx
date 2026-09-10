@@ -311,6 +311,18 @@ export default function ProjectCard({ project, isFeatured = false }) {
             View on GitHub
             <ArrowUpRight size={14} className="arrow" />
           </GitHubLink>
+          {project.liveUrl && (
+            <GitHubLink
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title} live demo`}
+              style={{ marginLeft: '8px' }}
+            >
+              Live Demo
+              <ArrowUpRight size={14} className="arrow" />
+            </GitHubLink>
+          )}
         </CardActions>
       </ContentWrapper>
     </Card>
