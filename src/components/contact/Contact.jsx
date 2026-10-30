@@ -4,7 +4,7 @@ import { BRAND } from '../../styles/theme';
 import SectionHeading from '../common/SectionHeading';
 import Button from '../common/Button';
 import { GithubIcon, LinkedinIcon } from '../common/Icons';
-import { Mail, Phone, Send, Copy, Check, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Copy, Check, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const ContactSection = styled('section', {
@@ -148,6 +148,14 @@ const ChannelValue = styled('a', {
   '&:hover': {
     color: '$primaryLight',
   },
+});
+
+const ChannelStatic = styled('span', {
+  fontSize: '$sm',
+  fontWeight: '$semibold',
+  color: '$textPrimary',
+  wordBreak: 'break-all',
+  display: 'block',
 });
 
 const CopyButton = styled('button', {
@@ -359,7 +367,7 @@ export default function Contact() {
             <div>
               <InfoHeading>Get in Touch</InfoHeading>
               <InfoText>
-                I am actively looking for Full-Stack Python Developer, Backend Developer, and React Developer opportunities. Feel free to reach out directly.
+                I am actively looking for Full Stack Python Developer, Backend Developer, and ReactJS Developer opportunities. Feel free to reach out directly.
               </InfoText>
             </div>
 
@@ -392,6 +400,18 @@ export default function Contact() {
                     <ChannelValue href={`tel:${BRAND.phone.replace(/\s+/g, '')}`}>
                       {BRAND.phone}
                     </ChannelValue>
+                  </div>
+                </ChannelLeft>
+              </ChannelItem>
+
+              <ChannelItem>
+                <ChannelLeft>
+                  <ChannelIcon>
+                    <MapPin size={18} />
+                  </ChannelIcon>
+                  <div style={{ minWidth: 0 }}>
+                    <ChannelLabel>Location</ChannelLabel>
+                    <ChannelStatic>{BRAND.location}</ChannelStatic>
                   </div>
                 </ChannelLeft>
               </ChannelItem>
@@ -436,7 +456,7 @@ export default function Contact() {
             <AvailabilityNotice>
               <Sparkles size={16} />
               <span>
-                <strong>Current Status:</strong> Ready for immediate onboarding in Full-Stack Python, Django, React, or Software Engineering roles.
+                <strong>Current Status:</strong> Ready for immediate onboarding in Full Stack Python, Django, ReactJS, or Software Engineering roles.
               </span>
             </AvailabilityNotice>
           </InfoCard>

@@ -7,7 +7,7 @@ export const certifications = [
     icon: 'Brain',
     description:
       'Hands-on machine learning implementation covering supervised & unsupervised learning, regression, classification models, and data preprocessing in Python.',
-    tag: 'ML & Python',
+    tag: 'Embrizon Tech',
   },
   {
     id: 'ai-fundamentals',
@@ -17,12 +17,12 @@ export const certifications = [
     icon: 'Cpu',
     description:
       'Foundational certification exploring artificial intelligence paradigms, neural networks, ethics in AI, and practical cognitive computing principles.',
-    tag: 'IBM Verified',
+    tag: 'IBM',
   },
   {
     id: 'prompt-eng',
     title: 'Prompt Engineering and Advanced ChatGPT',
-    issuer: 'Certified Training',
+    issuer: 'Professional Certification',
     category: 'Generative AI',
     icon: 'Sparkles',
     description:
@@ -32,7 +32,7 @@ export const certifications = [
   {
     id: 'comm-skills',
     title: 'Communication Skills Certification',
-    issuer: 'Professional Development',
+    issuer: 'Professional Certification',
     category: 'Professional Skills',
     icon: 'MessageSquare',
     description:

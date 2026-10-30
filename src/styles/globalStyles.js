@@ -26,10 +26,13 @@ export const globalStyles = globalCss({
     maxWidth: '100vw',
     position: 'relative',
     backgroundImage: `
-      radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.07) 0%, transparent 40%),
-      radial-gradient(circle at 85% 60%, rgba(6, 182, 212, 0.05) 0%, transparent 45%),
-      radial-gradient(circle at 50% 90%, rgba(99, 102, 241, 0.06) 0%, transparent 40%)
+      radial-gradient(circle at 20% 15%, rgba(139, 92, 246, 0.09) 0%, transparent 45%),
+      radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.07) 0%, transparent 50%),
+      radial-gradient(circle at 50% 85%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
+      linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px)
     `,
+    backgroundSize: '100% 100%, 100% 100%, 100% 100%, 60px 60px, 60px 60px',
     backgroundAttachment: 'fixed',
   },
   '#root': {

@@ -62,13 +62,28 @@ const Logo = styled('a', {
   fontSize: '$2xl',
   fontWeight: '$black',
   color: '$textPrimary',
-  letterSpacing: '-0.03em',
+  letterSpacing: '0.04em',
+  textTransform: 'uppercase',
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '$2',
+  gap: '$3',
 
   '&:hover': {
     color: '$primaryLight',
+  },
+});
+
+const LogoImg = styled('img', {
+  size: '34px',
+  minWidth: '34px',
+  borderRadius: '8px',
+  objectFit: 'cover',
+  border: '1px solid rgba(139, 92, 246, 0.4)',
+  boxShadow: '0 0 16px rgba(139, 92, 246, 0.45)',
+  transition: 'transform 0.25s ease',
+
+  [`${Logo}:hover &`]: {
+    transform: 'scale(1.08)',
   },
 });
 
@@ -177,10 +192,11 @@ export default function Footer() {
         <TopSection>
           <BrandBlock>
             <Logo href="#home">
+              <LogoImg src={BRAND.logoImage} alt={`${BRAND.name} Logo`} />
               <span>{BRAND.logo}</span>
             </Logo>
             <Subtitle>
-              Full-Stack Python Developer building scalable web applications with Django REST APIs and React frontends.
+              Full Stack Python Developer building scalable web applications with Django REST APIs and ReactJS frontends.
             </Subtitle>
             <TechPill>{BRAND.tagline}</TechPill>
           </BrandBlock>
@@ -202,6 +218,14 @@ export default function Footer() {
                   {item.label}
                 </FooterLink>
               ))}
+              <FooterLink
+                href={BRAND.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Abdul_Ameen_Full_Stack_Python_Developer_Resume.pdf"
+              >
+                Download Resume ↗
+              </FooterLink>
             </LinkGroup>
 
             <LinkGroup>

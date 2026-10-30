@@ -313,7 +313,7 @@ const itemVariants = {
 };
 
 export default function Hero() {
-  const coreTech = ['Python', 'Django', 'React', 'Redux', 'MySQL'];
+  const coreTech = ['Python', 'Django', 'ReactJS', 'JavaScript (ES6)', 'MySQL'];
 
   return (
     <HeroSection id="home">
@@ -331,14 +331,14 @@ export default function Hero() {
 
           <motion.div variants={itemVariants}>
             <Heading>
-              Hi, I'm Abdul Ameen.
-              <HighlightSpan>Full-Stack Python Developer.</HighlightSpan>
+              Hi, I'm {BRAND.name}.
+              <HighlightSpan>{BRAND.title}.</HighlightSpan>
             </Heading>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <Description>
-              Computer Science graduate seeking a Full-Stack Python Developer role. Skilled in backend development, REST API development, database management, authentication, and frontend integration using Django and React.
+              {BRAND.summary}
             </Description>
           </motion.div>
 
@@ -367,6 +367,7 @@ export default function Hero() {
               href={BRAND.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
+              download="Abdul_Ameen_Full_Stack_Python_Developer_Resume.pdf"
               aria-label="Download Full Resume"
             >
               <FileText size={13} />
@@ -407,7 +408,7 @@ export default function Hero() {
               transition={{ delay: 0.6, duration: 0.4 }}
             >
               <Sparkles size={13} color="#A78BFA" />
-              <BadgeText>Full-Stack Python Developer</BadgeText>
+              <BadgeText>{BRAND.title}</BadgeText>
             </FloatingCardBadge>
           </ImageCardContainer>
         </ImageCol>

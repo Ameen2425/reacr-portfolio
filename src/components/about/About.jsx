@@ -1,6 +1,7 @@
 import { styled } from '../../styles/stitches.config';
 import SectionHeading from '../common/SectionHeading';
 import { beyondCodingCards } from '../../data/skills';
+import { BRAND } from '../../styles/theme';
 import { Layers, Bot, Server, Smartphone, Award, Briefcase, Code, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -215,10 +216,10 @@ const cardVariants = {
 
 export default function About() {
   const stats = [
-    { number: '4', label: 'Completed Projects', icon: Code },
+    { number: '4', label: 'Full-Stack & Frontend Projects', icon: Code },
     { number: '2', label: 'Industry Internships', icon: Briefcase },
-    { number: '8.0', label: 'B.Tech CGPA', icon: GraduationCap },
-    { number: '4+', label: 'Verified Credentials', icon: Award },
+    { number: '8.0', label: 'B.Tech CGPA / 10', icon: GraduationCap },
+    { number: '4', label: 'Verified Certifications', icon: Award },
   ];
 
   return (
@@ -232,8 +233,8 @@ export default function About() {
         >
           <SectionHeading
             label="01 / ABOUT"
-            title="Beyond Just Coding"
-            subtitle="Computer Science graduate focused on Full-Stack Python development, modern frontend engineering, and AI-powered applications."
+            title="Professional Summary"
+            subtitle="Computer Science and Engineering graduate with hands-on project experience in Python, Django, ReactJS, JavaScript, and relational databases."
             align="center"
           />
         </motion.div>
@@ -295,7 +296,7 @@ export default function About() {
           transition={{ duration: 0.5 }}
         >
           <QuoteText>
-            "I enjoy building scalable web applications using Python, Django, and React — combining robust backend APIs with clean, responsive frontend interfaces."
+            "{BRAND.summary}"
           </QuoteText>
         </QuoteBanner>
       </AboutContainer>

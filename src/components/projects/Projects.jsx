@@ -5,6 +5,7 @@ import { BRAND } from '../../styles/theme';
 import SectionHeading from '../common/SectionHeading';
 import ProjectCard from './ProjectCard';
 import ProjectFilter from './ProjectFilter';
+import ProjectModal from './ProjectModal';
 import Button from '../common/Button';
 import { GithubIcon } from '../common/Icons';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -51,10 +52,18 @@ const BottomAction = styled(motion.div, {
 
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [activeProject, setActiveProject] = useState(null);
 
   const filteredProjects = projects.filter((project) => {
     if (selectedCategory === 'All') return true;
-    return project.category === selectedCategory;
+    return (
+      project.category === selectedCategory ||
+      (project.categories && project.categories.includes(selectedCategory)) ||
+      (project.technologies &&
+        project.technologies.some(
+          (tech) => tech.toLowerCase() === selectedCategory.toLowerCase()
+        ))
+    );
   });
 
   return (
@@ -70,7 +79,7 @@ export default function Projects() {
           <SectionHeading
             label="02 / PROJECTS"
             title="Featured Projects"
-            subtitle="Full-stack web applications, AI-driven tools, and database systems built with real-world architecture."
+            subtitle="Full-stack web applications, AI-driven platforms, and responsive interfaces built with Python, Django, ReactJS, and modern databases."
             align="center"
           />
         </motion.div>
@@ -86,7 +95,8 @@ export default function Projects() {
               <ProjectCard
                 key={project.id}
                 project={project}
-                isFeatured={project.featured && selectedCategory === 'All'}
+                isFeatured={Boolean(project.isFeatured && selectedCategory === 'All')}
+                onSelect={setActiveProject}
               />
             ))}
           </AnimatePresence>
@@ -112,6 +122,14 @@ export default function Projects() {
           </Button>
         </BottomAction>
       </ProjectsContainer>
+
+      {/* Interactive Project Details View */}
+      {activeProject && (
+        <ProjectModal
+          project={activeProject}
+          onClose={() => setActiveProject(null)}
+        />
+      )}
     </ProjectsSection>
   );
 }

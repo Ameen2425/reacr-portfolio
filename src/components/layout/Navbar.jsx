@@ -69,13 +69,14 @@ const NavContainer = styled('nav', {
 const LogoLink = styled('a', {
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '8px',
+  gap: '10px',
   fontFamily: '$sans',
   fontSize: '$base',
   fontWeight: '$extrabold',
   color: '$textPrimary',
   textDecoration: 'none',
-  letterSpacing: '-0.02em',
+  letterSpacing: '0.04em',
+  textTransform: 'uppercase',
 
   '&:hover': {
     color: '$primaryLight',
@@ -87,18 +88,20 @@ const LogoLink = styled('a', {
   },
 });
 
-const LogoBadge = styled('span', {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  size: '28px',
-  borderRadius: '$xs',
-  background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)',
-  color: '$white',
-  fontFamily: '$mono',
-  fontSize: '0.72rem',
-  fontWeight: '$bold',
-  boxShadow: '0 0 16px rgba(139, 92, 246, 0.6)',
+const LogoImg = styled('img', {
+  size: '30px',
+  minWidth: '30px',
+  borderRadius: '8px',
+  objectFit: 'cover',
+  border: '1px solid rgba(139, 92, 246, 0.4)',
+  boxShadow: '0 0 16px rgba(139, 92, 246, 0.5)',
+  transition: 'all 0.25s ease',
+
+  [`${LogoLink}:hover &`]: {
+    transform: 'scale(1.08)',
+    boxShadow: '0 0 22px rgba(139, 92, 246, 0.8)',
+    borderColor: '$primaryLight',
+  },
 });
 
 const DesktopNavList = styled('ul', {
@@ -281,7 +284,7 @@ export default function Navbar() {
     >
       <NavContainer scrolled={scrolled}>
         <LogoLink href="#home" aria-label="Abdul Ameen Home">
-          <LogoBadge>A</LogoBadge>
+          <LogoImg src={BRAND.logoImage} alt={`${BRAND.name} Logo`} />
           <span>{BRAND.logo}</span>
         </LogoLink>
 
@@ -304,6 +307,7 @@ export default function Navbar() {
             href={BRAND.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
+            download="Abdul_Ameen_Full_Stack_Python_Developer_Resume.pdf"
             aria-label="Download Resume PDF"
           >
             <FileText size={13} />
@@ -345,6 +349,7 @@ export default function Navbar() {
               href={BRAND.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
+              download="Abdul_Ameen_Full_Stack_Python_Developer_Resume.pdf"
               variant="purple"
               size="md"
               fullWidth

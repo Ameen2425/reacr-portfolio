@@ -48,7 +48,15 @@ const SkillsContainer = styled('div', {
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
-  gap: '$14',
+  gap: '$24',
+
+  '@tablet': {
+    gap: '$20',
+  },
+
+  '@mobile': {
+    gap: '$16',
+  },
 });
 
 const PillsContainer = styled(motion.div, {
@@ -60,6 +68,7 @@ const PillsContainer = styled(motion.div, {
   maxWidth: '960px',
   margin: '0 auto',
   width: '100%',
+  mb: '$2',
 
   '@mobile': {
     gap: '8px',
@@ -154,6 +163,29 @@ const CategoryGrid = styled(motion.div, {
   },
 });
 
+const ToolkitSectionWrapper = styled(motion.div, {
+  position: 'relative',
+  pt: '$12',
+
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: '15%',
+    right: '15%',
+    height: '1px',
+    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.35) 50%, transparent 100%)',
+  },
+
+  '@mobile': {
+    pt: '$8',
+    '&::before': {
+      left: '5%',
+      right: '5%',
+    },
+  },
+});
+
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
@@ -218,7 +250,7 @@ export default function Skills() {
         </motion.div>
 
         {/* Categorized Toolkit Cards */}
-        <motion.div
+        <ToolkitSectionWrapper
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -245,7 +277,7 @@ export default function Skills() {
               />
             ))}
           </CategoryGrid>
-        </motion.div>
+        </ToolkitSectionWrapper>
       </SkillsContainer>
     </SkillsSection>
   );

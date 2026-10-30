@@ -43,8 +43,8 @@ export default function Experience() {
         >
           <SectionHeading
             label="03 / CAREER"
-            title="Professional Experience"
-            subtitle="Hands-on industry internships in Python development, enterprise network systems, and full-stack software engineering."
+            title="Internship Experience"
+            subtitle="Hands-on industry internships in enterprise application testing, troubleshooting, and web and mobile UI development."
             align="center"
           />
         </motion.div>

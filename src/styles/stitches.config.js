@@ -34,13 +34,13 @@ export const {
       successGlow: 'rgba(16, 185, 129, 0.25)',
       white: '#FFFFFF',
       black: '#000000',
-      badgeBg: 'rgba(139, 92, 246, 0.08)',
-      badgeBorder: 'rgba(139, 92, 246, 0.25)',
-      glassBg: 'rgba(14, 14, 21, 0.75)',
-      glassBorder: 'rgba(255, 255, 255, 0.09)',
+      badgeBg: 'rgba(139, 92, 246, 0.1)',
+      badgeBorder: 'rgba(139, 92, 246, 0.3)',
+      glassBg: 'rgba(14, 14, 22, 0.72)',
+      glassBorder: 'rgba(255, 255, 255, 0.1)',
     },
     fonts: {
-      sans: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      sans: "'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       mono: "'JetBrains Mono', 'Fira Code', monospace",
     },
     fontSizes: {
