@@ -8,46 +8,74 @@ import ProjectFilter from './ProjectFilter';
 import ProjectModal from './ProjectModal';
 import Button from '../common/Button';
 import { GithubIcon } from '../common/Icons';
-import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
 const ProjectsSection = styled('section', {
-  py: '$20',
-  px: '$4',
+  py: '$16',
+  px: '$6',
   backgroundColor: '$bg',
-  position: 'relative',
+  borderBottom: '1px solid $border',
 
   '@mobile': {
-    py: '$14',
-    px: '$3',
+    py: '$12',
+    px: '$4',
   },
 });
 
 const ProjectsContainer = styled('div', {
-  maxWidth: '1200px',
+  maxWidth: '1240px',
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
 });
 
-const ProjectsGrid = styled(motion.div, {
+const ProjectsGrid = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '$6',
+  gap: '$8',
   width: '100%',
-  mb: '$12',
+  mb: '$10',
 
   '@mobile': {
     gridTemplateColumns: '1fr',
-    gap: '$4',
+    gap: '$6',
   },
 });
 
-const BottomAction = styled(motion.div, {
+const BottomBar = styled('div', {
   display: 'flex',
-  justifyContent: 'center',
-  pt: '$4',
-  width: '100%',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '$5 $6',
+  backgroundColor: '$bgSecondary',
+  border: '1px solid $border',
+  borderRadius: '$sm',
+  gap: '$4',
+  flexWrap: 'wrap',
+
+  '@mobile': {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: '$4',
+  },
+});
+
+const BottomText = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2px',
+});
+
+const BottomTitle = styled('div', {
+  fontSize: '$sm',
+  fontWeight: '$bold',
+  color: '$textPrimary',
+});
+
+const BottomDesc = styled('div', {
+  fontSize: '$xs',
+  color: '$textMuted',
+  fontFamily: '$mono',
 });
 
 export default function Projects() {
@@ -57,11 +85,14 @@ export default function Projects() {
   const filteredProjects = projects.filter((project) => {
     if (selectedCategory === 'All') return true;
     return (
-      project.category === selectedCategory ||
-      (project.categories && project.categories.includes(selectedCategory)) ||
+      project.category.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+      (project.categories &&
+        project.categories.some((c) =>
+          c.toLowerCase().includes(selectedCategory.toLowerCase())
+        )) ||
       (project.technologies &&
-        project.technologies.some(
-          (tech) => tech.toLowerCase() === selectedCategory.toLowerCase()
+        project.technologies.some((t) =>
+          t.toLowerCase().includes(selectedCategory.toLowerCase())
         ))
     );
   });
@@ -69,61 +100,49 @@ export default function Projects() {
   return (
     <ProjectsSection id="projects">
       <ProjectsContainer>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-          style={{ width: '100%' }}
-        >
-          <SectionHeading
-            label="02 / PROJECTS"
-            title="Featured Projects"
-            subtitle="Full-stack web applications, AI-driven platforms, and responsive interfaces built with Python, Django, ReactJS, and modern databases."
-            align="center"
-          />
-        </motion.div>
+        <SectionHeading
+          label="// 02 · SELECTED WORK"
+          title="Practical full-stack web applications and user interfaces."
+          subtitle="Real projects featuring Django REST APIs, relational MySQL schemas, React state architecture, and machine learning calculations."
+        />
 
         <ProjectFilter
           selectedCategory={selectedCategory}
           onSelectCategory={setSelectedCategory}
         />
 
-        <ProjectsGrid layout>
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                isFeatured={Boolean(project.isFeatured && selectedCategory === 'All')}
-                onSelect={setActiveProject}
-              />
-            ))}
-          </AnimatePresence>
+        <ProjectsGrid>
+          {filteredProjects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              onSelect={setActiveProject}
+            />
+          ))}
         </ProjectsGrid>
 
-        <BottomAction
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <BottomBar>
+          <BottomText>
+            <BottomTitle>More code repositories on GitHub</BottomTitle>
+            <BottomDesc>Explore experiment scripts, full-stack backends, and frontend utilities</BottomDesc>
+          </BottomText>
+
           <Button
             as="a"
             href={BRAND.github}
             target="_blank"
             rel="noopener noreferrer"
-            variant="secondary"
-            size="lg"
-            aria-label="View more projects on GitHub"
+            variant="primary"
+            size="sm"
           >
-            <GithubIcon size={18} />
-            Explore More on GitHub
+            <GithubIcon size={14} />
+            Visit GitHub Profile
+            <ArrowUpRight size={13} />
           </Button>
-        </BottomAction>
+        </BottomBar>
       </ProjectsContainer>
 
-      {/* Interactive Project Details View */}
       {activeProject && (
         <ProjectModal
           project={activeProject}

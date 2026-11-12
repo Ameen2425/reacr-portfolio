@@ -2,128 +2,86 @@ import { styled } from '../../styles/stitches.config';
 import { certifications } from '../../data/certifications';
 import SectionHeading from '../common/SectionHeading';
 import Badge from '../common/Badge';
-import { Brain, Cpu, Sparkles, MessageSquare, Award, CheckCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Award, CheckCircle2, ShieldCheck } from 'lucide-react';
 
-const iconMap = {
-  Brain,
-  Cpu,
-  Sparkles,
-  MessageSquare,
-};
-
-const CertificationsSection = styled('section', {
-  py: '$20',
-  px: '$4',
-  backgroundColor: '$bgSecondary',
-  position: 'relative',
-  borderTop: '1px solid $border',
+const CertSection = styled('section', {
+  py: '$16',
+  px: '$6',
+  backgroundColor: '$bg',
   borderBottom: '1px solid $border',
 
   '@mobile': {
-    py: '$14',
-    px: '$3',
+    py: '$12',
+    px: '$4',
   },
 });
 
 const CertContainer = styled('div', {
-  maxWidth: '1200px',
+  maxWidth: '1240px',
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
+  gap: '$8',
 });
 
-const CertGrid = styled(motion.div, {
+const CertGrid = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '$5',
+  gap: '$6',
 
-  '@mobile': {
+  '@tablet': {
     gridTemplateColumns: '1fr',
-    gap: '$3',
   },
 });
 
-const CertCard = styled(motion.div, {
+const CertCard = styled('div', {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
-  borderRadius: '$2xl',
-  p: '$6',
+  borderRadius: '$sm',
+  padding: '$6',
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'space-between',
   gap: '$4',
-  position: 'relative',
-  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
-  width: '100%',
-  overflow: 'hidden',
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '1px',
-    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.35) 50%, transparent 100%)',
-  },
+  transition: 'border-color 0.2s ease, transform 0.2s ease',
 
   '&:hover': {
-    borderColor: 'rgba(139, 92, 246, 0.45)',
-    boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+    borderColor: '$borderStrong',
+    transform: 'translateY(-1px)',
   },
 
   '@mobile': {
-    p: '$5',
-    borderRadius: '$lg',
-  },
-
-  '@smallMobile': {
-    p: '$4',
+    padding: '$5',
   },
 });
 
-const CardHeader = styled('div', {
+const CardTop = styled('div', {
   display: 'flex',
-  alignItems: 'flex-start',
+  flexDirection: 'column',
+  gap: '$3',
+});
+
+const HeaderMeta = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
   justifyContent: 'space-between',
   gap: '$2',
   flexWrap: 'wrap',
 });
 
-const IconWrapper = styled('div', {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  size: '44px',
-  borderRadius: '$md',
-  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
-  border: '1px solid rgba(139, 92, 246, 0.3)',
-  color: '$primaryLight',
-  transition: 'all 0.25s ease',
-
-  [`${CertCard}:hover &`]: {
-    background: 'linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)',
-    color: '$white',
-    boxShadow: '0 0 16px rgba(139, 92, 246, 0.6)',
-    borderColor: '$primaryLight',
-  },
+const IssuerTag = styled('span', {
+  fontFamily: '$mono',
+  fontSize: '0.74rem',
+  fontWeight: '$semibold',
+  color: '$accent',
 });
 
 const CertTitle = styled('h3', {
-  fontSize: '$lg',
+  fontSize: '$base',
   fontWeight: '$bold',
   color: '$textPrimary',
-  letterSpacing: '-0.02em',
+  letterSpacing: '-0.01em',
   margin: 0,
-  wordBreak: 'break-word',
-});
-
-const IssuerText = styled('p', {
-  fontSize: '$xs',
-  fontWeight: '$medium',
-  color: '$primaryLight',
-  margin: '4px 0 0 0',
-  wordBreak: 'break-word',
 });
 
 const CertDesc = styled('p', {
@@ -133,83 +91,58 @@ const CertDesc = styled('p', {
   margin: 0,
 });
 
-const VerifiedRow = styled('div', {
+const CardBottom = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '6px',
+  justifyContent: 'space-between',
+  pt: '$3',
+  borderTop: '1px solid $borderLight',
+});
+
+const VerificationStatus = styled('div', {
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '5px',
   fontFamily: '$mono',
   fontSize: '0.72rem',
   color: '$textMuted',
-  mt: 'auto',
-  pt: '$3',
-  borderTop: '1px solid $border',
-  flexWrap: 'wrap',
 });
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-  },
-};
 
 export default function Certifications() {
   return (
-    <CertificationsSection id="certifications">
+    <CertSection id="certifications">
       <CertContainer>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-        >
-          <SectionHeading
-            label="05 / CREDENTIALS"
-            title="My Certifications"
-            subtitle="Specialized domain training and credentials across Machine Learning, AI, and Prompt Engineering."
-            align="center"
-          />
-        </motion.div>
+        <SectionHeading
+          label="// 06 · VERIFIED CREDENTIALS"
+          title="Professional certifications & technical specializations."
+          subtitle="Focused training in machine learning workflows, artificial intelligence fundamentals, prompt design, and engineering communication."
+        />
 
-        <CertGrid
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ staggerChildren: 0.12 }}
-        >
-          {certifications.map((cert) => {
-            const Icon = iconMap[cert.icon] || Award;
-            return (
-              <CertCard
-                key={cert.id}
-                variants={cardVariants}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              >
-                <CardHeader>
-                  <IconWrapper>
-                    <Icon size={22} />
-                  </IconWrapper>
-                  <Badge variant="pill">{cert.tag}</Badge>
-                </CardHeader>
+        <CertGrid>
+          {certifications.map((cert) => (
+            <CertCard key={cert.id}>
+              <CardTop>
+                <HeaderMeta>
+                  <IssuerTag>{cert.issuer}</IssuerTag>
+                  <Badge variant="pill">{cert.category}</Badge>
+                </HeaderMeta>
 
-                <div>
-                  <CertTitle>{cert.title}</CertTitle>
-                  <IssuerText>{cert.issuer}</IssuerText>
-                </div>
-
+                <CertTitle>{cert.title}</CertTitle>
                 <CertDesc>{cert.description}</CertDesc>
+              </CardTop>
 
-                <VerifiedRow>
-                  <CheckCircle size={14} color="#10B981" />
-                  <span>{cert.category}</span>
-                </VerifiedRow>
-              </CertCard>
-            );
-          })}
+              <CardBottom>
+                <VerificationStatus>
+                  <CheckCircle2 size={13} color="#15803D" />
+                  Verified Curriculum
+                </VerificationStatus>
+
+                <Badge variant="accent">{cert.tag}</Badge>
+              </CardBottom>
+            </CertCard>
+          ))}
         </CertGrid>
       </CertContainer>
-    </CertificationsSection>
+    </CertSection>
   );
 }

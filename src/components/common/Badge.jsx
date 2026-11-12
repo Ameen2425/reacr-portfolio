@@ -1,116 +1,98 @@
-import { styled, keyframes } from '../../styles/stitches.config';
-
-const pulseRing = keyframes({
-  '0%': { transform: 'scale(0.8)', opacity: 0.8 },
-  '50%': { transform: 'scale(1.4)', opacity: 0 },
-  '100%': { transform: 'scale(0.8)', opacity: 0 },
-});
+import { styled } from '../../styles/stitches.config';
 
 const StyledBadge = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '8px',
-  borderRadius: '$full',
-  fontSize: '$xs',
+  gap: '7px',
+  borderRadius: '$xs',
+  fontSize: '0.72rem',
   fontFamily: '$mono',
-  fontWeight: '$semibold',
-  letterSpacing: '0.05em',
+  fontWeight: '$medium',
+  letterSpacing: '0.04em',
   textTransform: 'uppercase',
-  transition: 'all 0.25s ease',
   userSelect: 'none',
+  lineHeight: 1,
 
   variants: {
     variant: {
       status: {
-        backgroundColor: 'rgba(16, 185, 129, 0.08)',
-        color: '#34D399',
-        border: '1px solid rgba(16, 185, 129, 0.28)',
-        backdropFilter: 'blur(10px)',
-        py: '6px',
-        px: '14px',
-        fontSize: '0.72rem',
-        boxShadow: '0 0 20px -5px rgba(16, 185, 129, 0.2)',
+        backgroundColor: '$successLight',
+        color: '$success',
+        border: '1px solid $successBorder',
+        py: '5px',
+        px: '10px',
+        borderRadius: '$full',
       },
       section: {
-        backgroundColor: 'rgba(139, 92, 246, 0.1)',
-        color: '$primaryLight',
-        border: '1px solid rgba(139, 92, 246, 0.3)',
-        backdropFilter: 'blur(10px)',
-        py: '5px',
-        px: '14px',
-        fontSize: '0.72rem',
-        boxShadow: '0 0 20px -5px rgba(139, 92, 246, 0.25)',
+        backgroundColor: 'transparent',
+        color: '$accent',
+        border: 'none',
+        py: '2px',
+        px: '0',
+        fontWeight: '$semibold',
+        letterSpacing: '0.08em',
       },
       pill: {
-        backgroundColor: 'rgba(255, 255, 255, 0.04)',
+        backgroundColor: '$bgCard',
         color: '$textSecondary',
         border: '1px solid $border',
-        backdropFilter: 'blur(8px)',
         py: '4px',
-        px: '12px',
-        fontSize: '0.7rem',
+        px: '8px',
+        borderRadius: '$xs',
       },
-      primary: {
-        backgroundColor: 'rgba(139, 92, 246, 0.18)',
-        color: '$primaryLight',
-        border: '1px solid rgba(139, 92, 246, 0.4)',
-        backdropFilter: 'blur(10px)',
+      accent: {
+        backgroundColor: '$accentLight',
+        color: '$accent',
+        border: '1px solid $accentBorder',
         py: '4px',
-        px: '12px',
-        fontSize: '0.7rem',
-        boxShadow: '0 0 16px -4px rgba(139, 92, 246, 0.3)',
+        px: '8px',
+        borderRadius: '$xs',
       },
-      cyan: {
-        backgroundColor: 'rgba(6, 182, 212, 0.12)',
-        color: '$secondaryLight',
-        border: '1px solid rgba(6, 182, 212, 0.35)',
-        backdropFilter: 'blur(10px)',
+      dark: {
+        backgroundColor: '$bgDark',
+        color: '$white',
+        border: '1px solid $borderDark',
         py: '4px',
-        px: '12px',
-        fontSize: '0.7rem',
+        px: '8px',
+        borderRadius: '$xs',
       },
     },
   },
 
   defaultVariants: {
-    variant: 'section',
+    variant: 'pill',
   },
 });
 
-const DotContainer = styled('span', {
-  position: 'relative',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  size: '8px',
-});
-
 const StatusDot = styled('span', {
-  width: '6px',
-  height: '6px',
+  width: '7px',
+  height: '7px',
   borderRadius: '$full',
   backgroundColor: '$success',
-  boxShadow: '0 0 10px #10B981',
+  display: 'inline-block',
+  position: 'relative',
+
+  '&::after': {
+    content: '""',
+    position: 'absolute',
+    top: '-2px',
+    left: '-2px',
+    right: '-2px',
+    bottom: '-2px',
+    borderRadius: '$full',
+    backgroundColor: 'rgba(21, 128, 61, 0.25)',
+  },
 });
 
-const PulseRing = styled('span', {
-  position: 'absolute',
-  width: '14px',
-  height: '14px',
-  borderRadius: '$full',
-  border: '1.5px solid #10B981',
-  animation: `${pulseRing} 2s cubic-bezier(0.4, 0, 0.6, 1) infinite`,
-});
-
-export default function Badge({ children, variant, hasDot = false, ...props }) {
+export default function Badge({
+  children,
+  variant = 'pill',
+  hasDot = false,
+  ...props
+}) {
   return (
     <StyledBadge variant={variant} {...props}>
-      {hasDot && (
-        <DotContainer>
-          <StatusDot />
-          <PulseRing />
-        </DotContainer>
-      )}
+      {hasDot && <StatusDot />}
       {children}
     </StyledBadge>
   );

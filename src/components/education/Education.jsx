@@ -2,211 +2,157 @@ import { styled } from '../../styles/stitches.config';
 import { education } from '../../data/education';
 import SectionHeading from '../common/SectionHeading';
 import Badge from '../common/Badge';
-import { GraduationCap, Calendar, Award } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { GraduationCap, Calendar, Award, BookOpen } from 'lucide-react';
 
 const EducationSection = styled('section', {
   py: '$16',
-  px: '$4',
-  backgroundColor: '$bg',
-  position: 'relative',
+  px: '$6',
+  backgroundColor: '$bgSecondary',
+  borderBottom: '1px solid $border',
 
   '@mobile': {
     py: '$12',
-    px: '$3',
+    px: '$4',
   },
 });
 
 const EducationContainer = styled('div', {
-  maxWidth: '1200px',
+  maxWidth: '1240px',
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
+  gap: '$8',
 });
 
-const EducationGrid = styled(motion.div, {
+const EducationGrid = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
-  gap: '$5',
+  gap: '$6',
 
   '@tablet': {
     gridTemplateColumns: '1fr',
   },
 });
 
-const EduCard = styled(motion.div, {
+const EduCard = styled('div', {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
-  borderRadius: '$2xl',
-  p: '$6',
+  borderRadius: '$sm',
+  padding: '$6',
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'space-between',
   gap: '$4',
-  position: 'relative',
-  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
-  width: '100%',
-  overflow: 'hidden',
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '1px',
-    background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%)',
-  },
+  transition: 'border-color 0.2s ease, transform 0.2s ease',
 
   '&:hover': {
-    borderColor: 'rgba(139, 92, 246, 0.45)',
-    boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 25px -5px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+    borderColor: '$borderStrong',
+    transform: 'translateY(-1px)',
   },
 
   '@mobile': {
-    p: '$5',
-    borderRadius: '$lg',
-  },
-
-  '@smallMobile': {
-    p: '$4',
+    padding: '$5',
   },
 });
 
-const EduHeader = styled('div', {
+const CardTop = styled('div', {
   display: 'flex',
-  alignItems: 'flex-start',
+  flexDirection: 'column',
+  gap: '$3',
+});
+
+const HeaderMeta = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
   justifyContent: 'space-between',
   gap: '$2',
-  flexWrap: 'wrap',
 });
 
-const IconBadge = styled('div', {
+const Period = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
-  justifyContent: 'center',
-  size: '42px',
-  borderRadius: '$md',
-  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
-  border: '1px solid rgba(139, 92, 246, 0.3)',
-  color: '$primaryLight',
+  gap: '5px',
+  fontFamily: '$mono',
+  fontSize: '0.72rem',
+  color: '$textMuted',
 });
 
 const DegreeTitle = styled('h3', {
-  fontSize: '$lg',
+  fontSize: '$base',
   fontWeight: '$bold',
   color: '$textPrimary',
-  letterSpacing: '-0.02em',
-  lineHeight: 1.3,
+  letterSpacing: '-0.01em',
+  lineHeight: 1.35,
   margin: 0,
-  wordBreak: 'break-word',
 });
 
-const Institution = styled('p', {
+const Institution = styled('div', {
   fontSize: '$sm',
-  fontWeight: '$medium',
-  color: '$primaryLight',
-  margin: '4px 0 0 0',
-  wordBreak: 'break-word',
-});
-
-const ScoreBadge = styled('div', {
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: '6px',
-  fontFamily: '$mono',
-  fontSize: '0.74rem',
-  fontWeight: '$bold',
-  color: '#34D399',
-  backgroundColor: 'rgba(16, 185, 129, 0.08)',
-  border: '1px solid rgba(16, 185, 129, 0.25)',
-  borderRadius: '$full',
-  px: '$3',
-  py: '4px',
-  width: 'fit-content',
-  boxShadow: '0 0 12px -2px rgba(16, 185, 129, 0.2)',
+  color: '$textSecondary',
+  lineHeight: 1.4,
 });
 
 const Description = styled('p', {
   fontSize: '$xs',
-  color: '$textSecondary',
+  color: '$textMuted',
   lineHeight: 1.6,
   margin: 0,
 });
 
-const PeriodRow = styled('div', {
+const ScoreStrip = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '6px',
+  justifyContent: 'space-between',
+  pt: '$3',
+  borderTop: '1px solid $borderLight',
+});
+
+const ScoreLabel = styled('span', {
   fontFamily: '$mono',
   fontSize: '0.72rem',
   color: '$textMuted',
-  mt: 'auto',
-  pt: '$3',
-  borderTop: '1px solid $border',
+  textTransform: 'uppercase',
+  letterSpacing: '0.04em',
 });
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-  },
-};
+const ScoreValue = styled('span', {
+  fontFamily: '$mono',
+  fontSize: '$sm',
+  fontWeight: '$bold',
+  color: '$accent',
+});
 
 export default function Education() {
   return (
     <EducationSection id="education">
       <EducationContainer>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-        >
-          <SectionHeading
-            label="04 / ACADEMICS"
-            title="Education"
-            subtitle="Academic milestones, core computer science engineering background, and scholastic achievements."
-            align="center"
-          />
-        </motion.div>
+        <SectionHeading
+          label="// 05 · ACADEMIC CREDENTIALS"
+          title="Formal education and computer science background."
+          subtitle="Undergraduate engineering degree in Computer Science, higher secondary coursework, and foundational schooling."
+        />
 
-        <EducationGrid
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ staggerChildren: 0.12 }}
-        >
-          {education.map((item) => (
-            <EduCard
-              key={item.id}
-              variants={cardVariants}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            >
-              <EduHeader>
-                <IconBadge>
-                  <GraduationCap size={22} />
-                </IconBadge>
-                <Badge variant="pill">{item.badge}</Badge>
-              </EduHeader>
+        <EducationGrid>
+          {education.map((edu) => (
+            <EduCard key={edu.id}>
+              <CardTop>
+                <HeaderMeta>
+                  <Period>
+                    <Calendar size={12} />
+                    {edu.period}
+                  </Period>
+                  <Badge variant="accent">{edu.badge}</Badge>
+                </HeaderMeta>
 
-              <div>
-                <DegreeTitle>{item.degree}</DegreeTitle>
-                <Institution>{item.institution}</Institution>
-              </div>
+                <DegreeTitle>{edu.degree}</DegreeTitle>
+                <Institution>{edu.institution}</Institution>
+                <Description>{edu.description}</Description>
+              </CardTop>
 
-              <ScoreBadge>
-                <Award size={13} />
-                {item.score}
-              </ScoreBadge>
-
-              <Description>{item.description}</Description>
-
-              <PeriodRow>
-                <Calendar size={13} />
-                <span>{item.period}</span>
-              </PeriodRow>
+              <ScoreStrip>
+                <ScoreLabel>Performance</ScoreLabel>
+                <ScoreValue>{edu.score}</ScoreValue>
+              </ScoreStrip>
             </EduCard>
           ))}
         </EducationGrid>

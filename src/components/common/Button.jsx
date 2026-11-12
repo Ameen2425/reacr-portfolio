@@ -8,9 +8,9 @@ export const StyledButton = styled('button', {
   fontWeight: '$semibold',
   fontSize: '$sm',
   fontFamily: '$sans',
-  borderRadius: '$full',
+  borderRadius: '$sm',
   cursor: 'pointer',
-  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+  transition: 'all 0.18s cubic-bezier(0.16, 1, 0.3, 1)',
   textDecoration: 'none',
   whiteSpace: 'nowrap',
   userSelect: 'none',
@@ -19,51 +19,52 @@ export const StyledButton = styled('button', {
   border: '1px solid transparent',
 
   '&:focus-visible': {
-    boxShadow: '0 0 0 2px #8B5CF6, 0 0 0 4px rgba(139, 92, 246, 0.4)',
+    outline: '2px solid $textPrimary',
+    outlineOffset: '2px',
   },
 
   variants: {
     variant: {
       primary: {
         backgroundColor: '$textPrimary',
-        color: '#050508',
-        borderColor: 'rgba(255, 255, 255, 0.9)',
-        boxShadow: '0 4px 14px 0 rgba(255, 255, 255, 0.15)',
-        '&:hover': {
-          backgroundColor: '$white',
-          transform: 'translateY(-2px)',
-          boxShadow: '0 8px 24px -2px rgba(255, 255, 255, 0.35)',
-        },
-        '&:active': {
-          transform: 'translateY(0)',
-        },
-      },
-      purple: {
-        background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 50%, #7C3AED 100%)',
         color: '$white',
-        borderColor: 'rgba(167, 139, 250, 0.5)',
-        boxShadow: '0 6px 20px -2px rgba(139, 92, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+        borderColor: '$textPrimary',
+        boxShadow: '$sm',
         '&:hover': {
-          background: 'linear-gradient(135deg, #C4B5FD 0%, #9333EA 100%)',
-          borderColor: 'rgba(196, 181, 253, 0.8)',
-          transform: 'translateY(-2px)',
-          boxShadow: '0 10px 30px -2px rgba(139, 92, 246, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.4)',
+          backgroundColor: '#2A2C31',
+          borderColor: '#2A2C31',
+          transform: 'translateY(-1px)',
+          boxShadow: '$md',
         },
         '&:active': {
           transform: 'translateY(0)',
+          boxShadow: '$sm',
         },
       },
       secondary: {
-        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+        backgroundColor: '$bgCard',
         color: '$textPrimary',
-        borderColor: 'rgba(255, 255, 255, 0.1)',
-        backdropFilter: 'blur(12px)',
+        borderColor: '$border',
+        boxShadow: '$subtle',
         '&:hover': {
-          borderColor: '$primary',
-          backgroundColor: 'rgba(139, 92, 246, 0.08)',
-          color: '$white',
-          transform: 'translateY(-2px)',
-          boxShadow: '0 6px 20px -2px rgba(0, 0, 0, 0.6), 0 0 20px -4px rgba(139, 92, 246, 0.3)',
+          borderColor: '$textPrimary',
+          backgroundColor: '$bgCardHover',
+          transform: 'translateY(-1px)',
+          boxShadow: '$sm',
+        },
+        '&:active': {
+          transform: 'translateY(0)',
+        },
+      },
+      accent: {
+        backgroundColor: '$accent',
+        color: '$white',
+        borderColor: '$accentDark',
+        boxShadow: '$sm',
+        '&:hover': {
+          backgroundColor: '$accentHover',
+          transform: 'translateY(-1px)',
+          boxShadow: '$md',
         },
         '&:active': {
           transform: 'translateY(0)',
@@ -75,24 +76,33 @@ export const StyledButton = styled('button', {
         borderColor: 'transparent',
         '&:hover': {
           color: '$textPrimary',
-          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          backgroundColor: '$bgSubtle',
+        },
+      },
+      outline: {
+        backgroundColor: 'transparent',
+        color: '$textPrimary',
+        borderColor: '$borderStrong',
+        '&:hover': {
+          backgroundColor: '$textPrimary',
+          color: '$white',
         },
       },
     },
     size: {
       sm: {
-        height: '36px',
-        px: '$4',
+        height: '34px',
+        px: '$3',
         fontSize: '$xs',
       },
       md: {
-        height: '44px',
-        px: '$6',
+        height: '42px',
+        px: '$5',
         fontSize: '$sm',
       },
       lg: {
-        height: '50px',
-        px: '$8',
+        height: '48px',
+        px: '$7',
         fontSize: '$base',
       },
     },
@@ -104,7 +114,7 @@ export const StyledButton = styled('button', {
   },
 
   defaultVariants: {
-    variant: 'primary',
+    variant: 'secondary',
     size: 'md',
   },
 });

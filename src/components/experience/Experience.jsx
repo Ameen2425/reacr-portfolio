@@ -2,30 +2,28 @@ import { styled } from '../../styles/stitches.config';
 import { experiences } from '../../data/experience';
 import SectionHeading from '../common/SectionHeading';
 import ExperienceCard from './ExperienceCard';
-import { motion } from 'framer-motion';
 
 const ExperienceSection = styled('section', {
-  py: '$20',
-  px: '$4',
-  backgroundColor: '$bgSecondary',
-  position: 'relative',
-  borderTop: '1px solid $border',
+  py: '$16',
+  px: '$6',
+  backgroundColor: '$bg',
   borderBottom: '1px solid $border',
 
   '@mobile': {
-    py: '$14',
-    px: '$3',
+    py: '$12',
+    px: '$4',
   },
 });
 
 const ExpContainer = styled('div', {
-  maxWidth: '1200px',
+  maxWidth: '1240px',
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
+  gap: '$8',
 });
 
-const ExpList = styled(motion.div, {
+const ExpList = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$6',
@@ -35,26 +33,13 @@ export default function Experience() {
   return (
     <ExperienceSection id="experience">
       <ExpContainer>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-        >
-          <SectionHeading
-            label="03 / CAREER"
-            title="Internship Experience"
-            subtitle="Hands-on industry internships in enterprise application testing, troubleshooting, and web and mobile UI development."
-            align="center"
-          />
-        </motion.div>
+        <SectionHeading
+          label="// 04 · CAREER & INTERNSHIPS"
+          title="Hands-on industry internships and applied engineering."
+          subtitle="Enterprise application testing, functional validation, UI component development, and cross-device optimization."
+        />
 
-        <ExpList
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ staggerChildren: 0.15 }}
-        >
+        <ExpList>
           {experiences.map((exp) => (
             <ExperienceCard key={exp.id} exp={exp} />
           ))}

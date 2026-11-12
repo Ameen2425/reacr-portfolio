@@ -3,38 +3,45 @@ import { styled } from '../../styles/stitches.config';
 const StyledTag = styled('span', {
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '6px',
+  gap: '5px',
   fontFamily: '$mono',
-  fontSize: '0.75rem',
+  fontSize: '0.74rem',
   fontWeight: '$medium',
   color: '$textSecondary',
-  backgroundColor: 'rgba(255, 255, 255, 0.04)',
+  backgroundColor: '$bgCard',
   border: '1px solid $border',
-  borderRadius: '$sm',
-  py: '4px',
-  px: '10px',
+  borderRadius: '$xs',
+  py: '3px',
+  px: '8px',
   whiteSpace: 'nowrap',
-  transition: 'all 0.2s ease',
+  transition: 'border-color 0.15s ease, color 0.15s ease',
 
   '&:hover': {
-    color: '$primaryLight',
-    borderColor: 'rgba(139, 92, 246, 0.4)',
-    backgroundColor: 'rgba(139, 92, 246, 0.06)',
+    color: '$textPrimary',
+    borderColor: '$borderStrong',
   },
 
   variants: {
     highlight: {
       true: {
-        color: '$primaryLight',
-        borderColor: 'rgba(139, 92, 246, 0.3)',
-        backgroundColor: 'rgba(139, 92, 246, 0.08)',
+        color: '$textPrimary',
+        backgroundColor: '$bgSecondary',
+        borderColor: '$border',
+        fontWeight: '$semibold',
       },
     },
-    cyan: {
+    accent: {
       true: {
-        color: '$secondary',
-        borderColor: 'rgba(6, 182, 212, 0.3)',
-        backgroundColor: 'rgba(6, 182, 212, 0.08)',
+        color: '$accent',
+        backgroundColor: '$accentLight',
+        borderColor: '$accentBorder',
+      },
+    },
+    dark: {
+      true: {
+        color: '$white',
+        backgroundColor: '$bgDark',
+        borderColor: '$borderDark',
       },
     },
   },

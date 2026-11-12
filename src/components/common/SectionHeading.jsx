@@ -1,11 +1,10 @@
 import { styled } from '../../styles/stitches.config';
-import Badge from './Badge';
 
 const Container = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  mb: '$10',
-  gap: '$3',
+  mb: '$8',
+  gap: '$2',
 
   variants: {
     align: {
@@ -21,37 +20,49 @@ const Container = styled('div', {
   },
 
   defaultVariants: {
-    align: 'center',
+    align: 'left',
   },
 });
 
+const Label = styled('span', {
+  fontFamily: '$mono',
+  fontSize: '0.74rem',
+  fontWeight: '$semibold',
+  letterSpacing: '0.08em',
+  textTransform: 'uppercase',
+  color: '$accent',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '6px',
+});
+
 const Title = styled('h2', {
-  fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+  fontSize: 'clamp(1.75rem, 3.6vw, 2.75rem)',
   fontWeight: '$bold',
   color: '$textPrimary',
   letterSpacing: '-0.03em',
-  lineHeight: 1.2,
+  lineHeight: 1.15,
   margin: 0,
 });
 
 const Subtitle = styled('p', {
-  fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)',
+  fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)',
   color: '$textSecondary',
-  maxWidth: '620px',
+  maxWidth: '640px',
   lineHeight: 1.6,
-  margin: 0,
+  margin: '4px 0 0 0',
 });
 
 export default function SectionHeading({
   label,
   title,
   subtitle,
-  align = 'center',
+  align = 'left',
   ...props
 }) {
   return (
     <Container align={align} {...props}>
-      {label && <Badge variant="section">{label}</Badge>}
+      {label && <Label>{label}</Label>}
       {title && <Title>{title}</Title>}
       {subtitle && <Subtitle>{subtitle}</Subtitle>}
     </Container>

@@ -1,221 +1,164 @@
 import { styled } from '../../styles/stitches.config';
 import { BRAND, NAV_LINKS } from '../../styles/theme';
 import SocialLinks from '../common/SocialLinks';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, FileText, Mail, MapPin } from 'lucide-react';
 
 const FooterWrapper = styled('footer', {
-  backgroundColor: '$bgSecondary',
+  backgroundColor: '$bg',
   borderTop: '1px solid $border',
-  pt: '$24',
+  pt: '$12',
   pb: '$10',
-  px: '$4',
-  mt: 'auto',
-  position: 'relative',
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: '10%',
-    right: '10%',
-    height: '1px',
-    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.4) 50%, transparent 100%)',
-  },
+  px: '$6',
+  width: '100%',
 
   '@mobile': {
-    pt: '$16',
-    pb: '$6',
-    px: '$3',
+    pt: '$10',
+    pb: '$8',
+    px: '$4',
   },
 });
 
 const FooterContainer = styled('div', {
-  maxWidth: '1200px',
+  maxWidth: '1240px',
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
-  gap: '$10',
+  gap: '$8',
 });
 
-const TopSection = styled('div', {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'flex-start',
-  flexWrap: 'wrap',
+const TopRow = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1.2fr 0.8fr',
   gap: '$8',
+  alignItems: 'start',
 
-  '@mobile': {
-    flexDirection: 'column',
+  '@tablet': {
+    gridTemplateColumns: '1fr',
     gap: '$6',
   },
 });
 
-const BrandBlock = styled('div', {
+const IdentityBlock = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '8px',
-  maxWidth: '380px',
-  width: '100%',
-});
-
-const Logo = styled('a', {
-  fontSize: '$2xl',
-  fontWeight: '$black',
-  color: '$textPrimary',
-  letterSpacing: '0.04em',
-  textTransform: 'uppercase',
-  display: 'inline-flex',
-  alignItems: 'center',
   gap: '$3',
-
-  '&:hover': {
-    color: '$primaryLight',
-  },
+  maxWidth: '480px',
 });
 
-const LogoImg = styled('img', {
-  size: '34px',
-  minWidth: '34px',
-  borderRadius: '8px',
-  objectFit: 'cover',
-  border: '1px solid rgba(139, 92, 246, 0.4)',
-  boxShadow: '0 0 16px rgba(139, 92, 246, 0.45)',
-  transition: 'transform 0.25s ease',
-
-  [`${Logo}:hover &`]: {
-    transform: 'scale(1.08)',
-  },
-});
-
-const Subtitle = styled('p', {
-  color: '$textSecondary',
-  fontSize: '$sm',
-  lineHeight: 1.65,
+const NameTitle = styled('h3', {
+  fontSize: '$lg',
+  fontWeight: '$bold',
+  letterSpacing: '-0.02em',
+  color: '$textPrimary',
   margin: 0,
 });
 
-const TechPill = styled('span', {
-  fontFamily: '$mono',
-  fontSize: '0.74rem',
-  color: '$primaryLight',
-  backgroundColor: 'rgba(139, 92, 246, 0.1)',
-  border: '1px solid rgba(139, 92, 246, 0.25)',
-  borderRadius: '$full',
-  px: '$3',
-  py: '3px',
-  display: 'inline-block',
-  width: 'fit-content',
-  mt: '6px',
+const RoleText = styled('p', {
+  fontSize: '$sm',
+  color: '$textSecondary',
+  lineHeight: 1.6,
+  margin: 0,
 });
 
-const QuickLinks = styled('div', {
-  display: 'flex',
-  gap: '$10',
-  flexWrap: 'wrap',
-
-  '@mobile': {
-    gap: '$6',
-    width: '100%',
-  },
-});
-
-const LinkGroup = styled('div', {
+const NavBlock = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '8px',
-  minWidth: '100px',
+  gap: '$3',
 });
 
-const GroupTitle = styled('h4', {
+const NavTitle = styled('span', {
   fontFamily: '$mono',
-  fontSize: '0.7rem',
+  fontSize: '0.72rem',
   textTransform: 'uppercase',
-  letterSpacing: '0.06em',
+  letterSpacing: '0.08em',
   color: '$textMuted',
-  mb: '4px',
+});
+
+const NavGrid = styled('div', {
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '$4',
 });
 
 const FooterLink = styled('a', {
-  color: '$textSecondary',
   fontSize: '$sm',
+  color: '$textSecondary',
   textDecoration: 'none',
-  transition: 'all 0.2s ease',
+  transition: 'color 0.15s ease',
 
   '&:hover': {
-    color: '$primaryLight',
-    transform: 'translateX(3px)',
+    color: '$textPrimary',
   },
 });
 
-const BottomSection = styled('div', {
+const MiddleDivider = styled('hr', {
+  border: 'none',
+  height: '1px',
+  backgroundColor: '$border',
+  margin: 0,
+});
+
+const BottomRow = styled('div', {
   display: 'flex',
-  justifyContent: 'space-between',
   alignItems: 'center',
-  pt: '$6',
-  borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-  color: '$textMuted',
-  fontSize: '$xs',
+  justifyContent: 'space-between',
+  gap: '$4',
   flexWrap: 'wrap',
-  gap: '$3',
-
-  '@mobile': {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
+  fontSize: '$xs',
+  color: '$textMuted',
+  fontFamily: '$mono',
 });
 
-const BackToTopBtn = styled('a', {
+const LocationColophon = styled('div', {
   display: 'inline-flex',
   alignItems: 'center',
   gap: '6px',
-  color: '$textSecondary',
-  fontSize: '$xs',
+});
+
+const BackToTopButton = styled('button', {
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '6px',
   fontFamily: '$mono',
-  padding: '6px 14px',
-  borderRadius: '$full',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  backgroundColor: '$bgCard',
-  transition: 'all 0.25s ease',
+  fontSize: '$xs',
+  color: '$textSecondary',
+  backgroundColor: 'transparent',
+  border: '1px solid $border',
+  borderRadius: '$xs',
+  padding: '6px 12px',
+  cursor: 'pointer',
+  transition: 'all 0.15s ease',
 
   '&:hover': {
-    color: '$white',
-    borderColor: '$primary',
-    backgroundColor: 'rgba(139, 92, 246, 0.15)',
-    transform: 'translateY(-2px)',
+    color: '$textPrimary',
+    borderColor: '$borderStrong',
+    backgroundColor: '$bgCard',
   },
 });
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <FooterWrapper>
       <FooterContainer>
-        <TopSection>
-          <BrandBlock>
-            <Logo href="#home">
-              <LogoImg src={BRAND.logoImage} alt={`${BRAND.name} Logo`} />
-              <span>{BRAND.logo}</span>
-            </Logo>
-            <Subtitle>
-              Full Stack Python Developer building scalable web applications with Django REST APIs and ReactJS frontends.
-            </Subtitle>
-            <TechPill>{BRAND.tagline}</TechPill>
-          </BrandBlock>
+        <TopRow>
+          <IdentityBlock>
+            <NameTitle>{BRAND.name}</NameTitle>
+            <RoleText>
+              Full Stack Python Developer with hands-on project experience in Python, Django, REST APIs, MySQL, and ReactJS. Available for engineering roles.
+            </RoleText>
+            <SocialLinks variant="text" style={{ marginTop: '8px' }} />
+          </IdentityBlock>
 
-          <QuickLinks>
-            <LinkGroup>
-              <GroupTitle>Navigation</GroupTitle>
-              {NAV_LINKS.slice(0, 4).map((item) => (
-                <FooterLink key={item.href} href={item.href}>
-                  {item.label}
-                </FooterLink>
-              ))}
-            </LinkGroup>
-
-            <LinkGroup>
-              <GroupTitle>Career</GroupTitle>
-              {NAV_LINKS.slice(4).map((item) => (
-                <FooterLink key={item.href} href={item.href}>
-                  {item.label}
+          <NavBlock>
+            <NavTitle>Directory</NavTitle>
+            <NavGrid>
+              {NAV_LINKS.map((link) => (
+                <FooterLink key={link.label} href={link.href}>
+                  {link.label}
                 </FooterLink>
               ))}
               <FooterLink
@@ -223,27 +166,31 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 download="Abdul_Ameen_Full_Stack_Python_Developer_Resume.pdf"
+                style={{ fontWeight: 600, color: '#C2410C' }}
               >
                 Download Resume ↗
               </FooterLink>
-            </LinkGroup>
+            </NavGrid>
+          </NavBlock>
+        </TopRow>
 
-            <LinkGroup>
-              <GroupTitle>Connect</GroupTitle>
-              <SocialLinks variant="text" />
-            </LinkGroup>
-          </QuickLinks>
-        </TopSection>
+        <MiddleDivider />
 
-        <BottomSection>
+        <BottomRow>
+          <LocationColophon>
+            <MapPin size={12} color="#C2410C" />
+            Hyderabad, Telangana, India · Built with React & Stitches
+          </LocationColophon>
+
           <div>
-            © {new Date().getFullYear()} {BRAND.name}. All rights reserved. • Built with React & Stitches
+            © {new Date().getFullYear()} {BRAND.name}. Designed & Built Personally.
           </div>
-          <BackToTopBtn href="#home" aria-label="Back to top of page">
+
+          <BackToTopButton onClick={scrollToTop} aria-label="Back to top of page">
+            Top of Page
             <ArrowUp size={13} />
-            Back to Top
-          </BackToTopBtn>
-        </BottomSection>
+          </BackToTopButton>
+        </BottomRow>
       </FooterContainer>
     </FooterWrapper>
   );

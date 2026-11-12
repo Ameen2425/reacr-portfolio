@@ -1,304 +1,241 @@
 import { styled } from '../../styles/stitches.config';
 import SectionHeading from '../common/SectionHeading';
-import { beyondCodingCards } from '../../data/skills';
 import { BRAND } from '../../styles/theme';
-import { Layers, Bot, Server, Smartphone, Award, Briefcase, Code, GraduationCap } from 'lucide-react';
-import { motion } from 'framer-motion';
-
-const iconMap = {
-  Layers,
-  Bot,
-  Server,
-  Smartphone,
-};
+import { Database, Server, Layout, GitBranch, Terminal, ShieldCheck } from 'lucide-react';
 
 const AboutSection = styled('section', {
-  py: '$20',
-  px: '$4',
+  py: '$16',
+  px: '$6',
   backgroundColor: '$bgSecondary',
-  position: 'relative',
-  borderTop: '1px solid $border',
   borderBottom: '1px solid $border',
 
   '@mobile': {
-    py: '$14',
-    px: '$3',
+    py: '$12',
+    px: '$4',
   },
 });
 
 const AboutContainer = styled('div', {
-  maxWidth: '1200px',
+  maxWidth: '1240px',
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
+  gap: '$8',
+});
+
+const EditorialGrid = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1.1fr 0.9fr',
   gap: '$12',
-});
-
-const BentoGrid = styled(motion.div, {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(2, 1fr)',
-  gap: '$5',
-
-  '@mobile': {
-    gridTemplateColumns: '1fr',
-    gap: '$3',
-  },
-});
-
-const BentoCard = styled(motion.div, {
-  backgroundColor: '$bgCard',
-  border: '1px solid $border',
-  borderRadius: '$2xl',
-  p: '$8',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '$4',
-  position: 'relative',
-  overflow: 'hidden',
-  transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '1px',
-    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.35) 50%, transparent 100%)',
-  },
-
-  '&:hover': {
-    borderColor: 'rgba(139, 92, 246, 0.45)',
-    boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px -5px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-  },
-
-  '@mobile': {
-    p: '$5',
-    borderRadius: '$lg',
-  },
-});
-
-const CardIconWrapper = styled('div', {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  size: '48px',
-  borderRadius: '$md',
-  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
-  border: '1px solid rgba(139, 92, 246, 0.3)',
-  color: '$primaryLight',
-  transition: 'all 0.25s ease',
-
-  [`${BentoCard}:hover &`]: {
-    background: 'linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)',
-    color: '$white',
-    boxShadow: '0 0 20px rgba(139, 92, 246, 0.6)',
-    borderColor: '$primaryLight',
-  },
-});
-
-const CardTitle = styled('h3', {
-  fontSize: '$xl',
-  fontWeight: '$bold',
-  color: '$textPrimary',
-  letterSpacing: '-0.02em',
-  margin: 0,
-});
-
-const CardDesc = styled('p', {
-  fontSize: '$sm',
-  color: '$textSecondary',
-  lineHeight: 1.65,
-  margin: 0,
-});
-
-const StatsContainer = styled(motion.div, {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
-  gap: '$4',
-  pt: '$4',
+  alignItems: 'start',
 
   '@tablet': {
-    gridTemplateColumns: 'repeat(2, 1fr)',
-  },
-
-  '@smallMobile': {
     gridTemplateColumns: '1fr',
+    gap: '$8',
   },
 });
 
-const StatBox = styled(motion.div, {
-  backgroundColor: '$bgCard',
-  border: '1px solid $border',
-  borderRadius: '$xl',
-  p: '$5',
+const NarrativeCol = styled('div', {
   display: 'flex',
-  alignItems: 'center',
+  flexDirection: 'column',
   gap: '$4',
-  transition: 'border-color 0.25s ease, background-color 0.25s ease',
-  position: 'relative',
-  overflow: 'hidden',
-
-  '&:hover': {
-    borderColor: '$primary',
-    backgroundColor: '$bgCardHover',
-    boxShadow: '0 10px 24px -4px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(139, 92, 246, 0.2)',
-  },
-
-  '@smallMobile': {
-    p: '$3',
-  },
 });
 
-const StatIcon = styled('div', {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  size: '42px',
-  minWidth: '42px',
-  borderRadius: '$md',
-  backgroundColor: 'rgba(255, 255, 255, 0.04)',
-  border: '1px solid $border',
-  color: '$secondaryLight',
-});
-
-const StatNumber = styled('div', {
-  fontFamily: '$mono',
-  fontSize: '$2xl',
-  fontWeight: '$black',
-  background: 'linear-gradient(135deg, #F8FAFC 0%, #C4B5FD 100%)',
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  lineHeight: 1.1,
-});
-
-const StatLabel = styled('div', {
-  fontSize: '0.72rem',
-  color: '$textMuted',
-  fontFamily: '$mono',
-  mt: '2px',
-});
-
-const QuoteBanner = styled(motion.div, {
-  p: '$6',
-  borderRadius: '$xl',
-  backgroundColor: 'rgba(139, 92, 246, 0.04)',
-  border: '1px dashed rgba(139, 92, 246, 0.3)',
-  backdropFilter: 'blur(10px)',
-  textAlign: 'center',
-  maxWidth: '850px',
-  margin: '0 auto',
-  width: '100%',
-  position: 'relative',
-
-  '@smallMobile': {
-    p: '$4',
-  },
-});
-
-const QuoteText = styled('p', {
-  fontSize: 'clamp(0.95rem, 2vw, 1.25rem)',
-  fontWeight: '$medium',
-  color: '$textPrimary',
-  lineHeight: 1.6,
-  fontStyle: 'italic',
+const Paragraph = styled('p', {
+  fontSize: '$base',
+  color: '$textSecondary',
+  lineHeight: 1.7,
   margin: 0,
 });
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 25 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+const Factsheet = styled('div', {
+  mt: '$4',
+  border: '1px solid $border',
+  borderRadius: '$xs',
+  backgroundColor: '$bgCard',
+  overflow: 'hidden',
+});
+
+const FactRow = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '140px 1fr',
+  padding: '$3 $4',
+  borderBottom: '1px solid $borderLight',
+  alignItems: 'baseline',
+  gap: '$3',
+
+  '&:last-child': {
+    borderBottom: 'none',
   },
-};
+
+  '@mobile': {
+    gridTemplateColumns: '1fr',
+    gap: '2px',
+  },
+});
+
+const FactLabel = styled('span', {
+  fontFamily: '$mono',
+  fontSize: '0.72rem',
+  textTransform: 'uppercase',
+  letterSpacing: '0.06em',
+  color: '$textMuted',
+});
+
+const FactValue = styled('span', {
+  fontSize: '$sm',
+  color: '$textPrimary',
+  fontWeight: '$medium',
+});
+
+const PillarsCol = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$4',
+});
+
+const PillarCard = styled('div', {
+  backgroundColor: '$bgCard',
+  border: '1px solid $border',
+  borderRadius: '$sm',
+  padding: '$5',
+  transition: 'border-color 0.2s ease, transform 0.2s ease',
+
+  '&:hover': {
+    borderColor: '$borderStrong',
+    transform: 'translateY(-1px)',
+  },
+});
+
+const PillarHeader = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '$3',
+  mb: '$2',
+});
+
+const PillarIcon = styled('div', {
+  size: '32px',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: '$xs',
+  backgroundColor: '$bgSecondary',
+  border: '1px solid $border',
+  color: '$accent',
+});
+
+const PillarTitle = styled('h3', {
+  fontSize: '$base',
+  fontWeight: '$bold',
+  color: '$textPrimary',
+  letterSpacing: '-0.01em',
+  margin: 0,
+});
+
+const PillarDesc = styled('p', {
+  fontSize: '$sm',
+  color: '$textSecondary',
+  lineHeight: 1.6,
+  margin: 0,
+});
 
 export default function About() {
-  const stats = [
-    { number: '4', label: 'Full-Stack & Frontend Projects', icon: Code },
-    { number: '2', label: 'Industry Internships', icon: Briefcase },
-    { number: '8.0', label: 'B.Tech CGPA / 10', icon: GraduationCap },
-    { number: '4', label: 'Verified Certifications', icon: Award },
-  ];
-
   return (
     <AboutSection id="about">
       <AboutContainer>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-        >
-          <SectionHeading
-            label="01 / ABOUT"
-            title="Professional Summary"
-            subtitle="Computer Science and Engineering graduate with hands-on project experience in Python, Django, ReactJS, JavaScript, and relational databases."
-            align="center"
-          />
-        </motion.div>
+        <SectionHeading
+          label="// 01 · BACKGROUND"
+          title="Rooted in core CS fundamentals, focused on practical web systems."
+          subtitle="How I approach engineering, problem solving, and building full-stack web applications."
+        />
 
-        <BentoGrid
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ staggerChildren: 0.1 }}
-        >
-          {beyondCodingCards.map((card) => {
-            const Icon = iconMap[card.icon] || Layers;
-            return (
-              <BentoCard
-                key={card.title}
-                variants={cardVariants}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              >
-                <CardIconWrapper>
-                  <Icon size={22} />
-                </CardIconWrapper>
-                <CardTitle>{card.title}</CardTitle>
-                <CardDesc>{card.description}</CardDesc>
-              </BentoCard>
-            );
-          })}
-        </BentoGrid>
+        <EditorialGrid>
+          <NarrativeCol>
+            <Paragraph>
+              I am a Computer Science and Engineering graduate from Krishna University College of Engineering and Technology (CGPA 8.0/10). My engineering journey is built on core computer science fundamentals — object-oriented programming, relational database management, data structures, and web application architecture.
+            </Paragraph>
+            <Paragraph>
+              Rather than treating backend and frontend as disconnected silos, I enjoy the complete flow of web development: modeling relational tables in MySQL, structuring clean RESTful API endpoints in Django, and consuming those APIs in ReactJS to build clear, dependable user interfaces.
+            </Paragraph>
+            <Paragraph>
+              Through internships at Rashtriya Ispat Nigam Limited (Visakhapatnam Steel Plant) and Datavalley India, as well as leading my project team for Eco-Track AI, I have practiced validating enterprise software modules, troubleshooting application bugs, and shipping responsive web layouts that work consistently across devices.
+            </Paragraph>
 
-        <StatsContainer
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-30px' }}
-          transition={{ staggerChildren: 0.08 }}
-        >
-          {stats.map((st) => {
-            const Icon = st.icon;
-            return (
-              <StatBox
-                key={st.label}
-                variants={cardVariants}
-                whileHover={{ y: -3, transition: { duration: 0.2 } }}
-              >
-                <StatIcon>
-                  <Icon size={20} />
-                </StatIcon>
-                <div>
-                  <StatNumber>{st.number}</StatNumber>
-                  <StatLabel>{st.label}</StatLabel>
-                </div>
-              </StatBox>
-            );
-          })}
-        </StatsContainer>
+            <Factsheet>
+              <FactRow>
+                <FactLabel>Degree</FactLabel>
+                <FactValue>B.Tech in Computer Science and Engineering (2022 – 2026)</FactValue>
+              </FactRow>
+              <FactRow>
+                <FactLabel>Institution</FactLabel>
+                <FactValue>Krishna University College of Engineering & Technology</FactValue>
+              </FactRow>
+              <FactRow>
+                <FactLabel>Location</FactLabel>
+                <FactValue>Hyderabad, Telangana, India</FactValue>
+              </FactRow>
+              <FactRow>
+                <FactLabel>Primary Stack</FactLabel>
+                <FactValue>Python, Django REST Framework, ReactJS, JavaScript, MySQL</FactValue>
+              </FactRow>
+              <FactRow>
+                <FactLabel>Availability</FactLabel>
+                <FactValue>Immediate / Open to Full-Stack, Backend & Frontend Roles</FactValue>
+              </FactRow>
+            </Factsheet>
+          </NarrativeCol>
 
-        <QuoteBanner
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <QuoteText>
-            "{BRAND.summary}"
-          </QuoteText>
-        </QuoteBanner>
+          <PillarsCol>
+            <PillarCard>
+              <PillarHeader>
+                <PillarIcon>
+                  <Server size={17} />
+                </PillarIcon>
+                <PillarTitle>Backend & RESTful Architecture</PillarTitle>
+              </PillarHeader>
+              <PillarDesc>
+                Designing modular server applications using Python and Django. Building RESTful APIs with Django REST Framework, handling request routing, data serialization, authentication, and structured error responses.
+              </PillarDesc>
+            </PillarCard>
+
+            <PillarCard>
+              <PillarHeader>
+                <PillarIcon>
+                  <Database size={17} />
+                </PillarIcon>
+                <PillarTitle>Relational Data & Schema Design</PillarTitle>
+              </PillarHeader>
+              <PillarDesc>
+                Architecting database schemas in MySQL, establishing entity relationships, writing normalized queries, and implementing full CRUD operations with transactional integrity.
+              </PillarDesc>
+            </PillarCard>
+
+            <PillarCard>
+              <PillarHeader>
+                <PillarIcon>
+                  <Layout size={17} />
+                </PillarIcon>
+                <PillarTitle>Frontend Engineering & Usability</PillarTitle>
+              </PillarHeader>
+              <PillarDesc>
+                Developing component-driven user interfaces in ReactJS with Redux state management. Translating real user workflows into accessible, responsive web interfaces that maintain performance across viewports.
+              </PillarDesc>
+            </PillarCard>
+
+            <PillarCard>
+              <PillarHeader>
+                <PillarIcon>
+                  <ShieldCheck size={17} />
+                </PillarIcon>
+                <PillarTitle>Testing, Debugging & Code Quality</PillarTitle>
+              </PillarHeader>
+              <PillarDesc>
+                Applying hands-on experience from industrial enterprise internships to identify regressions, isolate edge-case bugs, validate module behavior, and maintain clear Git version control practices.
+              </PillarDesc>
+            </PillarCard>
+          </PillarsCol>
+        </EditorialGrid>
       </AboutContainer>
     </AboutSection>
   );

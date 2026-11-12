@@ -3,85 +3,53 @@ import { styled } from '../../styles/stitches.config';
 import { BRAND } from '../../styles/theme';
 import SectionHeading from '../common/SectionHeading';
 import Button from '../common/Button';
+import Badge from '../common/Badge';
 import { GithubIcon, LinkedinIcon } from '../common/Icons';
-import { Mail, Phone, MapPin, Send, Copy, Check, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, Send, Copy, Check, ArrowUpRight, FileText } from 'lucide-react';
 
 const ContactSection = styled('section', {
-  py: '$20',
-  px: '$4',
-  backgroundColor: '$bg',
-  position: 'relative',
+  py: '$16',
+  px: '$6',
+  backgroundColor: '$bgSecondary',
+  borderBottom: '1px solid $border',
 
   '@mobile': {
-    py: '$14',
-    px: '$3',
+    py: '$12',
+    px: '$4',
   },
 });
 
 const ContactContainer = styled('div', {
-  maxWidth: '1200px',
+  maxWidth: '1240px',
   margin: '0 auto',
   display: 'flex',
   flexDirection: 'column',
+  gap: '$8',
 });
 
-const TwoColGrid = styled('div', {
+const ContactGrid = styled('div', {
   display: 'grid',
-  gridTemplateColumns: '1fr 1.2fr',
-  gap: '$8',
+  gridTemplateColumns: '1.05fr 0.95fr',
+  gap: '$12',
   alignItems: 'start',
 
   '@tablet': {
     gridTemplateColumns: '1fr',
+    gap: '$8',
   },
 });
 
-const InfoCard = styled(motion.div, {
-  backgroundColor: '$bgCard',
-  border: '1px solid $border',
-  borderRadius: '$2xl',
-  p: '$8',
+const InfoCol = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$6',
-  width: '100%',
-  position: 'relative',
-  overflow: 'hidden',
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '1px',
-    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.4) 50%, transparent 100%)',
-  },
-
-  '@mobile': {
-    p: '$5',
-    borderRadius: '$lg',
-  },
-
-  '@smallMobile': {
-    p: '$4',
-  },
 });
 
-const InfoHeading = styled('h3', {
-  fontSize: '$2xl',
-  fontWeight: '$bold',
-  color: '$textPrimary',
-  letterSpacing: '-0.02em',
-  margin: 0,
-});
-
-const InfoText = styled('p', {
-  fontSize: '$sm',
+const IntroText = styled('p', {
+  fontSize: '$base',
   color: '$textSecondary',
   lineHeight: 1.65,
-  margin: '8px 0 0 0',
+  margin: 0,
 });
 
 const ChannelsList = styled('div', {
@@ -90,23 +58,23 @@ const ChannelsList = styled('div', {
   gap: '$3',
 });
 
-const ChannelItem = styled('div', {
+const ChannelCard = styled('div', {
+  backgroundColor: '$bgCard',
+  border: '1px solid $border',
+  borderRadius: '$xs',
+  padding: '$4 $5',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '$4',
-  backgroundColor: 'rgba(255, 255, 255, 0.02)',
-  border: '1px solid $border',
-  borderRadius: '$lg',
-  transition: 'all 0.25s ease',
-  gap: '$2',
-  flexWrap: 'wrap',
+  gap: '$3',
+  transition: 'border-color 0.2s ease',
 
   '&:hover': {
-    borderColor: 'rgba(139, 92, 246, 0.4)',
-    backgroundColor: 'rgba(139, 92, 246, 0.06)',
-    transform: 'translateY(-2px)',
-    boxShadow: '0 6px 16px -2px rgba(0, 0, 0, 0.5), 0 0 16px -4px rgba(139, 92, 246, 0.2)',
+    borderColor: '$borderStrong',
+  },
+
+  '@mobile': {
+    padding: '$3 $4',
   },
 });
 
@@ -115,24 +83,25 @@ const ChannelLeft = styled('div', {
   alignItems: 'center',
   gap: '$3',
   minWidth: 0,
-  flex: 1,
 });
 
 const ChannelIcon = styled('div', {
+  size: '34px',
+  minWidth: '34px',
+  borderRadius: '$xs',
+  backgroundColor: '$bgSecondary',
+  border: '1px solid $border',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  size: '38px',
-  minWidth: '38px',
-  borderRadius: '$md',
-  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%)',
-  border: '1px solid rgba(139, 92, 246, 0.3)',
-  color: '$primaryLight',
+  color: '$accent',
 });
 
 const ChannelLabel = styled('span', {
-  fontSize: '0.7rem',
   fontFamily: '$mono',
+  fontSize: '0.7rem',
+  textTransform: 'uppercase',
+  letterSpacing: '0.04em',
   color: '$textMuted',
   display: 'block',
 });
@@ -146,7 +115,7 @@ const ChannelValue = styled('a', {
   display: 'block',
 
   '&:hover': {
-    color: '$primaryLight',
+    color: '$accent',
   },
 });
 
@@ -154,7 +123,6 @@ const ChannelStatic = styled('span', {
   fontSize: '$sm',
   fontWeight: '$semibold',
   color: '$textPrimary',
-  wordBreak: 'break-all',
   display: 'block',
 });
 
@@ -165,21 +133,18 @@ const CopyButton = styled('button', {
   fontFamily: '$mono',
   fontSize: '0.72rem',
   fontWeight: '$medium',
-  color: '$textSecondary',
-  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+  padding: '6px 12px',
+  borderRadius: '$xs',
   border: '1px solid $border',
-  borderRadius: '$sm',
-  px: '$3',
-  py: '6px',
+  backgroundColor: '$bgSecondary',
+  color: '$textPrimary',
   cursor: 'pointer',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.15s ease',
   flexShrink: 0,
 
   '&:hover': {
-    color: '$white',
-    borderColor: '$primary',
-    backgroundColor: 'rgba(139, 92, 246, 0.2)',
-    boxShadow: '0 0 12px rgba(139, 92, 246, 0.3)',
+    borderColor: '$borderStrong',
+    backgroundColor: '$bgCard',
   },
 });
 
@@ -187,121 +152,100 @@ const AvailabilityNotice = styled('div', {
   display: 'flex',
   alignItems: 'flex-start',
   gap: '$3',
-  p: '$4',
-  borderRadius: '$lg',
-  backgroundColor: 'rgba(16, 185, 129, 0.06)',
-  border: '1px dashed rgba(16, 185, 129, 0.35)',
+  padding: '$4 $5',
+  borderRadius: '$xs',
+  backgroundColor: '$bgCard',
+  border: '1px solid $border',
   fontSize: '$xs',
   color: '$textSecondary',
-  lineHeight: 1.5,
+  lineHeight: 1.6,
+});
 
-  '& svg': {
-    color: '#34D399',
-    flexShrink: 0,
-    marginTop: '2px',
+const FormCard = styled('form', {
+  backgroundColor: '$bgCard',
+  border: '1px solid $border',
+  borderRadius: '$sm',
+  padding: '$6',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$4',
+
+  '@mobile': {
+    padding: '$5',
   },
 });
 
-const FormCard = styled(motion.form, {
-  backgroundColor: '$bgCard',
-  border: '1px solid $border',
-  borderRadius: '$2xl',
-  p: '$8',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '$5',
-  width: '100%',
-  position: 'relative',
-  overflow: 'hidden',
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '1px',
-    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.4) 50%, transparent 100%)',
-  },
-
-  '@mobile': {
-    p: '$5',
-    borderRadius: '$lg',
-  },
-
-  '@smallMobile': {
-    p: '$4',
-  },
+const FormTitle = styled('h3', {
+  fontSize: '$lg',
+  fontWeight: '$bold',
+  color: '$textPrimary',
+  letterSpacing: '-0.01em',
+  margin: 0,
 });
 
 const FormGroup = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '6px',
+  gap: '5px',
 });
 
 const FormLabel = styled('label', {
   fontFamily: '$mono',
-  fontSize: '0.74rem',
-  fontWeight: '$medium',
-  color: '$textSecondary',
+  fontSize: '0.72rem',
+  textTransform: 'uppercase',
+  letterSpacing: '0.04em',
+  color: '$textMuted',
 });
 
 const Input = styled('input', {
-  width: '100%',
-  minHeight: '46px',
-  backgroundColor: 'rgba(255, 255, 255, 0.03)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '$md',
-  px: '$4',
+  height: '42px',
+  padding: '0 12px',
+  borderRadius: '$xs',
+  border: '1px solid $border',
+  backgroundColor: '$bg',
   color: '$textPrimary',
   fontSize: '$sm',
   outline: 'none',
-  transition: 'all 0.25s ease',
-  boxSizing: 'border-box',
+  transition: 'border-color 0.15s ease',
 
   '&:focus': {
-    borderColor: '$primary',
-    backgroundColor: 'rgba(139, 92, 246, 0.06)',
-    boxShadow: '0 0 0 1px #8B5CF6, 0 0 16px -2px rgba(139, 92, 246, 0.3)',
+    borderColor: '$textPrimary',
+    backgroundColor: '$bgCard',
   },
 
   '&::placeholder': {
-    color: '$textMuted',
+    color: '$textFaint',
   },
 });
 
-const TextArea = styled('textarea', {
-  width: '100%',
-  minHeight: '120px',
-  backgroundColor: 'rgba(255, 255, 255, 0.03)',
-  border: '1px solid rgba(255, 255, 255, 0.1)',
-  borderRadius: '$md',
-  p: '$4',
+const Textarea = styled('textarea', {
+  minHeight: '110px',
+  padding: '10px 12px',
+  borderRadius: '$xs',
+  border: '1px solid $border',
+  backgroundColor: '$bg',
   color: '$textPrimary',
   fontSize: '$sm',
   outline: 'none',
   resize: 'vertical',
-  transition: 'all 0.25s ease',
-  boxSizing: 'border-box',
+  transition: 'border-color 0.15s ease',
 
   '&:focus': {
-    borderColor: '$primary',
-    backgroundColor: 'rgba(139, 92, 246, 0.06)',
-    boxShadow: '0 0 0 1px #8B5CF6, 0 0 16px -2px rgba(139, 92, 246, 0.3)',
+    borderColor: '$textPrimary',
+    backgroundColor: '$bgCard',
   },
 
   '&::placeholder': {
-    color: '$textMuted',
+    color: '$textFaint',
   },
 });
 
-const SuccessAlert = styled('div', {
-  p: '$4',
-  borderRadius: '$md',
-  backgroundColor: 'rgba(16, 185, 129, 0.12)',
-  border: '1px solid rgba(16, 185, 129, 0.35)',
-  color: '$textPrimary',
+const FeedbackNotice = styled('div', {
+  padding: '$3 $4',
+  borderRadius: '$xs',
+  backgroundColor: '$successLight',
+  border: '1px solid $successBorder',
+  color: '$success',
   fontSize: '$xs',
   display: 'flex',
   alignItems: 'center',
@@ -342,86 +286,70 @@ export default function Contact() {
   return (
     <ContactSection id="contact">
       <ContactContainer>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-        >
-          <SectionHeading
-            label="06 / CONTACT"
-            title="Let's Work Together"
-            subtitle="Have an opportunity, project, or idea? Send me a message and let's connect."
-            align="center"
-          />
-        </motion.div>
+        <SectionHeading
+          label="// 07 · CONTACT & INQUIRIES"
+          title="Direct contact & professional inquiries."
+          subtitle="Interested in discussing a full-stack developer opening, a project collaboration, or reviewing technical work? Reach out directly."
+        />
 
-        <TwoColGrid>
-          {/* Left Column: Direct Contact Info */}
-          <InfoCard
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div>
-              <InfoHeading>Get in Touch</InfoHeading>
-              <InfoText>
-                I am actively looking for Full Stack Python Developer, Backend Developer, and ReactJS Developer opportunities. Feel free to reach out directly.
-              </InfoText>
-            </div>
+        <ContactGrid>
+          <InfoCol>
+            <IntroText>
+              I am actively seeking an entry-level or junior role as a Full Stack Python Developer, Backend Engineer, or React Developer. I am based in Hyderabad, India and available for both on-site and remote positions.
+            </IntroText>
 
             <ChannelsList>
-              <ChannelItem>
+              <ChannelCard>
                 <ChannelLeft>
                   <ChannelIcon>
-                    <Mail size={18} />
+                    <Mail size={16} />
                   </ChannelIcon>
-                  <div style={{ minWidth: 0 }}>
-                    <ChannelLabel>Email</ChannelLabel>
+                  <div>
+                    <ChannelLabel>Email Address</ChannelLabel>
                     <ChannelValue href={`mailto:${BRAND.email}`}>
                       {BRAND.email}
                     </ChannelValue>
                   </div>
                 </ChannelLeft>
                 <CopyButton onClick={handleCopyEmail} aria-label="Copy email address">
-                  {copied ? <Check size={13} color="#34D399" /> : <Copy size={13} />}
+                  {copied ? <Check size={13} color="#15803D" /> : <Copy size={13} />}
                   {copied ? 'Copied' : 'Copy'}
                 </CopyButton>
-              </ChannelItem>
+              </ChannelCard>
 
-              <ChannelItem>
+              <ChannelCard>
                 <ChannelLeft>
                   <ChannelIcon>
-                    <Phone size={18} />
+                    <Phone size={16} />
                   </ChannelIcon>
-                  <div style={{ minWidth: 0 }}>
-                    <ChannelLabel>Phone</ChannelLabel>
+                  <div>
+                    <ChannelLabel>Phone Number</ChannelLabel>
                     <ChannelValue href={`tel:${BRAND.phone.replace(/\s+/g, '')}`}>
                       {BRAND.phone}
                     </ChannelValue>
                   </div>
                 </ChannelLeft>
-              </ChannelItem>
+              </ChannelCard>
 
-              <ChannelItem>
+              <ChannelCard>
                 <ChannelLeft>
                   <ChannelIcon>
-                    <MapPin size={18} />
+                    <MapPin size={16} />
                   </ChannelIcon>
-                  <div style={{ minWidth: 0 }}>
+                  <div>
                     <ChannelLabel>Location</ChannelLabel>
                     <ChannelStatic>{BRAND.location}</ChannelStatic>
                   </div>
                 </ChannelLeft>
-              </ChannelItem>
+                <Badge variant="pill">IST / UTC+5:30</Badge>
+              </ChannelCard>
 
-              <ChannelItem>
+              <ChannelCard>
                 <ChannelLeft>
                   <ChannelIcon>
-                    <GithubIcon size={18} />
+                    <GithubIcon size={16} />
                   </ChannelIcon>
-                  <div style={{ minWidth: 0 }}>
+                  <div>
                     <ChannelLabel>GitHub</ChannelLabel>
                     <ChannelValue
                       href={BRAND.github}
@@ -432,14 +360,23 @@ export default function Contact() {
                     </ChannelValue>
                   </div>
                 </ChannelLeft>
-              </ChannelItem>
+                <a
+                  href={BRAND.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#71747D' }}
+                  aria-label="Open GitHub profile"
+                >
+                  <ArrowUpRight size={15} />
+                </a>
+              </ChannelCard>
 
-              <ChannelItem>
+              <ChannelCard>
                 <ChannelLeft>
                   <ChannelIcon>
-                    <LinkedinIcon size={18} />
+                    <LinkedinIcon size={16} />
                   </ChannelIcon>
-                  <div style={{ minWidth: 0 }}>
+                  <div>
                     <ChannelLabel>LinkedIn</ChannelLabel>
                     <ChannelValue
                       href={BRAND.linkedin}
@@ -450,94 +387,95 @@ export default function Contact() {
                     </ChannelValue>
                   </div>
                 </ChannelLeft>
-              </ChannelItem>
+                <a
+                  href={BRAND.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#71747D' }}
+                  aria-label="Open LinkedIn profile"
+                >
+                  <ArrowUpRight size={15} />
+                </a>
+              </ChannelCard>
             </ChannelsList>
 
             <AvailabilityNotice>
-              <Sparkles size={16} />
-              <span>
-                <strong>Current Status:</strong> Ready for immediate onboarding in Full Stack Python, Django, ReactJS, or Software Engineering roles.
-              </span>
+              <div>
+                <strong>Notice of Availability:</strong> Immediate availability for full-time engineering employment. Complete official resume and transcripts available upon request.
+              </div>
             </AvailabilityNotice>
-          </InfoCard>
+          </InfoCol>
 
-          {/* Right Column: Contact Form */}
-          <FormCard
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <FormCard onSubmit={handleSubmit}>
+            <FormTitle>Send a Direct Message</FormTitle>
+
             <FormGroup>
-              <FormLabel htmlFor="name">Your Name</FormLabel>
+              <FormLabel htmlFor="contact-name">Your Name</FormLabel>
               <Input
-                id="name"
+                id="contact-name"
                 name="name"
-                type="text"
-                placeholder="John Doe"
-                required
+                placeholder="e.g. Jane Doe"
                 value={formData.name}
                 onChange={handleChange}
+                required
               />
             </FormGroup>
 
             <FormGroup>
-              <FormLabel htmlFor="email">Your Email</FormLabel>
+              <FormLabel htmlFor="contact-email">Your Email</FormLabel>
               <Input
-                id="email"
-                name="email"
+                id="contact-email"
                 type="email"
-                placeholder="john@example.com"
-                required
+                name="email"
+                placeholder="e.g. jane@company.com"
                 value={formData.email}
                 onChange={handleChange}
+                required
               />
             </FormGroup>
 
             <FormGroup>
-              <FormLabel htmlFor="subject">Subject</FormLabel>
+              <FormLabel htmlFor="contact-subject">Subject</FormLabel>
               <Input
-                id="subject"
+                id="contact-subject"
                 name="subject"
-                type="text"
-                placeholder="Opportunity Discussion / Project Inquiry"
-                required
+                placeholder="e.g. Full Stack Python Developer Opportunity"
                 value={formData.subject}
                 onChange={handleChange}
+                required
               />
             </FormGroup>
 
             <FormGroup>
-              <FormLabel htmlFor="message">Message</FormLabel>
-              <TextArea
-                id="message"
+              <FormLabel htmlFor="contact-message">Message</FormLabel>
+              <Textarea
+                id="contact-message"
                 name="message"
-                placeholder="Hello Abdul, I'd like to discuss a role or project..."
-                required
+                placeholder="Write your note, job description, or inquiry here..."
                 value={formData.message}
                 onChange={handleChange}
+                required
               />
             </FormGroup>
-
-            {submitted && (
-              <SuccessAlert>
-                <Check size={15} color="#34D399" />
-                <span>Opening email client... Thank you for reaching out!</span>
-              </SuccessAlert>
-            )}
 
             <Button
               type="submit"
-              variant="purple"
-              size="lg"
-              fullWidth
+              variant="primary"
+              size="md"
+              style={{ width: '100%', mt: '8px' }}
             >
-              <Send size={18} />
-              Send Message ↗
+              <Send size={15} />
+              Open Email Composer
             </Button>
+
+            {submitted && (
+              <FeedbackNotice>
+                <Check size={14} />
+                Email client launched with pre-filled details. Thank you!
+              </FeedbackNotice>
+            )}
           </FormCard>
-        </TwoColGrid>
+        </ContactGrid>
       </ContactContainer>
     </ContactSection>
   );

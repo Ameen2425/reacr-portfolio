@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="100%" height="100%">
+  <defs>
+    <filter id="lightJpShadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0F172A" flood-opacity="0.06" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="750" fill="#F8FAFC" />
+
+  <!-- Top Navigation Bar -->
+  <rect x="0" y="0" width="1200" height="72" fill="#FFFFFF" />
+  <line x1="0" y1="72" x2="1200" y2="72" stroke="#E2E8F0" stroke-width="1" />
+
+  <!-- Brand Lockup -->
+  <g transform="translate(32, 18)">
+    <rect width="36" height="36" rx="8" fill="#2563EB" />
+    <path d="M11 16 L18 11 L25 16 L25 25 L11 25 Z" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="18" cy="20" r="2" fill="#FFFFFF" />
+    <text x="46" y="24" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="800">JobPortal</text>
+    <text x="46" y="38" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="10">Django + React + MySQL</text>
+  </g>
+
+  <!-- Center Search Bar inside Top Bar -->
+  <g transform="translate(320, 16)">
+    <rect width="520" height="40" rx="6" fill="#F1F5F9" stroke="#E2E8F0" stroke-width="1" />
+    <circle cx="20" cy="20" r="6" fill="none" stroke="#64748B" stroke-width="2" />
+    <line x1="24" y1="24" x2="30" y2="30" stroke="#64748B" stroke-width="2" />
+    <text x="38" y="25" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="13">Python, Django, ReactJS Developer...</text>
+    <line x1="330" y1="8" x2="330" y2="32" stroke="#CBD5E1" stroke-width="1" />
+    <text x="345" y="25" fill="#64748B" font-family="'Plus Jakarta Sans', sans-serif" font-size="13">Hyderabad, India</text>
+    <rect x="440" y="5" width="72" height="30" rx="4" fill="#0F172A" />
+    <text x="476" y="24" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" text-anchor="middle">Search</text>
+  </g>
+
+  <!-- User Profile in Header -->
+  <g transform="translate(1010, 18)">
+    <circle cx="18" cy="18" r="16" fill="#2563EB" />
+    <text x="18" y="23" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" text-anchor="middle">AA</text>
+    <text x="42" y="16" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700">Abdul Ameen</text>
+    <text x="42" y="30" fill="#2563EB" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">Candidate / Admin</text>
+  </g>
+
+  <!-- Secondary Filter Bar -->
+  <g transform="translate(32, 92)">
+    <rect x="0" y="0" width="104" height="32" rx="4" fill="#0F172A" />
+    <text x="52" y="20" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" text-anchor="middle">All Listings (48)</text>
+
+    <rect x="114" y="0" width="100" height="32" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+    <text x="164" y="20" fill="#475569" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" text-anchor="middle">Full-Stack</text>
+
+    <rect x="224" y="0" width="90" height="32" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+    <text x="269" y="20" fill="#475569" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" text-anchor="middle">Backend</text>
+
+    <rect x="324" y="0" width="90" height="32" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+    <text x="369" y="20" fill="#475569" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" text-anchor="middle">Frontend</text>
+
+    <text x="1136" y="21" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11" text-anchor="end">MySQL Schema v2.4 · REST APIs Connected</text>
+  </g>
+
+  <!-- Two Column Layout: Left (Job Listings) 730px + Right (Application Tracker) 386px -->
+
+  <!-- JOB LISTINGS COLUMN -->
+  <g transform="translate(32, 140)">
+    <!-- Job Card 1 -->
+    <g transform="translate(0, 0)">
+      <rect width="730" height="175" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#lightJpShadow)" />
+      
+      <!-- Company Icon -->
+      <rect x="20" y="20" width="48" height="48" rx="8" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1" />
+      <text x="44" y="50" fill="#2563EB" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" text-anchor="middle">&lt;/&gt;</text>
+
+      <text x="80" y="38" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700">Full Stack Python Developer (Django + ReactJS)</text>
+      <text x="80" y="58" fill="#64748B" font-family="'Plus Jakarta Sans', sans-serif" font-size="13">Nexus Tech Solutions · Hyderabad, India (Hybrid)</text>
+
+      <text x="80" y="90" fill="#475569" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">
+        Architect and maintain REST APIs using Django REST Framework. Build responsive UI components with ReactJS and manage MySQL persistent storage.
+      </text>
+
+      <!-- Tags -->
+      <g transform="translate(80, 114)">
+        <rect width="64" height="22" rx="4" fill="#F1F5F9" />
+        <text x="32" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">Python</text>
+
+        <rect x="72" width="64" height="22" rx="4" fill="#F1F5F9" />
+        <text x="104" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">Django</text>
+
+        <rect x="144" width="68" height="22" rx="4" fill="#F1F5F9" />
+        <text x="178" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">ReactJS</text>
+
+        <rect x="220" width="64" height="22" rx="4" fill="#F1F5F9" />
+        <text x="252" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">MySQL</text>
+      </g>
+
+      <!-- Right Action on Job Card 1 -->
+      <text x="708" y="38" fill="#059669" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700" text-anchor="end">₹6.5 – 9.0 LPA</text>
+      <rect x="626" y="112" width="84" height="32" rx="4" fill="#0F172A" />
+      <text x="668" y="132" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" text-anchor="middle">Apply Now</text>
+    </g>
+
+    <!-- Job Card 2 -->
+    <g transform="translate(0, 195)">
+      <rect width="730" height="175" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#lightJpShadow)" />
+      
+      <rect x="20" y="20" width="48" height="48" rx="8" fill="#ECFDF5" stroke="#A7F3D0" stroke-width="1" />
+      <text x="44" y="50" fill="#059669" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="800" text-anchor="middle">Py</text>
+
+      <text x="80" y="38" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700">Backend Python &amp; API Engineer</text>
+      <text x="80" y="58" fill="#64748B" font-family="'Plus Jakarta Sans', sans-serif" font-size="13">CloudStack Systems · Bengaluru, India (Remote)</text>
+
+      <text x="80" y="90" fill="#475569" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">
+        Focus on relational data modeling, user authentication tokens, query optimization in MySQL, and high-concurrency API endpoint development.
+      </text>
+
+      <g transform="translate(80, 114)">
+        <rect width="64" height="22" rx="4" fill="#F1F5F9" />
+        <text x="32" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">Python</text>
+
+        <rect x="72" width="76" height="22" rx="4" fill="#F1F5F9" />
+        <text x="110" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">Django REST</text>
+
+        <rect x="156" width="64" height="22" rx="4" fill="#F1F5F9" />
+        <text x="188" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">MySQL</text>
+
+        <rect x="228" width="64" height="22" rx="4" fill="#F1F5F9" />
+        <text x="260" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">CRUD APIs</text>
+      </g>
+
+      <text x="708" y="38" fill="#059669" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700" text-anchor="end">₹7.0 – 10.5 LPA</text>
+      <rect x="626" y="112" width="84" height="32" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+      <text x="668" y="132" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" text-anchor="middle">Saved ✓</text>
+    </g>
+
+    <!-- Job Card 3 -->
+    <g transform="translate(0, 390)">
+      <rect width="730" height="175" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#lightJpShadow)" />
+      
+      <rect x="20" y="20" width="48" height="48" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1" />
+      <text x="44" y="50" fill="#D97706" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="800" text-anchor="middle">Re</text>
+
+      <text x="80" y="38" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700">Frontend React &amp; State Management Specialist</text>
+      <text x="80" y="58" fill="#64748B" font-family="'Plus Jakarta Sans', sans-serif" font-size="13">Apex Digital Labs · Hyderabad, India (On-Site)</text>
+
+      <text x="80" y="90" fill="#475569" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">
+        Build modular React components, implement Redux application state, integrate REST backend services, and optimize cross-browser responsive layouts.
+      </text>
+
+      <g transform="translate(80, 114)">
+        <rect width="64" height="22" rx="4" fill="#F1F5F9" />
+        <text x="32" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">ReactJS</text>
+
+        <rect x="72" width="58" height="22" rx="4" fill="#F1F5F9" />
+        <text x="101" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">Redux</text>
+
+        <rect x="138" width="76" height="22" rx="4" fill="#F1F5F9" />
+        <text x="176" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">JavaScript</text>
+
+        <rect x="222" width="60" height="22" rx="4" fill="#F1F5F9" />
+        <text x="252" y="15" fill="#0F172A" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" text-anchor="middle">REST UI</text>
+      </g>
+
+      <text x="708" y="38" fill="#059669" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700" text-anchor="end">₹5.5 – 8.0 LPA</text>
+      <rect x="626" y="112" width="84" height="32" rx="4" fill="#0F172A" />
+      <text x="668" y="132" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600" text-anchor="middle">Apply Now</text>
+    </g>
+  </g>
+
+  <!-- RIGHT COLUMN: APPLICATION TRACKING & DATABASE STATUS -->
+  <g transform="translate(782, 140)">
+    <!-- Candidate Pipeline Card -->
+    <rect width="386" height="340" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#lightJpShadow)" />
+    <text x="20" y="32" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" font-weight="700">Application Pipeline (Live CRUD)</text>
+    <text x="20" y="50" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">Linked to MySQL Application Tables</text>
+
+    <!-- Pipeline Items -->
+    <g transform="translate(20, 72)">
+      <!-- Item 1 -->
+      <rect width="346" height="64" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+      <text x="16" y="26" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700">Nexus Tech Solutions</text>
+      <text x="16" y="44" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">Full Stack Python Dev · #APP-8402</text>
+      <rect x="250" y="18" width="84" height="24" rx="4" fill="#DCFCE7" />
+      <text x="292" y="34" fill="#15803D" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">INTERVIEW</text>
+
+      <!-- Item 2 -->
+      <g transform="translate(0, 76)">
+        <rect width="346" height="64" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+        <text x="16" y="26" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700">CloudStack Systems</text>
+        <text x="16" y="44" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">Backend API Engineer · #APP-8391</text>
+        <rect x="250" y="18" width="84" height="24" rx="4" fill="#E0F2FE" />
+        <text x="292" y="34" fill="#0369A1" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">REVIEWED</text>
+      </g>
+
+      <!-- Item 3 -->
+      <g transform="translate(0, 152)">
+        <rect width="346" height="64" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+        <text x="16" y="26" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="700">Apex Digital Labs</text>
+        <text x="16" y="44" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="11">Frontend React Dev · #APP-8350</text>
+        <rect x="250" y="18" width="84" height="24" rx="4" fill="#FEF3C7" />
+        <text x="292" y="34" fill="#B45309" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">SUBMITTED</text>
+      </g>
+    </g>
+
+    <!-- Schema Integrity Callout Box -->
+    <g transform="translate(0, 360)">
+      <rect width="386" height="205" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#lightJpShadow)" />
+      <text x="20" y="30" fill="#0F172A" font-family="'Plus Jakarta Sans', sans-serif" font-size="14" font-weight="700">MySQL Schema &amp; Django ORM</text>
+
+      <g transform="translate(20, 50)" font-family="'JetBrains Mono', monospace" font-size="11" fill="#475569">
+        <text x="0" y="16"><tspan fill="#2563EB" font-weight="700">class</tspan> JobApplication(models.Model):</text>
+        <text x="16" y="36">candidate = ForeignKey(User)</text>
+        <text x="16" y="56">job = ForeignKey(JobListing)</text>
+        <text x="16" y="76">status = CharField(max_length=20)</text>
+        <text x="16" y="96">applied_on = DateTimeField(auto_now=True)</text>
+      </g>
+
+      <rect x="20" y="162" width="346" height="28" rx="4" fill="#F1F5F9" />
+      <circle cx="34" cy="176" r="4" fill="#059669" />
+      <text x="46" y="180" fill="#334155" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">Django REST ViewSets &amp; Serializers OK</text>
+    </g>
+  </g>
+</svg>

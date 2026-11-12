@@ -2,413 +2,463 @@ import { styled } from '../../styles/stitches.config';
 import TechTag from '../common/TechTag';
 import Badge from '../common/Badge';
 import { GithubIcon } from '../common/Icons';
-import { ArrowUpRight, CheckCircle2, Eye, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowUpRight, ExternalLink, CheckCircle2, ChevronRight } from 'lucide-react';
 
-const Card = styled(motion.div, {
+const CardContainer = styled('article', {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
-  borderRadius: '$2xl',
+  borderRadius: '$md',
   overflow: 'hidden',
+  transition: 'border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease',
   display: 'flex',
   flexDirection: 'column',
-  transition: 'border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease',
-  position: 'relative',
   width: '100%',
-  cursor: 'pointer',
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '1px',
-    background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.4) 50%, transparent 100%)',
-    zIndex: 3,
-  },
 
   '&:hover': {
-    borderColor: 'rgba(139, 92, 246, 0.55)',
-    boxShadow: '0 24px 50px -12px rgba(0, 0, 0, 0.9), 0 0 35px -5px rgba(139, 92, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
+    borderColor: '$borderStrong',
+    boxShadow: '$md',
   },
 
   variants: {
-    featured: {
-      true: {
+    layoutType: {
+      flagship: {
         gridColumn: '1 / -1',
         display: 'grid',
-        gridTemplateColumns: '1.2fr 1fr',
-        backgroundColor: 'rgba(14, 14, 24, 0.96)',
-        borderColor: 'rgba(139, 92, 246, 0.4)',
-
-        '&::before': {
-          background: 'linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.6) 30%, rgba(6, 182, 212, 0.6) 70%, transparent 100%)',
-        },
+        gridTemplateColumns: '1.2fr 0.8fr',
+        alignItems: 'stretch',
 
         '@tablet': {
           gridTemplateColumns: '1fr',
         },
       },
-    },
-  },
+      splitReverse: {
+        gridColumn: '1 / -1',
+        display: 'grid',
+        gridTemplateColumns: '0.8fr 1.2fr',
+        alignItems: 'stretch',
 
-  '@mobile': {
-    borderRadius: '$xl',
-  },
-});
-
-const ImageContainer = styled('div', {
-  position: 'relative',
-  width: '100%',
-  height: '240px',
-  overflow: 'hidden',
-  backgroundColor: '#0a0a0f',
-
-  '@mobile': {
-    height: '190px',
-  },
-
-  '@smallMobile': {
-    height: '165px',
-  },
-
-  variants: {
-    featured: {
-      true: {
-        height: '100%',
-        minHeight: '380px',
         '@tablet': {
-          minHeight: '250px',
-          height: '250px',
+          gridTemplateColumns: '1fr',
+          '& .project-image-box': {
+            order: -1,
+          },
         },
-        '@mobile': {
-          height: '190px',
-          minHeight: '190px',
-        },
+      },
+      standard: {
+        display: 'flex',
+        flexDirection: 'column',
       },
     },
   },
-});
 
-const ProjectImg = styled('img', {
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  objectPosition: 'center top',
-  transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-
-  [`${Card}:hover &`]: {
-    transform: 'scale(1.05)',
+  defaultVariants: {
+    layoutType: 'standard',
   },
 });
 
-const ImageOverlay = styled('div', {
-  position: 'absolute',
-  inset: 0,
-  background: 'linear-gradient(to top, rgba(14, 14, 24, 0.92) 0%, rgba(14, 14, 24, 0.15) 60%)',
-});
-
-const TopBadgeWrapper = styled('div', {
-  position: 'absolute',
-  top: '$3',
-  left: '$3',
-  zIndex: 2,
-  display: 'flex',
-  gap: '6px',
-  flexWrap: 'wrap',
-});
-
-const ContentWrapper = styled('div', {
-  p: '$6',
+const ImageBox = styled('div', {
+  position: 'relative',
+  backgroundColor: '$bgSubtle',
+  overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
-  gap: '$4',
-  flex: 1,
-
-  '@mobile': {
-    p: '$4',
-  },
-
-  '@smallMobile': {
-    p: '$3',
-  },
+  width: '100%',
 
   variants: {
-    featured: {
-      true: {
-        p: '$8',
-        justifyContent: 'center',
+    layoutType: {
+      flagship: {
+        minHeight: '380px',
+        borderRight: '1px solid $border',
+        '@tablet': {
+          borderRight: 'none',
+          borderBottom: '1px solid $border',
+          minHeight: 'auto',
+          aspectRatio: '16 / 10',
+        },
         '@mobile': {
-          p: '$5',
+          aspectRatio: '16 / 10',
+        },
+      },
+      splitReverse: {
+        minHeight: '380px',
+        borderLeft: '1px solid $border',
+        borderRight: 'none',
+        '@tablet': {
+          borderLeft: 'none',
+          borderBottom: '1px solid $border',
+          minHeight: 'auto',
+          aspectRatio: '16 / 10',
+        },
+        '@mobile': {
+          aspectRatio: '16 / 10',
+        },
+      },
+      standard: {
+        height: '240px',
+        borderRight: 'none',
+        borderBottom: '1px solid $border',
+        '@tablet': {
+          height: '220px',
+        },
+        '@mobile': {
+          height: 'auto',
+          aspectRatio: '16 / 10',
         },
       },
     },
   },
 });
 
-const HeaderRow = styled('div', {
+const WindowBar = styled('div', {
   display: 'flex',
-  flexDirection: 'column',
-  gap: '4px',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '8px 14px',
+  backgroundColor: '$bgSecondary',
+  borderBottom: '1px solid $border',
+  fontFamily: '$mono',
+  fontSize: '0.7rem',
+  color: '$textMuted',
+  flexShrink: 0,
 });
 
-const CategoryText = styled('span', {
-  fontFamily: '$mono',
-  fontSize: '0.72rem',
-  fontWeight: '$semibold',
-  textTransform: 'uppercase',
-  letterSpacing: '0.06em',
-  color: '$secondaryLight',
+const WindowDots = styled('div', {
   display: 'flex',
   alignItems: 'center',
   gap: '5px',
-});
 
-const ProjectTitle = styled('h3', {
-  fontSize: '$xl',
-  fontWeight: '$bold',
-  color: '$textPrimary',
-  letterSpacing: '-0.025em',
-  lineHeight: 1.25,
-  margin: 0,
-  wordBreak: 'break-word',
-
-  variants: {
-    featured: {
-      true: {
-        fontSize: 'clamp(1.4rem, 2.8vw, 2.1rem)',
-      },
-    },
+  '& span': {
+    width: '8px',
+    height: '8px',
+    borderRadius: '$full',
+    backgroundColor: '#D1D5DB',
   },
 });
 
-const ProjectDesc = styled('p', {
-  fontSize: '$sm',
-  color: '$textSecondary',
-  lineHeight: 1.65,
-  margin: 0,
+const ImgWrapper = styled('div', {
+  flex: 1,
+  position: 'relative',
+  overflow: 'hidden',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '$bgSubtle',
+
+  '& img': {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'center top',
+    transition: 'transform 0.4s ease',
+  },
+
+  [`${CardContainer}:hover & img`]: {
+    transform: 'scale(1.015)',
+  },
 });
 
-const HighlightsList = styled('ul', {
-  listStyle: 'none',
-  padding: 0,
-  margin: 0,
+const ContentBox = styled('div', {
+  padding: '$6',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  gap: '$5',
+
+  '@mobile': {
+    padding: '$4',
+    gap: '$4',
+  },
+});
+
+const HeaderBlock = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$2',
 });
 
-const HighlightItem = styled('li', {
+const BadgeRow = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '$2',
+  flexWrap: 'wrap',
+});
+
+const Title = styled('h3', {
+  fontSize: 'clamp(1.15rem, 2vw, 1.45rem)',
+  fontWeight: '$bold',
+  color: '$textPrimary',
+  letterSpacing: '-0.02em',
+  margin: 0,
+});
+
+const Subtitle = styled('p', {
+  fontSize: '$xs',
+  color: '$textSecondary',
+  fontWeight: '$medium',
+  margin: 0,
+});
+
+const RoleAndArch = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '4px',
+  padding: '$3',
+  borderRadius: '$xs',
+  backgroundColor: '$bgSecondary',
+  border: '1px solid $borderLight',
+  fontSize: '0.74rem',
+  fontFamily: '$mono',
+  color: '$textSecondary',
+  wordBreak: 'break-word',
+});
+
+const Description = styled('p', {
+  fontSize: '$sm',
+  color: '$textSecondary',
+  lineHeight: 1.6,
+  margin: 0,
+
+  '@mobile': {
+    fontSize: '0.84rem',
+  },
+});
+
+const FeatureList = styled('ul', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '6px',
+  margin: 0,
+  padding: 0,
+  listStyle: 'none',
+});
+
+const FeatureItem = styled('li', {
   display: 'flex',
   alignItems: 'flex-start',
   gap: '8px',
-  fontSize: '0.78rem',
+  fontSize: '$xs',
   color: '$textSecondary',
   lineHeight: 1.5,
 
   '& svg': {
-    color: '#34D399',
+    color: '$accent',
     flexShrink: 0,
     marginTop: '2px',
   },
 });
 
-const TechTagsList = styled('div', {
+const TechGroup = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
   gap: '6px',
-  mt: 'auto',
-  pt: '$2',
 });
 
-const CardActions = styled('div', {
+const ActionRow = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-start',
+  justifyContent: 'space-between',
+  gap: '$3',
+  pt: '$3',
+  borderTop: '1px solid $borderLight',
+  flexWrap: 'wrap',
+
+  '@mobile': {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    gap: '$2',
+  },
+});
+
+const LinkGroup = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
   gap: '$2',
   flexWrap: 'wrap',
-  pt: '$4',
-  borderTop: '1px solid $border',
-  mt: '$2',
-  width: '100%',
-});
-
-const DetailsButton = styled('button', {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '6px',
-  fontFamily: '$mono',
-  fontSize: '$xs',
-  fontWeight: '$semibold',
-  color: '$white',
-  background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(6, 182, 212, 0.15) 100%)',
-  border: '1px solid rgba(139, 92, 246, 0.35)',
-  borderRadius: '$full',
-  px: '$4',
-  py: '9px',
-  cursor: 'pointer',
-  transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-  minHeight: '40px',
-
-  '&:hover': {
-    background: 'linear-gradient(135deg, #A78BFA 0%, #8B5CF6 100%)',
-    borderColor: 'rgba(196, 181, 253, 0.7)',
-    transform: 'translateY(-1px)',
-    boxShadow: '0 4px 18px rgba(139, 92, 246, 0.5)',
-  },
 
   '@mobile': {
     width: '100%',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
   },
 });
 
-const ActionLink = styled('a', {
+const ActionButton = styled('a', {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '6px',
+  gap: '5px',
   fontFamily: '$mono',
-  fontSize: '$xs',
-  fontWeight: '$semibold',
+  fontSize: '0.74rem',
+  fontWeight: '$medium',
+  padding: '7px 12px',
+  borderRadius: '$xs',
+  border: '1px solid $border',
+  backgroundColor: '$bgCard',
   color: '$textPrimary',
-  backgroundColor: 'rgba(255, 255, 255, 0.04)',
-  border: '1px solid rgba(255, 255, 255, 0.12)',
-  borderRadius: '$full',
-  px: '$4',
-  py: '9px',
   textDecoration: 'none',
-  transition: 'all 0.25s ease',
-  minHeight: '40px',
+  transition: 'all 0.15s ease',
+  minHeight: '34px',
 
   '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    borderColor: '$primaryLight',
-    color: '$white',
-    transform: 'translateY(-1px)',
+    borderColor: '$borderStrong',
+    backgroundColor: '$bgSecondary',
   },
+});
 
-  '& svg.arrow': {
-    transition: 'transform 0.2s ease',
-  },
+const CaseStudyButton = styled('button', {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '4px',
+  fontFamily: '$mono',
+  fontSize: '0.74rem',
+  fontWeight: '$semibold',
+  color: '$accent',
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  padding: '6px 0',
 
-  '&:hover svg.arrow': {
-    transform: 'translate(2px, -2px)',
+  '&:hover': {
+    textDecoration: 'underline',
   },
 
   '@mobile': {
+    padding: '8px 0',
     width: '100%',
   },
 });
 
-export default function ProjectCard({ project, isFeatured = false, onSelect }) {
-  const displayFeatures = project.features || project.highlights || [];
+export default function ProjectCard({
+  project,
+  index = 0,
+  onSelect,
+}) {
+  let layoutType = 'standard';
+  if (project.id === 'eco-track-ai') {
+    layoutType = 'flagship';
+  } else if (project.id === 'online-job-portal') {
+    layoutType = 'splitReverse';
+  }
 
-  return (
-    <Card
-      featured={isFeatured}
-      layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
-      onClick={() => onSelect && onSelect(project)}
-      tabIndex={0}
-      role="button"
-      aria-label={`View details for ${project.title}`}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onSelect && onSelect(project);
-        }
-      }}
-    >
-      <ImageContainer featured={isFeatured}>
-        <ProjectImg
+  const imageBoxElement = (
+    <ImageBox layoutType={layoutType} className="project-image-box">
+      <WindowBar>
+        <WindowDots>
+          <span />
+          <span />
+          <span />
+        </WindowDots>
+        <span>{project.id}.app</span>
+      </WindowBar>
+      <ImgWrapper>
+        <img
           src={project.image}
-          alt={project.title}
+          alt={`${project.title} - Interface Preview`}
           loading="lazy"
         />
-        <ImageOverlay />
-        <TopBadgeWrapper>
-          <Badge variant={isFeatured ? 'primary' : 'pill'}>
-            {project.badge || project.category}
-          </Badge>
-        </TopBadgeWrapper>
-      </ImageContainer>
+      </ImgWrapper>
+    </ImageBox>
+  );
 
-      <ContentWrapper featured={isFeatured}>
-        <HeaderRow>
-          <CategoryText>
-            <Sparkles size={11} color="#67E8F9" />
-            {project.category}
-          </CategoryText>
-          <ProjectTitle featured={isFeatured}>{project.title}</ProjectTitle>
-        </HeaderRow>
+  const contentBoxElement = (
+    <ContentBox>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <HeaderBlock>
+          <BadgeRow>
+            <Badge variant="pill">{project.category}</Badge>
+            {project.badge && <Badge variant="accent">{project.badge}</Badge>}
+          </BadgeRow>
+          <Title>{project.title}</Title>
+          <Subtitle>{project.subtitle}</Subtitle>
+        </HeaderBlock>
 
-        <ProjectDesc>{project.description}</ProjectDesc>
+        <RoleAndArch>
+          <div>
+            <strong style={{ color: '#151618' }}>Role:</strong> {project.role}
+          </div>
+          <div>
+            <strong style={{ color: '#151618' }}>Arch:</strong> {project.architecture}
+          </div>
+        </RoleAndArch>
 
-        {displayFeatures.length > 0 && (
-          <HighlightsList>
-            {(isFeatured ? displayFeatures : displayFeatures.slice(0, 3)).map((point, index) => (
-              <HighlightItem key={index}>
-                <CheckCircle2 size={15} />
-                <span>{point}</span>
-              </HighlightItem>
+        <Description>{project.description}</Description>
+
+        {project.features && (
+          <FeatureList>
+            {project.features.slice(0, layoutType === 'standard' ? 2 : 3).map((feat, i) => (
+              <FeatureItem key={i}>
+                <CheckCircle2 size={13} />
+                <span>{feat}</span>
+              </FeatureItem>
             ))}
-          </HighlightsList>
+          </FeatureList>
         )}
+      </div>
 
-        <TechTagsList>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <TechGroup>
           {project.technologies.map((tech) => (
-            <TechTag
-              key={tech}
-              highlight={tech === 'Python' || tech === 'Django' || tech === 'ReactJS' || tech === 'Redux'}
-            >
-              {tech}
-            </TechTag>
+            <TechTag key={tech}>{tech}</TechTag>
           ))}
-        </TechTagsList>
+        </TechGroup>
 
-        <CardActions onClick={(e) => e.stopPropagation()}>
-          <DetailsButton
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect && onSelect(project);
-            }}
-            aria-label={`View details for ${project.title}`}
-          >
-            <Eye size={14} />
-            View Details
-          </DetailsButton>
+        <ActionRow>
+          <LinkGroup>
+            {project.githubUrl && (
+              <ActionButton
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${project.title} on GitHub`}
+              >
+                <GithubIcon size={14} />
+                Source Code
+              </ActionButton>
+            )}
 
-          <ActionLink
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View ${project.title} on GitHub`}
-          >
-            <GithubIcon size={14} />
-            GitHub
-            <ArrowUpRight size={14} className="arrow" />
-          </ActionLink>
+            {project.liveUrl && (
+              <ActionButton
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View live demo of ${project.title}`}
+                style={{
+                  backgroundColor: '#151618',
+                  color: '#FFFFFF',
+                  borderColor: '#151618',
+                }}
+              >
+                <ExternalLink size={13} />
+                Live Demo
+                <ArrowUpRight size={12} />
+              </ActionButton>
+            )}
+          </LinkGroup>
 
-          {project.liveUrl && (
-            <ActionLink
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`View ${project.title} live demo`}
-            >
-              Live Demo
-              <ArrowUpRight size={14} className="arrow" />
-            </ActionLink>
-          )}
-        </CardActions>
-      </ContentWrapper>
-    </Card>
+          <CaseStudyButton onClick={() => onSelect && onSelect(project)}>
+            Detailed Specs
+            <ChevronRight size={14} />
+          </CaseStudyButton>
+        </ActionRow>
+      </div>
+    </ContentBox>
+  );
+
+  return (
+    <CardContainer layoutType={layoutType}>
+      {layoutType === 'splitReverse' ? (
+        <>
+          {contentBoxElement}
+          {imageBoxElement}
+        </>
+      ) : (
+        <>
+          {imageBoxElement}
+          {contentBoxElement}
+        </>
+      )}
+    </CardContainer>
   );
 }

@@ -1,82 +1,77 @@
 import { styled } from '../../styles/stitches.config';
 import TechTag from '../common/TechTag';
-import { motion } from 'framer-motion';
 
-const Card = styled(motion.div, {
+const Card = styled('div', {
   backgroundColor: '$bgCard',
   border: '1px solid $border',
-  borderRadius: '$xl',
-  p: '$6',
+  borderRadius: '$sm',
+  padding: '$6',
   display: 'flex',
   flexDirection: 'column',
   gap: '$4',
-  transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
-  position: 'relative',
-  overflow: 'hidden',
-
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: '1px',
-    background: 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.12) 50%, transparent 100%)',
-  },
+  transition: 'border-color 0.2s ease, transform 0.2s ease',
 
   '&:hover': {
-    borderColor: 'rgba(139, 92, 246, 0.45)',
-    boxShadow: '0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 30px -5px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+    borderColor: '$borderStrong',
+    transform: 'translateY(-1px)',
   },
 
   '@mobile': {
-    p: '$4',
+    padding: '$5',
   },
 });
 
 const CardHeader = styled('div', {
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  gap: '$2',
+  flexDirection: 'column',
+  gap: '4px',
 });
 
-const CategoryTitle = styled('h3', {
+const CardCategory = styled('span', {
+  fontFamily: '$mono',
+  fontSize: '0.72rem',
+  textTransform: 'uppercase',
+  letterSpacing: '0.08em',
+  color: '$accent',
+});
+
+const CardTitle = styled('h3', {
   fontSize: '$lg',
   fontWeight: '$bold',
   color: '$textPrimary',
-  letterSpacing: '-0.02em',
+  letterSpacing: '-0.01em',
   margin: 0,
 });
 
-const CategoryDesc = styled('p', {
+const CardDesc = styled('p', {
   fontSize: '$xs',
   color: '$textSecondary',
-  lineHeight: 1.6,
+  lineHeight: 1.5,
   margin: 0,
 });
 
-const TagsContainer = styled('div', {
+const SkillsWrap = styled('div', {
   display: 'flex',
   flexWrap: 'wrap',
-  gap: '$2',
-  pt: '$1',
+  gap: '6px',
 });
 
-export default function SkillCard({ title, description, skills }) {
+export default function SkillCard({ category, index }) {
   return (
-    <Card
-      whileHover={{ y: -4, transition: { duration: 0.2 } }}
-    >
+    <Card>
       <CardHeader>
-        <CategoryTitle>{title}</CategoryTitle>
+        <CardCategory>0{index + 1} // DOMAIN</CardCategory>
+        <CardTitle>{category.title}</CardTitle>
+        <CardDesc>{category.description}</CardDesc>
       </CardHeader>
-      <CategoryDesc>{description}</CategoryDesc>
-      <TagsContainer>
-        {skills.map((skill) => (
-          <TechTag key={skill}>{skill}</TechTag>
+
+      <SkillsWrap>
+        {category.skills.map((skill) => (
+          <TechTag key={skill} highlight>
+            {skill}
+          </TechTag>
         ))}
-      </TagsContainer>
+      </SkillsWrap>
     </Card>
   );
 }

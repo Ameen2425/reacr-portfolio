@@ -6,7 +6,7 @@ import { BRAND } from '../../styles/theme';
 const SocialContainer = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  gap: '$3',
+  gap: '$2',
   flexWrap: 'wrap',
 });
 
@@ -14,23 +14,23 @@ const SocialIconLink = styled('a', {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  size: '42px',
-  borderRadius: '$md',
-  backgroundColor: 'rgba(255, 255, 255, 0.03)',
+  size: '38px',
+  borderRadius: '$sm',
+  backgroundColor: '$bgCard',
   border: '1px solid $border',
   color: '$textSecondary',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.18s ease',
 
   '&:hover': {
-    color: '$primaryLight',
-    borderColor: '$primary',
-    backgroundColor: 'rgba(139, 92, 246, 0.1)',
-    transform: 'translateY(-2px)',
-    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.25)',
+    color: '$textPrimary',
+    borderColor: '$textPrimary',
+    backgroundColor: '$bgCardHover',
+    transform: 'translateY(-1px)',
+    boxShadow: '$subtle',
   },
 
   '&:focus-visible': {
-    boxShadow: '0 0 0 2px #8B5CF6',
+    outline: '2px solid $textPrimary',
   },
 });
 
@@ -43,15 +43,15 @@ const SocialTextLink = styled('a', {
   color: '$textSecondary',
   textDecoration: 'none',
   padding: '6px 12px',
-  borderRadius: '$sm',
+  borderRadius: '$xs',
   border: '1px solid $border',
   backgroundColor: '$bgCard',
-  transition: 'all 0.2s ease',
+  transition: 'all 0.18s ease',
 
   '&:hover': {
-    color: '$white',
-    borderColor: '$primary',
-    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+    color: '$textPrimary',
+    borderColor: '$textPrimary',
+    backgroundColor: '$bgCardHover',
     transform: 'translateY(-1px)',
   },
 });
@@ -101,7 +101,7 @@ export default function SocialLinks({ variant = 'icons', ...props }) {
         rel="noopener noreferrer"
         aria-label="GitHub Profile"
       >
-        <GithubIcon size={18} />
+        <GithubIcon size={17} />
       </SocialIconLink>
 
       <SocialIconLink
@@ -110,14 +110,14 @@ export default function SocialLinks({ variant = 'icons', ...props }) {
         rel="noopener noreferrer"
         aria-label="LinkedIn Profile"
       >
-        <LinkedinIcon size={18} />
+        <LinkedinIcon size={17} />
       </SocialIconLink>
 
       <SocialIconLink
         href={`mailto:${BRAND.email}`}
         aria-label="Send Email"
       >
-        <Mail size={18} />
+        <Mail size={17} />
       </SocialIconLink>
     </SocialContainer>
   );

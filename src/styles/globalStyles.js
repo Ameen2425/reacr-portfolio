@@ -11,29 +11,22 @@ export const globalStyles = globalCss({
     width: '100%',
     maxWidth: '100vw',
     scrollBehavior: 'smooth',
-    backgroundColor: '#050508',
+    backgroundColor: '$bg',
+    colorScheme: 'light',
   },
   'body': {
     backgroundColor: '$bg',
     color: '$textPrimary',
     fontFamily: '$sans',
     fontSize: '16px',
-    lineHeight: 1.65,
+    lineHeight: 1.6,
     WebkitFontSmoothing: 'antialiased',
     MozOsxFontSmoothing: 'grayscale',
     overflowX: 'hidden',
     width: '100%',
     maxWidth: '100vw',
     position: 'relative',
-    backgroundImage: `
-      radial-gradient(circle at 20% 15%, rgba(139, 92, 246, 0.09) 0%, transparent 45%),
-      radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.07) 0%, transparent 50%),
-      radial-gradient(circle at 50% 85%, rgba(99, 102, 241, 0.08) 0%, transparent 45%),
-      linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px)
-    `,
-    backgroundSize: '100% 100%, 100% 100%, 100% 100%, 60px 60px, 60px 60px',
-    backgroundAttachment: 'fixed',
+    letterSpacing: '-0.01em',
   },
   '#root': {
     minHeight: '100vh',
@@ -44,10 +37,16 @@ export const globalStyles = globalCss({
     maxWidth: '100vw',
     position: 'relative',
   },
+  'main': {
+    width: '100%',
+  },
+  'section': {
+    scrollMarginTop: '76px',
+  },
   'a': {
     color: 'inherit',
     textDecoration: 'none',
-    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+    transition: 'color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease',
   },
   'button': {
     fontFamily: 'inherit',
@@ -55,7 +54,7 @@ export const globalStyles = globalCss({
     border: 'none',
     background: 'none',
     outline: 'none',
-    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+    transition: 'all 0.2s ease',
   },
   'input, textarea, select': {
     fontFamily: 'inherit',
@@ -67,21 +66,21 @@ export const globalStyles = globalCss({
     height: 'auto',
   },
   '::selection': {
-    backgroundColor: '$primary',
-    color: '$white',
+    backgroundColor: '$textPrimary',
+    color: '$bg',
   },
   '::-webkit-scrollbar': {
-    width: '7px',
+    width: '8px',
   },
   '::-webkit-scrollbar-track': {
-    background: '#050508',
+    background: '$bgSecondary',
   },
   '::-webkit-scrollbar-thumb': {
-    background: '#1E1E2D',
+    background: '#D5D5CF',
     borderRadius: '4px',
-    border: '1px solid rgba(255, 255, 255, 0.05)',
+    border: '2px solid $bgSecondary',
     '&:hover': {
-      background: '#8B5CF6',
+      background: '#B5B5AE',
     },
   },
   '@media (prefers-reduced-motion: reduce)': {
